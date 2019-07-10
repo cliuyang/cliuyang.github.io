@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>陈留阳</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://cliuyang.github.io/"/>
+  <updated>2019-03-09T08:46:10.518Z</updated>
+  <id>https://cliuyang.github.io/</id>
+  
+  <author>
+    <name>陈留阳</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用VScode编写C++工程</title>
+    <link href="https://cliuyang.github.io/2019/03/08/c-withVScode-second/"/>
+    <id>https://cliuyang.github.io/2019/03/08/c-withVScode-second/</id>
+    <published>2019-03-08T11:32:13.000Z</published>
+    <updated>2019-03-09T08:46:10.518Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;VS code 是个功能强大，可扩展性极强的编辑器，通过添加一些插件，修改一下配置即可发挥强大的功能。&lt;/p&gt;
+&lt;p&gt;前些日子（其实好久了哈 (￣ y▽ ￣)~*），通过阅读官网的文档，成功&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="教程" scheme="https://cliuyang.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="vscode" scheme="https://cliuyang.github.io/categories/%E6%95%99%E7%A8%8B/vscode/"/>
+    
+    
+      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+    
+      <category term="vscode" scheme="https://cliuyang.github.io/tags/vscode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>十大排序</title>
+    <link href="https://cliuyang.github.io/2019/02/22/TopTenSort/"/>
+    <id>https://cliuyang.github.io/2019/02/22/TopTenSort/</id>
+    <published>2019-02-22T10:36:38.000Z</published>
+    <updated>2019-03-08T11:43:12.812Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;从大一学 C 语言开始就一直听说有个叫做十大排序算法的东西，要涉及一些有趣的思想和数据结构什么的，听起来很厉害的样子，觉得好难就没去看过，只是调用 qsort 和 sort
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://cliuyang.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+    
+      <category term="排序算法" scheme="https://cliuyang.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="冒泡排序" scheme="https://cliuyang.github.io/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="选择排序" scheme="https://cliuyang.github.io/tags/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="插入排序" scheme="https://cliuyang.github.io/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="希尔排序" scheme="https://cliuyang.github.io/tags/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="归并排序" scheme="https://cliuyang.github.io/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="快速排序" scheme="https://cliuyang.github.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="堆排序" scheme="https://cliuyang.github.io/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="计数排序" scheme="https://cliuyang.github.io/tags/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="桶排序" scheme="https://cliuyang.github.io/tags/%E6%A1%B6%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="基数排序" scheme="https://cliuyang.github.io/tags/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="递归" scheme="https://cliuyang.github.io/tags/%E9%80%92%E5%BD%92/"/>
+    
+      <category term="分治" scheme="https://cliuyang.github.io/tags/%E5%88%86%E6%B2%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构——堆栈</title>
+    <link href="https://cliuyang.github.io/2019/02/15/DataStructurere-Stack/"/>
+    <id>https://cliuyang.github.io/2019/02/15/DataStructurere-Stack/</id>
+    <published>2019-02-15T11:53:05.000Z</published>
+    <updated>2019-02-16T07:40:35.667Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;堆栈是一种&lt;strong&gt;先进后出&lt;/strong&gt;的数据结构，我和别人说起来的时候，经常拿井做比较，最先放到井里的东西要最后才能拿出来。具体实现起来有着至少两种方式，&lt;strong&gt;链表实现&lt;/strong&gt;和&lt;strong&gt;数组实现&lt;/strong&gt;，实现思路都很简单，
+        
+      
+    
+    </summary>
+    
+      <category term="基本数据结构的实现" scheme="https://cliuyang.github.io/categories/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
+    
+    
+      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+    
+      <category term="《学习笔记》" scheme="https://cliuyang.github.io/tags/%E3%80%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%8B/"/>
+    
+      <category term="数据结构" scheme="https://cliuyang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="链表" scheme="https://cliuyang.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+      <category term="堆栈" scheme="https://cliuyang.github.io/tags/%E5%A0%86%E6%A0%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构——链表</title>
+    <link href="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/"/>
+    <id>https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/</id>
+    <published>2019-02-11T04:03:17.000Z</published>
+    <updated>2019-02-26T06:45:21.548Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;数据结构是一个早就有所耳闻的东西，但是一直没有潜下心学习过，对数据结构的了解也仅限于 C++里的 STL，趁寒假有空闲，去听了浙江大学&lt;strong&gt;陈越&lt;/strong&gt;老师的&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="基本数据结构的实现" scheme="https://cliuyang.github.io/categories/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
+    
+    
+      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+    
+      <category term="《学习笔记》" scheme="https://cliuyang.github.io/tags/%E3%80%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%8B/"/>
+    
+      <category term="数据结构" scheme="https://cliuyang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="链表" scheme="https://cliuyang.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《算法很美》——查找与排序（上）</title>
+    <link href="https://cliuyang.github.io/2019/02/10/AlgorithmIsBeautifulul-SearchSortUp/"/>
+    <id>https://cliuyang.github.io/2019/02/10/AlgorithmIsBeautifulul-SearchSortUp/</id>
+    <published>2019-02-10T13:06:29.000Z</published>
+    <updated>2019-02-22T10:36:13.476Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;第二章的内容相对第一章来说常规了一些，或者更应该说第一章的内容很是惊艳，毕竟位运算接触的少。而第二章分析算法的复杂度，排序算法的实现，二分查找这些就中规中矩了许多，在意的并不多。但是在例题里有几道感觉特别有意思的题目，思路比较巧，因此决定记下来。&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="《算法很美》" scheme="https://cliuyang.github.io/categories/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
+    
+    
+      <category term="学习笔记" scheme="https://cliuyang.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+    
+      <category term="《算法很美》" scheme="https://cliuyang.github.io/tags/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《算法很美》——位运算的奇巧淫技</title>
+    <link href="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/"/>
+    <id>https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/</id>
+    <published>2019-02-07T03:58:11.000Z</published>
+    <updated>2019-02-10T13:07:32.715Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;寒假前报名了蓝桥杯，和同学一起参加了蓝桥杯 《&lt;strong&gt;算法很美&lt;/strong&gt;》的课程，于是开了个新坑，学习一些基本的算法知识。&lt;/p&gt;
+&lt;h2 id=&quot;位操作&quot;&gt;&lt;a href=&quot;#位操作&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="《算法很美》" scheme="https://cliuyang.github.io/categories/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
+    
+    
+      <category term="学习笔记" scheme="https://cliuyang.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+    
+      <category term="《算法很美》" scheme="https://cliuyang.github.io/tags/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
+    
+      <category term="位运算" scheme="https://cliuyang.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一次对内存的探索</title>
+    <link href="https://cliuyang.github.io/2018/12/13/ExploreByte/"/>
+    <id>https://cliuyang.github.io/2018/12/13/ExploreByte/</id>
+    <published>2018-12-13T15:36:50.000Z</published>
+    <updated>2019-03-16T03:37:58.640Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一段程序&quot;&gt;&lt;a href=&quot;#一段程序&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="折腾" scheme="https://cliuyang.github.io/categories/%E6%8A%98%E8%85%BE/"/>
+    
+    
+      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+    
+      <category term="union" scheme="https://cliuyang.github.io/tags/union/"/>
+    
+      <category term="struct" scheme="https://cliuyang.github.io/tags/struct/"/>
+    
+      <category term="左移与右移" scheme="https://cliuyang.github.io/tags/%E5%B7%A6%E7%A7%BB%E4%B8%8E%E5%8F%B3%E7%A7%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用VScode编写C++文件</title>
+    <link href="https://cliuyang.github.io/2018/12/01/c-withVScode/"/>
+    <id>https://cliuyang.github.io/2018/12/01/c-withVScode/</id>
+    <published>2018-12-01T13:12:42.000Z</published>
+    <updated>2019-03-08T12:15:13.475Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;第一次接触visual studio code是在大一上学期，正是初学C语言的时候。那时候老师与学长推荐的集成开发环境（IDE）主要是Dev C++与code
+        
+      
+    
+    </summary>
+    
+      <category term="教程" scheme="https://cliuyang.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="vscode" scheme="https://cliuyang.github.io/categories/%E6%95%99%E7%A8%8B/vscode/"/>
+    
+    
+      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+    
+      <category term="vscode" scheme="https://cliuyang.github.io/tags/vscode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Proteus安装，破解，汉化教程</title>
+    <link href="https://cliuyang.github.io/2018/11/07/Proteus%E5%AE%89%E8%A3%85%EF%BC%8C%E7%A0%B4%E8%A7%A3%EF%BC%8C%E6%B1%89%E5%8C%96%E6%95%99%E7%A8%8B/"/>
+    <id>https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/</id>
+    <published>2018-11-07T05:30:47.000Z</published>
+    <updated>2019-01-05T09:39:50.884Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;最近在学校里做电路实验，老师要求在自己的电脑上下载Proteus这款软件并进行模拟仿真实验，于是在网上搜寻了相关的教程，整理后理清了整个安装破解的思路与方法。写下来，一是留作以后备用，不用再查很多资料，二是熟悉下Markdown的语法，当作一个练手的博客。&lt;/p&gt;
+&lt;p&gt;其
+        
+      
+    
+    </summary>
+    
+      <category term="教程" scheme="https://cliuyang.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="proteus" scheme="https://cliuyang.github.io/tags/proteus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的第一篇博客</title>
+    <link href="https://cliuyang.github.io/2018/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://cliuyang.github.io/2018/11/01/我的第一篇博客/</id>
+    <published>2018-11-01T15:30:14.000Z</published>
+    <updated>2019-01-05T09:40:03.115Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;今天是2018年11月1日，据我开始打算搭建一个私人博客起，刚刚好一个月，找了各种各样的博客，各种各样的教程，向认识的同学请教，在GitHub上提问，在文档之间徘徊。一个月，缝缝补补，终于是把基本的博客搭了起来，以后的话，就可以在这里，巨大的互联网的一角里存放属于自己的一点
+        
+      
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://cliuyang.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="杂记" scheme="https://cliuyang.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
+  
+</feed>

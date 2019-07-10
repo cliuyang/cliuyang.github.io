@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+  <meta name="keywords" content="学习笔记,C/C++,《算法很美》,位运算,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈留阳" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="寒假前报名了蓝桥杯，和同学一起参加了蓝桥杯 《算法很美》的课程，于是开了个新坑，学习一些基本的算法知识。 位操作 摘自维基百科  取反(NOT)取反是一元运算符，对一个个二进制数的每一位执行逻辑反操作，是数字1成为0，数字0成为1。例如：  NOT 0111 = 1000  在C/C++程序设计语言中，取反操作通过波浪线“~”来表示。 按位或(OR)按位或处理两个长度相同的二进制数，两个相应的二进">
+<meta name="keywords" content="学习笔记,C&#x2F;C++,《算法很美》,位运算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《算法很美》——位运算的奇巧淫技">
+<meta property="og:url" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/index.html">
+<meta property="og:site_name" content="陈留阳">
+<meta property="og:description" content="寒假前报名了蓝桥杯，和同学一起参加了蓝桥杯 《算法很美》的课程，于是开了个新坑，学习一些基本的算法知识。 位操作 摘自维基百科  取反(NOT)取反是一元运算符，对一个个二进制数的每一位执行逻辑反操作，是数字1成为0，数字0成为1。例如：  NOT 0111 = 1000  在C/C++程序设计语言中，取反操作通过波浪线“~”来表示。 按位或(OR)按位或处理两个长度相同的二进制数，两个相应的二进">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND1.png">
+<meta property="og:image" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND2.png">
+<meta property="og:image" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND3.png">
+<meta property="og:image" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND4.png">
+<meta property="og:image" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND5.png">
+<meta property="og:image" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND6.png">
+<meta property="og:image" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND7.png">
+<meta property="og:image" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND8.png">
+<meta property="og:image" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND9.png">
+<meta property="og:image" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND10.png">
+<meta property="og:image" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/SwapOddEven.png">
+<meta property="og:updated_time" content="2019-02-10T13:07:32.715Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《算法很美》——位运算的奇巧淫技">
+<meta name="twitter:description" content="寒假前报名了蓝桥杯，和同学一起参加了蓝桥杯 《算法很美》的课程，于是开了个新坑，学习一些基本的算法知识。 位操作 摘自维基百科  取反(NOT)取反是一元运算符，对一个个二进制数的每一位执行逻辑反操作，是数字1成为0，数字0成为1。例如：  NOT 0111 = 1000  在C/C++程序设计语言中，取反操作通过波浪线“~”来表示。 按位或(OR)按位或处理两个长度相同的二进制数，两个相应的二进">
+<meta name="twitter:image" content="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/">
+
+
+
+
+
+  <title>《算法很美》——位运算的奇巧淫技 | 陈留阳</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/cliuyang" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈留阳</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈留阳">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《算法很美》——位运算的奇巧淫技</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-07T11:58:11+08:00">
+                2019-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《算法很美》/" itemprop="url" rel="index">
+                    <span itemprop="name">《算法很美》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>人次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>寒假前报名了蓝桥杯，和同学一起参加了蓝桥杯 《<strong>算法很美</strong>》的课程，于是开了个新坑，学习一些基本的算法知识。</p>
+<h2 id="位操作"><a href="#位操作" class="headerlink" title="位操作"></a>位操作</h2><blockquote>
+<p>摘自<a href="https://zh.wikipedia.org/zh-hans/%E4%BD%8D%E6%93%8D%E4%BD%9C" target="_blank" rel="noopener">维基百科</a></p>
+</blockquote>
+<h3 id="取反-NOT"><a href="#取反-NOT" class="headerlink" title="取反(NOT)"></a>取反(NOT)</h3><p><strong>取反</strong>是一元运算符，对一个个二进制数的每一位执行逻辑反操作，是数字1成为0，数字0成为1。例如：</p>
+<blockquote>
+<p>NOT 0111 = 1000</p>
+</blockquote>
+<p>在C/C++程序设计语言中，取反操作通过波浪线“<strong>~</strong>”来表示。</p>
+<h3 id="按位或-OR"><a href="#按位或-OR" class="headerlink" title="按位或(OR)"></a>按位或(OR)</h3><p><strong>按位或</strong>处理两个长度相同的二进制数，两个相应的二进位中只要有一个为1，该位的结果值为1。例如：</p>
+<blockquote>
+<p>0010 OR 1000 = 1010</p>
+</blockquote>
+<p>在C/C++程序设计语言中，按位或操作通过单竖线“<strong>|</strong>”来表示。</p>
+<h3 id="按位异或-XOR"><a href="#按位异或-XOR" class="headerlink" title="按位异或(XOR)"></a>按位异或(XOR)</h3><p><strong>按位异或</strong>对等长二进制模式或二进制数的每一位执行逻辑异或操作。操作结果是如果某位不同则改为为1，否则改为为0。例如：</p>
+<blockquote>
+<p>0101 XOR 0011 = 0110</p>
+</blockquote>
+<p>在C/C++程序设计语言中，按位异或的运算符是“<strong>^</strong>”。</p>
+<h3 id="按位与-AND"><a href="#按位与-AND" class="headerlink" title="按位与(AND)"></a>按位与(AND)</h3><p><strong>按位与</strong>处理两个长度相同的二进制数，两个相应的二进位都为1，改为的结果值才为1，否则为0。例如：</p>
+<blockquote>
+<p>0101 AND 0011 = 0001</p>
+</blockquote>
+<p>在C/C++程序设计语言中，按位与的运算符是“<strong>&amp;</strong>”。</p>
+<h3 id="移位"><a href="#移位" class="headerlink" title="移位"></a>移位</h3><p><strong>移位</strong>是一个二元运算符，用来将一个二进制数的每一位全部都向一个方向移动指定为，溢出的部分将被舍弃，而孔雀的部分填入0。例如：</p>
+<blockquote>
+<p>0001 &lt;&lt; 3 = 1000</p>
+<p>1010 &gt;&gt; 2 = 0010</p>
+</blockquote>
+<p>在C/C++程序设计语言中，移位的运算符是“<strong>&lt;&lt;</strong>”与“<strong>&gt;&gt;</strong>”。</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="1-判断奇偶数"><a href="#1-判断奇偶数" class="headerlink" title="1. 判断奇偶数"></a>1. 判断奇偶数</h3><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>任给一个整数n，判断该数是否为奇数。</p>
+<h4 id="定义判断"><a href="#定义判断" class="headerlink" title="定义判断"></a>定义判断</h4><ul>
+<li><strong>可以被2整除的数是偶数，不可被2整除的数是奇数</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">IsOdd</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用位运算“-amp-”"><a href="#使用位运算“-amp-”" class="headerlink" title="使用位运算“&amp;”"></a>使用位运算“&amp;”</h4><ul>
+<li><strong>奇数的二进制形式最后一位是1，偶数则为0</strong></li>
+<li><strong>按位与处理两个长度相同的二进制数，两个相应的二进位都为1，改为的结果值才为1，否则为0</strong></li>
+</ul>
+<p>因此，任意一个整数<strong>n</strong>与整数<strong>1</strong>进行<strong>与</strong>操作时，若n二进制形式最低为为1则结果为1，否则为0。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">IsOdd</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &amp; <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证程序"><a href="#验证程序" class="headerlink" title="验证程序"></a>验证程序</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">IsOdd</span><span class="params">(<span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入一个整数:"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">if</span> (IsOdd(n))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="string">"是奇数。"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="string">"不是奇数。"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-找出唯一成对的数"><a href="#2-找出唯一成对的数" class="headerlink" title="2.找出唯一成对的数"></a>2.找出唯一成对的数</h3><h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>1-n这n个数放在含有(n+1)个元素的数组中，只有唯一的一个元素值重复，其它的均只出现一次。每个数组元素只能访问一次，设计一个算法，将它找出来。如果不使用存储空间，能否设计一个算法实现？</p>
+<h4 id="计数-需要辅助空间"><a href="#计数-需要辅助空间" class="headerlink" title="计数(需要辅助空间)"></a>计数(需要辅助空间)</h4><p>可以记下每个数字出现的次数，然后找到出现两次的数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">PairNumber</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *bucket = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    <span class="built_in">memset</span>(bucket, <span class="number">0</span>, n * <span class="keyword">sizeof</span>(bucket[<span class="number">0</span>]));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//记录下每个数出现的次数，保存到对应下标下</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        bucket[arr[i]]++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//遍历查找出现两次的数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (bucket[i] == <span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="异或去除重复-偶数次-项"><a href="#异或去除重复-偶数次-项" class="headerlink" title="异或去除重复(偶数次)项"></a>异或去除重复(偶数次)项</h4><ul>
+<li>两个相同的数进行异或，结果是0</li>
+<li>如果对一系列数进行异或，可以消除掉重复出现偶数次的数</li>
+<li>将原数组的数异或一边后，再与1-n异或一边，则重复出现两次的数被异或了三次，其余的数被异或了两次被消去，因此最终结果就是原数组中出现两次的数</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">PairNumber</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//遍历异或原数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ret ^= arr[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//与1-n异或</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ret ^= i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证程序-1"><a href="#验证程序-1" class="headerlink" title="验证程序"></a>验证程序</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">PairNumber</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入n:"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造长度为(n+1)的数组</span></span><br><span class="line">    <span class="keyword">int</span> *arr = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        arr[i] = i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    srand((<span class="keyword">int</span>)time(<span class="literal">NULL</span>));</span><br><span class="line">    arr[n] = (<span class="keyword">int</span>)(rand() * <span class="number">1.0</span> / RAND_MAX * (n - <span class="number">1</span>) + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//打乱数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        swap(arr[i], arr[(<span class="keyword">int</span>)(rand() * <span class="number">1.0</span> / RAND_MAX * n)]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出结果</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"原数组为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; arr[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"重复出现的数为："</span> &lt;&lt; PairNumber(arr, n) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-找出落单的数"><a href="#3-找出落单的数" class="headerlink" title="3.找出落单的数"></a>3.找出落单的数</h3><h4 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h4><p>一个长度为(2×n+1)的数组里除了某一个数字之外，其它的数字都出现了两次，请写出程序找出这个只出现了一次的数字。</p>
+<h4 id="异或去重"><a href="#异或去重" class="headerlink" title="异或去重"></a>异或去重</h4><p>思路与上题类似，通过遍历异或消去重复出现两次的数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SingleNumber</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ret ^= arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证程序-2"><a href="#验证程序-2" class="headerlink" title="验证程序"></a>验证程序</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SingleNumber</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入n:"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造长度为(2×n+1)的数组</span></span><br><span class="line">    srand((<span class="keyword">int</span>)time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="keyword">int</span> *arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span> * n + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        arr[i] = arr[i + n] = rand();</span><br><span class="line">    &#125;</span><br><span class="line">    arr[<span class="number">2</span> * n] = rand();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//打乱数组</span></span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">2</span> * n + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        swap(arr[i], arr[(<span class="keyword">int</span>)(rand() * <span class="number">1.0</span> / RAND_MAX * len)]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出结果</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"原数组为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; arr[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"出现一次的数为："</span> &lt;&lt; SingleNumber(arr, len) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-找出两个落单的数"><a href="#4-找出两个落单的数" class="headerlink" title="4.找出两个落单的数"></a>4.找出两个落单的数</h3><h4 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h4><p>一个长度为(2×n+2)的数组里除了某两个个数字之外，其它的数字都出现了两次，请写出程序找出这两个只出现了一次的数字。</p>
+<h4 id="三次异或"><a href="#三次异或" class="headerlink" title="三次异或"></a>三次异或</h4><p>可知如果用0和所有的数都异或一遍，可以的到没有重复的两个数异或的结果。</p>
+<p>因为这两个数并不相同，所以得到的结果必定不是0，即所得结果二进制中必定存在至少一个1。</p>
+<p>根据异或的性质可知，这两个数在这一位的数一定不相同，一个是1，而另一个是0。那么，如果将所有该位是1的数与所有该位都是0的数分别异或，所得结果就是这两个数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; SingleNumbers(<span class="keyword">int</span> *arr, <span class="keyword">int</span> n)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> first = <span class="number">0</span>, second = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        temp ^= arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (temp &amp; (<span class="number">1</span> &lt;&lt; i))</span><br><span class="line">        &#123;</span><br><span class="line">            flag = <span class="number">1</span> &lt;&lt; i;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &amp; flag)</span><br><span class="line">        &#123;</span><br><span class="line">            first ^= arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            second ^= arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> make_pair(first, second);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证程序-3"><a href="#验证程序-3" class="headerlink" title="验证程序"></a>验证程序</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utility&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; SingleNumbers(<span class="keyword">int</span> *arr, <span class="keyword">int</span> n);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入n:"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造长度为(2×n+2)的数组</span></span><br><span class="line">    srand((<span class="keyword">int</span>)time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="keyword">int</span> *arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span> * n + <span class="number">2</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        arr[i] = arr[i + n] = rand();</span><br><span class="line">    &#125;</span><br><span class="line">    arr[<span class="number">2</span> * n] = rand();</span><br><span class="line">    arr[<span class="number">2</span> * n + <span class="number">1</span>] = arr[<span class="number">2</span> * n] + rand();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//打乱数组</span></span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">2</span> * n + <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        swap(arr[i], arr[(<span class="keyword">int</span>)(rand() * <span class="number">1.0</span> / RAND_MAX * len)]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出结果</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"原数组为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; arr[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; ans = SingleNumbers(arr, len);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"出现一次的数为："</span> &lt;&lt; ans.first &lt;&lt; <span class="string">"与"</span> &lt;&lt; ans.second &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-二进制中1的个数"><a href="#5-二进制中1的个数" class="headerlink" title="5.二进制中1的个数"></a>5.二进制中1的个数</h3><h4 id="题目-4"><a href="#题目-4" class="headerlink" title="题目"></a>题目</h4><p>给定一个整数n，输出该数二进制表示中1的个数。</p>
+<h4 id="与做法之一"><a href="#与做法之一" class="headerlink" title="与做法之一"></a>与做法之一</h4><ul>
+<li>两个二进制数按位与，若相同位相同，则结果为1，否则为0</li>
+</ul>
+<p>让一个只有最低位为1的二进制与原数与，然后不断左移，如果结果不为0则说明该位是1。</p>
+<p><img src="/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND1.png" alt></p>
+<p><img src="/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND2.png" alt></p>
+<p><img src="/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND3.png" alt></p>
+<p><img src="/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND4.png" alt></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CountOneinBit</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> size = <span class="keyword">sizeof</span>(n) * CHAR_BIT;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>, temp = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(n&amp;temp)</span><br><span class="line">        &#123;</span><br><span class="line">            ret++;</span><br><span class="line">        &#125;</span><br><span class="line">        temp &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="与做法之二"><a href="#与做法之二" class="headerlink" title="与做法之二"></a>与做法之二</h4><p>与做法一类似，但是改为将原数右移和1进行与运算</p>
+<p><img src="/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND5.png" alt></p>
+<p><img src="/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND6.png" alt></p>
+<p><img src="/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND7.png" alt></p>
+<p><img src="/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND8.png" alt></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CountOneinBit</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">1</span> &amp; n)</span><br><span class="line">        &#123;</span><br><span class="line">            ret++;</span><br><span class="line">        &#125;</span><br><span class="line">        n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="与做法之三"><a href="#与做法之三" class="headerlink" title="与做法之三"></a>与做法之三</h4><ul>
+<li><strong>对于整数n，n&amp;(n-1)的结果是消除掉n二进制形式的最后一个。</strong></li>
+</ul>
+<p>不断消除整数二进制形式的最后一个1，直到原数变成0，则消除的次数就是1的个数</p>
+<p><img src="/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND9.png" alt></p>
+<p><img src="/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/AND10.png" alt></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CountOneinBit</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        n = n &amp; (n - <span class="number">1</span>);</span><br><span class="line">        ret++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证程序-4"><a href="#验证程序-4" class="headerlink" title="验证程序"></a>验证程序</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CountOneinBit</span><span class="params">(<span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入一个整数n："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="string">"的二进制形式中1的个数是："</span> &lt;&lt; CountOneinBit(n) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-判断一个整数是否为2的整数次方"><a href="#6-判断一个整数是否为2的整数次方" class="headerlink" title="6.判断一个整数是否为2的整数次方"></a>6.判断一个整数是否为2的整数次方</h3><h4 id="题目-5"><a href="#题目-5" class="headerlink" title="题目"></a>题目</h4><p>使用一条语句判断一个整数是否为2的整数次方</p>
+<h4 id="与做法"><a href="#与做法" class="headerlink" title="与做法"></a>与做法</h4><p>易知如果一个数的二进制形式中只有一个1，则符合题意，考虑上题第三种解法，可得：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">IsIntegerPowerof2</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !(n &amp; (n - <span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证程序-5"><a href="#验证程序-5" class="headerlink" title="验证程序"></a>验证程序</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">IsIntegerPowerof2</span><span class="params">(<span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入一个整数n："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; n;</span><br><span class="line">    <span class="keyword">if</span> (!IsIntegerPowerof2(n))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"不"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"是2的整数次幂。"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-将整数的奇偶位互换"><a href="#7-将整数的奇偶位互换" class="headerlink" title="7.将整数的奇偶位互换"></a>7.将整数的奇偶位互换</h3><h4 id="题目-6"><a href="#题目-6" class="headerlink" title="题目"></a>题目</h4><p>将一个整数n的二进制形式下的奇数位与偶数位互换。</p>
+<h4 id="拆分，移位，异或"><a href="#拆分，移位，异或" class="headerlink" title="拆分，移位，异或"></a>拆分，移位，异或</h4><p>具体思路如下图：</p>
+<p><img src="/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/SwapOddEven.png" alt></p>
+<p>将奇位与偶位拆分开，通过移位后再次组合在一起</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SwapOddEven</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> even = n &amp; <span class="number">0xaaaaaaaa</span>;<span class="comment">//10101010....</span></span><br><span class="line">    <span class="keyword">int</span> odd  = n &amp; <span class="number">0x55555555</span>;<span class="comment">//01010101....</span></span><br><span class="line">    <span class="keyword">return</span> (even &gt;&gt; <span class="number">1</span>) ^ (odd &lt;&lt; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证程序-6"><a href="#验证程序-6" class="headerlink" title="验证程序"></a>验证程序</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">int SwapOddEven(int n)；</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入一个整数n："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="string">"的奇偶位互换后是"</span> &lt;&lt; SwapOddEven(n) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-出现k次与出现1次"><a href="#8-出现k次与出现1次" class="headerlink" title="8.出现k次与出现1次"></a>8.出现k次与出现1次</h3><h4 id="题目-7"><a href="#题目-7" class="headerlink" title="题目"></a>题目</h4><p>数组中只有一个数出现了1次，其它的数都出现了k次，请输出只出现了1次的数。</p>
+<h4 id="k进制不进位加法"><a href="#k进制不进位加法" class="headerlink" title="k进制不进位加法"></a>k进制不进位加法</h4><ul>
+<li><strong>k个相同的k进制数之和为0</strong></li>
+</ul>
+<p>老实说这个解法不算很简洁，但是很独特。将所有的数转化为k进制，然后进行不进位加法，则最终的结果就是只出现了一次的数的k进制，再转回去就好。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e3</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将两个k进制数进行不进位相加</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">noCrashSum</span><span class="params">(<span class="built_in">string</span> kRadix1, <span class="built_in">string</span> kRadix2, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    reverse(kRadix1.begin(), kRadix1.end());</span><br><span class="line">    reverse(kRadix2.begin(), kRadix2.end());</span><br><span class="line">    <span class="keyword">int</span> len = max(kRadix1.length(), kRadix2.length());</span><br><span class="line">    <span class="keyword">while</span> (kRadix1.length() &lt; len)</span><br><span class="line">    &#123;</span><br><span class="line">        kRadix1 += <span class="string">"0"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (kRadix2.length() &lt; len)</span><br><span class="line">    &#123;</span><br><span class="line">        kRadix2 += <span class="string">"0"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> ret;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ret += ((kRadix1[i] - <span class="string">'0'</span> + kRadix2[i] - <span class="string">'0'</span>) % k + <span class="string">'0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    reverse(ret.begin(), ret.end());</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算长度为n的k进制数组的不进位和</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">noCrashSum</span><span class="params">(<span class="built_in">string</span> kRadixs[], <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> ret;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ret = noCrashSum(ret, kRadixs[i], k);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将十进制整数n转化为k进制字符串</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">ToString</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> ret = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        ret += (n % k + <span class="string">'0'</span>);</span><br><span class="line">        n /= k;</span><br><span class="line">    &#125; <span class="keyword">while</span> (n);</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将k进制数kRadix转化为十进制整数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ToInt</span><span class="params">(<span class="built_in">string</span> kRadix, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    reverse(kRadix.begin(), kRadix.end());</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; kRadix.length(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ret = ret * k + (kRadix[i] - <span class="string">'0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求在长度n的数组中，只出现一次的数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SingleNumber</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> kRadixs[maxn];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        kRadixs[i] = ToString(arr[i], k);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> kRadixAns = noCrashSum(kRadixs, n, k);</span><br><span class="line">    <span class="keyword">return</span> ToInt(kRadixAns, k);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证程序-7"><a href="#验证程序-7" class="headerlink" title="验证程序"></a>验证程序</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;array&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e3</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将两个k进制数进行不进位相加</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">noCrashSum</span><span class="params">(<span class="built_in">string</span> kRadix1, <span class="built_in">string</span> kRadix2, <span class="keyword">int</span> k)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算长度为n的k进制数组的不进位和</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">noCrashSum</span><span class="params">(<span class="built_in">string</span> kRadixs[], <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将十进制整数n转化为k进制字符串</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">ToString</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将k进制数kRadix转化为十进制整数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ToInt</span><span class="params">(<span class="built_in">string</span> kRadix, <span class="keyword">int</span> k)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求在长度n的数组中，只出现一次的数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SingleNumber</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, k;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Tip: n × k &lt; "</span> &lt;&lt; maxn &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入一个n："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入一个k："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; k;</span><br><span class="line">    <span class="keyword">int</span> len = n * k + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//生成数组</span></span><br><span class="line">    <span class="keyword">int</span> *arr = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> value = rand();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; k; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            arr[i + n * j] = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    arr[len - <span class="number">1</span>] = rand();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//打乱数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        swap(arr[i], arr[(<span class="keyword">int</span>)(rand() * <span class="number">1.0</span> / RAND_MAX * len)]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"原数组为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; arr[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"出现一次的数是："</span> &lt;&lt; SingleNumber(arr, len, k) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本次课程的内容就像是题目所说的“<strong>奇巧淫技</strong>”，本来对位运算了解并不多，也不怎么会用，而这次见识到的这些神奇的操作则是刷新了我对位运算的看法，体会到了算法的神奇巧妙之处。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果这些内容对您有帮助，可以考虑请我吃糖(/▽＼)</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+     <span>🍭</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="陈留阳 微信">
+        <p>微信</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="陈留阳 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag"><i class="fa fa-tag"></i> 学习笔记</a>
+          
+            <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
+          
+            <a href="/tags/《算法很美》/" rel="tag"><i class="fa fa-tag"></i> 《算法很美》</a>
+          
+            <a href="/tags/位运算/" rel="tag"><i class="fa fa-tag"></i> 位运算</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/13/ExploreByte/" rel="next" title="一次对内存的探索">
+                <i class="fa fa-chevron-left"></i> 一次对内存的探索
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/10/AlgorithmIsBeautifulul-SearchSortUp/" rel="prev" title="《算法很美》——查找与排序（上）">
+                《算法很美》——查找与排序（上） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MDk5MS8xNzUxNg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="陈留阳">
+            
+              <p class="site-author-name" itemprop="name">陈留阳</p>
+              <p class="site-description motion-element" itemprop="description">人外有人，天外有天。卧薪尝胆，永不言弃！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cliuyang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/chen-liu-yang-78" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://coding.net/u/cliuyang" target="_blank" title="Coding">
+                      
+                        <i class="fa fa-fw fa-code"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#位操作"><span class="nav-number">1.</span> <span class="nav-text">位操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#取反-NOT"><span class="nav-number">1.1.</span> <span class="nav-text">取反(NOT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位或-OR"><span class="nav-number">1.2.</span> <span class="nav-text">按位或(OR)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位异或-XOR"><span class="nav-number">1.3.</span> <span class="nav-text">按位异或(XOR)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位与-AND"><span class="nav-number">1.4.</span> <span class="nav-text">按位与(AND)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移位"><span class="nav-number">1.5.</span> <span class="nav-text">移位</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">2.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-判断奇偶数"><span class="nav-number">2.1.</span> <span class="nav-text">1. 判断奇偶数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">2.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义判断"><span class="nav-number">2.1.2.</span> <span class="nav-text">定义判断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用位运算“-amp-”"><span class="nav-number">2.1.3.</span> <span class="nav-text">使用位运算“&amp;”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证程序"><span class="nav-number">2.1.4.</span> <span class="nav-text">验证程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-找出唯一成对的数"><span class="nav-number">2.2.</span> <span class="nav-text">2.找出唯一成对的数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计数-需要辅助空间"><span class="nav-number">2.2.2.</span> <span class="nav-text">计数(需要辅助空间)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异或去除重复-偶数次-项"><span class="nav-number">2.2.3.</span> <span class="nav-text">异或去除重复(偶数次)项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证程序-1"><span class="nav-number">2.2.4.</span> <span class="nav-text">验证程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-找出落单的数"><span class="nav-number">2.3.</span> <span class="nav-text">3.找出落单的数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异或去重"><span class="nav-number">2.3.2.</span> <span class="nav-text">异或去重</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证程序-2"><span class="nav-number">2.3.3.</span> <span class="nav-text">验证程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-找出两个落单的数"><span class="nav-number">2.4.</span> <span class="nav-text">4.找出两个落单的数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-3"><span class="nav-number">2.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三次异或"><span class="nav-number">2.4.2.</span> <span class="nav-text">三次异或</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证程序-3"><span class="nav-number">2.4.3.</span> <span class="nav-text">验证程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-二进制中1的个数"><span class="nav-number">2.5.</span> <span class="nav-text">5.二进制中1的个数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-4"><span class="nav-number">2.5.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与做法之一"><span class="nav-number">2.5.2.</span> <span class="nav-text">与做法之一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与做法之二"><span class="nav-number">2.5.3.</span> <span class="nav-text">与做法之二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与做法之三"><span class="nav-number">2.5.4.</span> <span class="nav-text">与做法之三</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证程序-4"><span class="nav-number">2.5.5.</span> <span class="nav-text">验证程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-判断一个整数是否为2的整数次方"><span class="nav-number">2.6.</span> <span class="nav-text">6.判断一个整数是否为2的整数次方</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-5"><span class="nav-number">2.6.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与做法"><span class="nav-number">2.6.2.</span> <span class="nav-text">与做法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证程序-5"><span class="nav-number">2.6.3.</span> <span class="nav-text">验证程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-将整数的奇偶位互换"><span class="nav-number">2.7.</span> <span class="nav-text">7.将整数的奇偶位互换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-6"><span class="nav-number">2.7.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拆分，移位，异或"><span class="nav-number">2.7.2.</span> <span class="nav-text">拆分，移位，异或</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证程序-6"><span class="nav-number">2.7.3.</span> <span class="nav-text">验证程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-出现k次与出现1次"><span class="nav-number">2.8.</span> <span class="nav-text">8.出现k次与出现1次</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目-7"><span class="nav-number">2.8.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#k进制不进位加法"><span class="nav-number">2.8.2.</span> <span class="nav-text">k进制不进位加法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证程序-7"><span class="nav-number">2.8.3.</span> <span class="nav-text">验证程序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈留阳</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">小站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">小站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "middleRight";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
