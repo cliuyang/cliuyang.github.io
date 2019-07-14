@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cliuyang.github.io/"/>
-  <updated>2019-03-09T08:46:10.518Z</updated>
+  <updated>2019-07-14T06:42:48.755Z</updated>
   <id>https://cliuyang.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>以最优雅的方式做算法竞赛</title>
+    <link href="https://cliuyang.github.io/2019/07/12/VScode-C-Algorithmic-Competition/"/>
+    <id>https://cliuyang.github.io/2019/07/12/VScode-C-Algorithmic-Competition/</id>
+    <published>2019-07-12T10:29:30.000Z</published>
+    <updated>2019-07-14T06:42:48.755Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;自从在大学入坑了&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+    
+      <category term="vscode" scheme="https://cliuyang.github.io/tags/vscode/"/>
+    
+  </entry>
   
   <entry>
     <title>使用VScode编写C++工程</title>
@@ -234,7 +260,7 @@
     <link href="https://cliuyang.github.io/2018/12/13/ExploreByte/"/>
     <id>https://cliuyang.github.io/2018/12/13/ExploreByte/</id>
     <published>2018-12-13T15:36:50.000Z</published>
-    <updated>2019-03-16T03:37:58.640Z</updated>
+    <updated>2019-07-14T06:49:04.534Z</updated>
     
     <summary type="html">
     
@@ -266,7 +292,7 @@
     <link href="https://cliuyang.github.io/2018/12/01/c-withVScode/"/>
     <id>https://cliuyang.github.io/2018/12/01/c-withVScode/</id>
     <published>2018-12-01T13:12:42.000Z</published>
-    <updated>2019-03-08T12:15:13.475Z</updated>
+    <updated>2019-07-14T06:47:04.388Z</updated>
     
     <summary type="html">
     
