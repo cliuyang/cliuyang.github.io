@@ -2068,7 +2068,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffff6e;
+  background: #ff14ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3399,7 +3399,18 @@ img:hover {
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
+a[rel="noopener"] {
+  color: #5073b8;
+  border-bottom-color: #5073b8;
+}
+a[rel="noopener"]:hover {
+  color: #a166ab;
+  border-bottom-color: #a166ab;
+}
 ::selection {
   background-color: #3390ff;
   color: #fff;
+}
+strong {
+  font-weight: 900;
 }
