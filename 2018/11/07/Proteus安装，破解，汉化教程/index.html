@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
   <meta name="google-site-verification" content="MoVcrKIvICpF0DzKyXDtvqMIot-U_-AToxw63nB4cOA">
 
 <link rel="stylesheet" href="/css/main.css">
@@ -21,14 +23,14 @@
     var CONFIG = {"hostname":"cliuyang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gittalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="最近在学校里做电路实验，老师要求在自己的电脑上下载Proteus这款软件并进行模拟仿真实验，于是在网上搜寻了相关的教程，整理后理清了整个安装破解的思路与方法。写下来，一是留作以后备用，不用再查很多资料，二是熟悉下Markdown的语法，当作一个练手的博客。 其实使用破解软件从根本上讲是不对的，如果有能力的话，一定要支持正版。即便是现在没有能力，等到以后有能力承担得起正版所需要支付的费用的时候，一定">
+  <meta name="description" content="最近在学校里做电路实验，老师要求在自己的电脑上下载Proteus这款软件并进行模拟仿真实验，于是在网上搜寻了相关的教程，整理后理清了整个安装破解的思路与方法。写下来，一是留作以后备用，不用再查很多资料，二是熟悉下Markdown的语法，当作一个练手的博客。">
 <meta name="keywords" content="proteus">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Proteus安装，破解，汉化教程">
 <meta property="og:url" content="https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/index.html">
 <meta property="og:site_name" content="陈留阳">
-<meta property="og:description" content="最近在学校里做电路实验，老师要求在自己的电脑上下载Proteus这款软件并进行模拟仿真实验，于是在网上搜寻了相关的教程，整理后理清了整个安装破解的思路与方法。写下来，一是留作以后备用，不用再查很多资料，二是熟悉下Markdown的语法，当作一个练手的博客。 其实使用破解软件从根本上讲是不对的，如果有能力的话，一定要支持正版。即便是现在没有能力，等到以后有能力承担得起正版所需要支付的费用的时候，一定">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:description" content="最近在学校里做电路实验，老师要求在自己的电脑上下载Proteus这款软件并进行模拟仿真实验，于是在网上搜寻了相关的教程，整理后理清了整个安装破解的思路与方法。写下来，一是留作以后备用，不用再查很多资料，二是熟悉下Markdown的语法，当作一个练手的博客。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%90%8E.png">
 <meta property="og:image" content="https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B1.png">
 <meta property="og:image" content="https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B2.png">
@@ -63,10 +65,10 @@
 <meta property="og:image" content="https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B9.png">
 <meta property="og:image" content="https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B10.png">
 <meta property="og:image" content="https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B11.png">
-<meta property="og:updated_time" content="2019-01-05T09:39:50.884Z">
+<meta property="og:updated_time" content="2020-05-17T15:54:08.391Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Proteus安装，破解，汉化教程">
-<meta name="twitter:description" content="最近在学校里做电路实验，老师要求在自己的电脑上下载Proteus这款软件并进行模拟仿真实验，于是在网上搜寻了相关的教程，整理后理清了整个安装破解的思路与方法。写下来，一是留作以后备用，不用再查很多资料，二是熟悉下Markdown的语法，当作一个练手的博客。 其实使用破解软件从根本上讲是不对的，如果有能力的话，一定要支持正版。即便是现在没有能力，等到以后有能力承担得起正版所需要支付的费用的时候，一定">
+<meta name="twitter:description" content="最近在学校里做电路实验，老师要求在自己的电脑上下载Proteus这款软件并进行模拟仿真实验，于是在网上搜寻了相关的教程，整理后理清了整个安装破解的思路与方法。写下来，一是留作以后备用，不用再查很多资料，二是熟悉下Markdown的语法，当作一个练手的博客。">
 <meta name="twitter:image" content="https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%90%8E.png">
 
 <link rel="canonical" href="https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/">
@@ -78,7 +80,7 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'zh-Hans'
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -122,7 +124,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -152,26 +154,26 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">27</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">27</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">7</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
       </li>
   </ul>
@@ -187,7 +189,7 @@
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
+           placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
@@ -227,7 +229,7 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,33 +251,33 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2018-11-07 13:30:47" itemprop="dateCreated datePublished" datetime="2018-11-07T13:30:47+08:00">2018-11-07</time>
+              <time title="创建时间：2018-11-07 13:30:47" itemprop="dateCreated datePublished" datetime="2018-11-07T13:30:47+08:00">2018-11-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-01-05 17:39:50" itemprop="dateModified" datetime="2019-01-05T17:39:50+08:00">2019-01-05</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-17 23:54:08" itemprop="dateModified" datetime="2020-05-17T23:54:08+08:00">2020-05-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
                 </span>
             </span>
 
           
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
+              <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
 
@@ -289,6 +291,8 @@
 
       
         <p>最近在学校里做电路实验，老师要求在自己的电脑上下载Proteus这款软件并进行模拟仿真实验，于是在网上搜寻了相关的教程，整理后理清了整个安装破解的思路与方法。写下来，一是留作以后备用，不用再查很多资料，二是熟悉下Markdown的语法，当作一个练手的博客。</p>
+<a id="more"></a>
+
 <p>其实使用破解软件从根本上讲是不对的，如果有能力的话，一定要支持正版。即便是现在没有能力，等到以后有能力承担得起正版所需要支付的费用的时候，一定要补回自己使用曾使用盗版而躲过的费用。</p>
 <p><strong>声明：</strong><br>本教程是从互联网上搜集整理而成，资源资料都来自互联网，并非原创。</p>
 <p>本教程选取的Proteus版本为<strong>Proteus 8.7 SP3 Professional</strong>，是写此教程时能找到的最新的版本</p>
@@ -337,18 +341,18 @@
         <div class="reward-container">
   <div>如果帮到了你的话，可以考虑请我喝咖啡</div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
+    打赏
   </button>
   <div id="qr" style="display: none;">
       
       <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="陈留阳 WeChat Pay">
-        <p>WeChat Pay</p>
+        <img src="/images/wechatpay.png" alt="陈留阳 微信支付">
+        <p>微信支付</p>
       </div>
       
       <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="陈留阳 Alipay">
-        <p>Alipay</p>
+        <img src="/images/alipay.png" alt="陈留阳 支付宝">
+        <p>支付宝</p>
       </div>
 
   </div>
@@ -359,14 +363,14 @@
 <div>
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>Post author:  </strong>陈留阳
+    <strong>本文作者： </strong>陈留阳
   </li>
   <li class="post-copyright-link">
-    <strong>Post link: </strong>
+    <strong>本文链接：</strong>
     <a href="https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/" title="Proteus安装，破解，汉化教程">https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> unless stating additionally.
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
@@ -440,10 +444,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -466,20 +470,20 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">11</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
         <span class="site-state-item-count">7</span>
-        <span class="site-state-item-name">categories</span></a>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
         <span class="site-state-item-count">27</span>
-        <span class="site-state-item-name">tags</span></a>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -533,7 +537,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
-      <span class="site-uv" title="Total Visitors">
+      <span class="site-uv" title="总访客量">
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
@@ -542,7 +546,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
-      <span class="site-pv" title="Total Views">
+      <span class="site-pv" title="总访问量">
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>
@@ -717,7 +721,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       owner       : 'cliuyang',
       admin       : ['cliuyang'],
       id          : 'e2f4c53dacf9182d6ff4f7d0f160cd58',
-        language: '',
+        language: 'zh-CN',
       distractionFreeMode: true
     });
     gitalk.render('gitalk-container');

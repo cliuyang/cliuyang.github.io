@@ -54,11 +54,11 @@
         <category>基本数据结构的实现</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>《学习笔记》</tag>
         <tag>数据结构</tag>
         <tag>链表</tag>
         <tag>堆栈</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -69,10 +69,10 @@
         <category>基本数据结构的实现</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>《学习笔记》</tag>
         <tag>数据结构</tag>
         <tag>链表</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -83,8 +83,8 @@
         <category>《算法很美》</category>
       </categories>
       <tags>
-        <tag>学习笔记</tag>
         <tag>C/C++</tag>
+        <tag>学习笔记</tag>
         <tag>《算法很美》</tag>
       </tags>
   </entry>
@@ -96,8 +96,8 @@
         <category>《算法很美》</category>
       </categories>
       <tags>
-        <tag>学习笔记</tag>
         <tag>C/C++</tag>
+        <tag>学习笔记</tag>
         <tag>《算法很美》</tag>
         <tag>位运算</tag>
       </tags>

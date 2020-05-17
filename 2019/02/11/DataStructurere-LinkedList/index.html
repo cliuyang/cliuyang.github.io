@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
   <meta name="google-site-verification" content="MoVcrKIvICpF0DzKyXDtvqMIot-U_-AToxw63nB4cOA">
 
 <link rel="stylesheet" href="/css/main.css">
@@ -21,14 +23,14 @@
     var CONFIG = {"hostname":"cliuyang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gittalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="数据结构是一个早就有所耳闻的东西，但是一直没有潜下心学习过，对数据结构的了解也仅限于 C++里的 STL，趁寒假有空闲，去听了浙江大学陈越老师的数据结构课程。当然，计算机领域的各种知识，只有亲自尝试了才能算是真的学得懂，因此，打算开个专题，将各个类型的数据结构都亲自实现一遍，并记录下来。 链表 以下内容摘自维基百科  链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会">
-<meta name="keywords" content="C&#x2F;C++,《学习笔记》,数据结构,链表">
+  <meta name="description" content="数据结构是一个早就有所耳闻的东西，但是一直没有潜下心学习过，对数据结构的了解也仅限于 C++里的 STL，趁寒假有空闲，去听了浙江大学陈越老师的数据结构课程。当然，计算机领域的各种知识，只有亲自尝试了才能算是真的学得懂，因此，打算开个专题，将各个类型的数据结构都亲自实现一遍，并记录下来。">
+<meta name="keywords" content="《学习笔记》,数据结构,链表,C&#x2F;C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构——链表">
 <meta property="og:url" content="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/index.html">
 <meta property="og:site_name" content="陈留阳">
-<meta property="og:description" content="数据结构是一个早就有所耳闻的东西，但是一直没有潜下心学习过，对数据结构的了解也仅限于 C++里的 STL，趁寒假有空闲，去听了浙江大学陈越老师的数据结构课程。当然，计算机领域的各种知识，只有亲自尝试了才能算是真的学得懂，因此，打算开个专题，将各个类型的数据结构都亲自实现一遍，并记录下来。 链表 以下内容摘自维基百科  链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:description" content="数据结构是一个早就有所耳闻的东西，但是一直没有潜下心学习过，对数据结构的了解也仅限于 C++里的 STL，趁寒假有空闲，去听了浙江大学陈越老师的数据结构课程。当然，计算机领域的各种知识，只有亲自尝试了才能算是真的学得懂，因此，打算开个专题，将各个类型的数据结构都亲自实现一遍，并记录下来。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/InsertNode.png">
 <meta property="og:image" content="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/DeleteNode.png">
 <meta property="og:image" content="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/Reverse_1.png">
@@ -38,10 +40,10 @@
 <meta property="og:image" content="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/Slider.png">
 <meta property="og:image" content="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/Merge_1.png">
 <meta property="og:image" content="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/Merge_2.png">
-<meta property="og:updated_time" content="2019-02-26T06:45:21.548Z">
+<meta property="og:updated_time" content="2020-05-17T15:53:40.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构——链表">
-<meta name="twitter:description" content="数据结构是一个早就有所耳闻的东西，但是一直没有潜下心学习过，对数据结构的了解也仅限于 C++里的 STL，趁寒假有空闲，去听了浙江大学陈越老师的数据结构课程。当然，计算机领域的各种知识，只有亲自尝试了才能算是真的学得懂，因此，打算开个专题，将各个类型的数据结构都亲自实现一遍，并记录下来。 链表 以下内容摘自维基百科  链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会">
+<meta name="twitter:description" content="数据结构是一个早就有所耳闻的东西，但是一直没有潜下心学习过，对数据结构的了解也仅限于 C++里的 STL，趁寒假有空闲，去听了浙江大学陈越老师的数据结构课程。当然，计算机领域的各种知识，只有亲自尝试了才能算是真的学得懂，因此，打算开个专题，将各个类型的数据结构都亲自实现一遍，并记录下来。">
 <meta name="twitter:image" content="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/InsertNode.png">
 
 <link rel="canonical" href="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/">
@@ -53,7 +55,7 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'zh-Hans'
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -97,7 +99,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -127,26 +129,26 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">27</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">27</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">7</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
       </li>
   </ul>
@@ -162,7 +164,7 @@
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
+           placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
@@ -202,7 +204,7 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -224,33 +226,33 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2019-02-11 12:03:17" itemprop="dateCreated datePublished" datetime="2019-02-11T12:03:17+08:00">2019-02-11</time>
+              <time title="创建时间：2019-02-11 12:03:17" itemprop="dateCreated datePublished" datetime="2019-02-11T12:03:17+08:00">2019-02-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-02-26 14:45:21" itemprop="dateModified" datetime="2019-02-26T14:45:21+08:00">2019-02-26</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-17 23:53:40" itemprop="dateModified" datetime="2020-05-17T23:53:40+08:00">2020-05-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/基本数据结构的实现/" itemprop="url" rel="index"><span itemprop="name">基本数据结构的实现</span></a>
                 </span>
             </span>
 
           
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
+              <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
 
@@ -264,6 +266,8 @@
 
       
         <p>数据结构是一个早就有所耳闻的东西，但是一直没有潜下心学习过，对数据结构的了解也仅限于 C++里的 STL，趁寒假有空闲，去听了浙江大学<strong>陈越</strong>老师的<span class="exturl" data-url="aHR0cDovL3d3dy5pY291cnNlMTYzLm9yZy9jb3Vyc2UvWkpVLTkzMDAx">数据结构<i class="fa fa-external-link-alt"></i></span>课程。当然，计算机领域的各种知识，只有亲自尝试了才能算是真的学得懂，因此，打算开个专题，将各个类型的数据结构都亲自实现一遍，并记录下来。</p>
+<a id="more"></a>
+
 <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><blockquote>
 <p>以下内容摘自<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTkzJUJFJUU4JUExJUE4">维基百科<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
@@ -347,18 +351,18 @@
         <div class="reward-container">
   <div>如果帮到了你的话，可以考虑请我喝咖啡</div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
+    打赏
   </button>
   <div id="qr" style="display: none;">
       
       <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="陈留阳 WeChat Pay">
-        <p>WeChat Pay</p>
+        <img src="/images/wechatpay.png" alt="陈留阳 微信支付">
+        <p>微信支付</p>
       </div>
       
       <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="陈留阳 Alipay">
-        <p>Alipay</p>
+        <img src="/images/alipay.png" alt="陈留阳 支付宝">
+        <p>支付宝</p>
       </div>
 
   </div>
@@ -369,14 +373,14 @@
 <div>
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>Post author:  </strong>陈留阳
+    <strong>本文作者： </strong>陈留阳
   </li>
   <li class="post-copyright-link">
-    <strong>Post link: </strong>
+    <strong>本文链接：</strong>
     <a href="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/" title="数据结构——链表">https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> unless stating additionally.
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
@@ -384,10 +388,10 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/C-C/" rel="tag"># C/C++</a>
               <a href="/tags/《学习笔记》/" rel="tag"># 《学习笔记》</a>
               <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
               <a href="/tags/链表/" rel="tag"># 链表</a>
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
           </div>
 
         
@@ -453,10 +457,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -479,20 +483,20 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">11</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
         <span class="site-state-item-count">7</span>
-        <span class="site-state-item-name">categories</span></a>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
         <span class="site-state-item-count">27</span>
-        <span class="site-state-item-name">tags</span></a>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -546,7 +550,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
-      <span class="site-uv" title="Total Visitors">
+      <span class="site-uv" title="总访客量">
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
@@ -555,7 +559,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
-      <span class="site-pv" title="Total Views">
+      <span class="site-pv" title="总访问量">
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>
@@ -730,7 +734,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       owner       : 'cliuyang',
       admin       : ['cliuyang'],
       id          : '2095a66005c0f379dd9ab70e7956d67c',
-        language: '',
+        language: 'zh-CN',
       distractionFreeMode: true
     });
     gitalk.render('gitalk-container');

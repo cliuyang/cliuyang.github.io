@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cliuyang.github.io/"/>
-  <updated>2020-05-16T16:31:30.338Z</updated>
+  <updated>2020-05-17T15:54:37.451Z</updated>
   <id>https://cliuyang.github.io/</id>
   
   <author>
@@ -21,17 +21,27 @@
     <link href="https://cliuyang.github.io/2019/07/12/VScode-C-Algorithmic-Competition/"/>
     <id>https://cliuyang.github.io/2019/07/12/VScode-C-Algorithmic-Competition/</id>
     <published>2019-07-12T10:29:30.000Z</published>
-    <updated>2020-05-16T16:31:30.338Z</updated>
+    <updated>2020-05-17T15:54:37.451Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;自从在大学入坑了&lt;span class=&quot;exturl&quot;
-        
-      
+      &lt;p&gt;自从在大学入坑了&lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3poLWhhbnMvJUU1JTlCJUJEJUU5JTk5JTg1JUU1JUE0JUE3JUU1JUFEJUE2JUU3JTk0JTlGJUU3JUE4JThCJUU1JUJBJThGJUU4JUFFJUJFJUU4JUFFJUExJUU3JUFCJTlFJUU4JUI1JTlC&quot;&gt;ICPC&lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/span&gt;这类算法比赛，就沉迷其中，在集训队的时候花上一整天做各种各样的比赛，写各种各样的题目，日常的话，也会在深夜打开&lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cDovL2NvZGVmb3JjZXMuY29tLw==&quot;&gt;codeforces&lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/span&gt;，参加一场场的掉分赛/(ㄒoㄒ)/~~&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2019/07/12/VScode-C-Algorithmic-Competition/LifeGoals.png&quot; alt=&quot;LifeGoals&quot;&gt;&lt;/p&gt;
+&lt;p&gt;刚开始写比赛的时候，用的IDE是Dev C++，这款IDE上手简单，对新手比较友好，但是调试能力较弱；之后改用CodeBlocks，相对而言功能更加丰富，可自定义的地方也比较多，但麻烦之处在于需要建工程，以及对我来说，调试相当不友好，UI也比较丑；也见过有人使用Visual Studio，不过庞大的体量让我瞬间失去了用它做题的想法。&lt;/p&gt;
+&lt;p&gt;除了IDE本身的缺陷，还有一个比较难以忍受的共性问题是，竞赛的输入输出是分开的，区分十分清晰，但选手在编写程序的时候，需要在终端里同时完成输入输出，难免会产生混乱，如果在代码中使用了重定向，又需要分心去管理重定向的事情，就有点舍本逐末了。&lt;/p&gt;
+&lt;p&gt;综上，理想中算法竞赛刷题工具应有以下几个便利点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;允许单文件编译运行，使得做一道题目不需要大费周章的建立工程，只需要一个单文件。&lt;/li&gt;
+&lt;li&gt;界面美观，友好，调试方便。&lt;/li&gt;
+&lt;li&gt;直接重定向到文件。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;一番摸索之后，我选择的工具是vscode，主要是基于一下几点考虑：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;界面美观。&lt;/li&gt;
+&lt;li&gt;编辑器可自由拖拽，观看方便。&lt;/li&gt;
+&lt;li&gt;拥有大量插件，功能高度自定义。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;于是，踏上了配置之旅。&lt;/p&gt;
     
     </summary>
     
@@ -47,18 +57,14 @@
     <link href="https://cliuyang.github.io/2019/03/08/c-withVScode-second/"/>
     <id>https://cliuyang.github.io/2019/03/08/c-withVScode-second/</id>
     <published>2019-03-08T11:32:13.000Z</published>
-    <updated>2019-03-09T08:46:10.518Z</updated>
+    <updated>2020-05-17T15:53:16.235Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;VS code 是个功能强大，可扩展性极强的编辑器，通过添加一些插件，修改一下配置即可发挥强大的功能。&lt;/p&gt;
-&lt;p&gt;前些日子（其实好久了哈 (￣ y▽ ￣)~*），通过阅读官网的文档，成功&lt;a
-        
-      
+      &lt;p&gt;VS code 是个功能强大，可扩展性极强的编辑器，通过添加一些插件，修改一下配置即可发挥强大的功能。&lt;/p&gt;
+&lt;p&gt;前些日子（其实好久了哈 (￣ y▽ ￣)~*），通过阅读官网的文档，成功&lt;a href=&quot;\2018\12\01\c-withVScode\index.html&quot;&gt;配置了 C++的编程环境&lt;/a&gt;，然后用了很久。但是最近遇见了个很严重的问题，那就是按照官网的文档走的话，最终只能编译，调试，运行一个单独的文件。&lt;/p&gt;
+&lt;p&gt;这就很难受了，虽说刷刷算法题也不需要多个文件，使用 g++的一些较为复杂的参数也可以编译链接多个文件，但是，到底能不能使用 VS code 来编写具有一定规模的 C/C++工程呢？&lt;/p&gt;
+&lt;p&gt;于是，折腾开始了，而且最终取得了很不错的成果。(≖‿≖)✧&lt;/p&gt;
     
     </summary>
     
@@ -78,17 +84,12 @@
     <link href="https://cliuyang.github.io/2019/02/22/TopTenSort/"/>
     <id>https://cliuyang.github.io/2019/02/22/TopTenSort/</id>
     <published>2019-02-22T10:36:38.000Z</published>
-    <updated>2019-07-15T03:50:37.756Z</updated>
+    <updated>2020-05-17T15:54:21.779Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;从大一学 C 语言开始就一直听说有个叫做十大排序算法的东西，要涉及一些有趣的思想和数据结构什么的，听起来很厉害的样子，觉得好难就没去看过，只是调用 qsort 和 sort
-        
-      
+      &lt;p&gt;从大一学 C 语言开始就一直听说有个叫做十大排序算法的东西，要涉及一些有趣的思想和数据结构什么的，听起来很厉害的样子，觉得好难就没去看过，只是调用 qsort 和 sort 之类的函数。&lt;/p&gt;
+&lt;p&gt;最近学一些东西的时候恰巧和十大排序打了交道，理解起来并不难，拖延了好久才去看真的挺遗憾的。然后学完后打算把十大排序总结记录下来。&lt;/p&gt;
     
     </summary>
     
@@ -130,24 +131,16 @@
     <link href="https://cliuyang.github.io/2019/02/15/DataStructurere-Stack/"/>
     <id>https://cliuyang.github.io/2019/02/15/DataStructurere-Stack/</id>
     <published>2019-02-15T11:53:05.000Z</published>
-    <updated>2019-02-16T07:40:35.667Z</updated>
+    <updated>2020-05-17T15:53:45.703Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;堆栈是一种&lt;strong&gt;先进后出&lt;/strong&gt;的数据结构，我和别人说起来的时候，经常拿井做比较，最先放到井里的东西要最后才能拿出来。具体实现起来有着至少两种方式，&lt;strong&gt;链表实现&lt;/strong&gt;和&lt;strong&gt;数组实现&lt;/strong&gt;，实现思路都很简单，
-        
-      
+      &lt;p&gt;堆栈是一种&lt;strong&gt;先进后出&lt;/strong&gt;的数据结构，我和别人说起来的时候，经常拿井做比较，最先放到井里的东西要最后才能拿出来。具体实现起来有着至少两种方式，&lt;strong&gt;链表实现&lt;/strong&gt;和&lt;strong&gt;数组实现&lt;/strong&gt;，实现思路都很简单，代码也都很简短。&lt;/p&gt;
     
     </summary>
     
       <category term="基本数据结构的实现" scheme="https://cliuyang.github.io/categories/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
     
-    
-      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
     
       <category term="《学习笔记》" scheme="https://cliuyang.github.io/tags/%E3%80%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%8B/"/>
     
@@ -157,6 +150,8 @@
     
       <category term="堆栈" scheme="https://cliuyang.github.io/tags/%E5%A0%86%E6%A0%88/"/>
     
+      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+    
   </entry>
   
   <entry>
@@ -164,30 +159,24 @@
     <link href="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/"/>
     <id>https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/</id>
     <published>2019-02-11T04:03:17.000Z</published>
-    <updated>2019-02-26T06:45:21.548Z</updated>
+    <updated>2020-05-17T15:53:40.299Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;数据结构是一个早就有所耳闻的东西，但是一直没有潜下心学习过，对数据结构的了解也仅限于 C++里的 STL，趁寒假有空闲，去听了浙江大学&lt;strong&gt;陈越&lt;/strong&gt;老师的&lt;span class=&quot;exturl&quot;
-        
-      
+      &lt;p&gt;数据结构是一个早就有所耳闻的东西，但是一直没有潜下心学习过，对数据结构的了解也仅限于 C++里的 STL，趁寒假有空闲，去听了浙江大学&lt;strong&gt;陈越&lt;/strong&gt;老师的&lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cDovL3d3dy5pY291cnNlMTYzLm9yZy9jb3Vyc2UvWkpVLTkzMDAx&quot;&gt;数据结构&lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/span&gt;课程。当然，计算机领域的各种知识，只有亲自尝试了才能算是真的学得懂，因此，打算开个专题，将各个类型的数据结构都亲自实现一遍，并记录下来。&lt;/p&gt;
     
     </summary>
     
       <category term="基本数据结构的实现" scheme="https://cliuyang.github.io/categories/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
     
     
-      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
-    
       <category term="《学习笔记》" scheme="https://cliuyang.github.io/tags/%E3%80%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%8B/"/>
     
       <category term="数据结构" scheme="https://cliuyang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
       <category term="链表" scheme="https://cliuyang.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
     
   </entry>
   
@@ -196,27 +185,20 @@
     <link href="https://cliuyang.github.io/2019/02/10/AlgorithmIsBeautifulul-SearchSortUp/"/>
     <id>https://cliuyang.github.io/2019/02/10/AlgorithmIsBeautifulul-SearchSortUp/</id>
     <published>2019-02-10T13:06:29.000Z</published>
-    <updated>2019-02-22T10:36:13.476Z</updated>
+    <updated>2020-05-17T15:53:07.311Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;第二章的内容相对第一章来说常规了一些，或者更应该说第一章的内容很是惊艳，毕竟位运算接触的少。而第二章分析算法的复杂度，排序算法的实现，二分查找这些就中规中矩了许多，在意的并不多。但是在例题里有几道感觉特别有意思的题目，思路比较巧，因此决定记下来。&lt;/p&gt;
-&lt;h2
-        
-      
+      &lt;p&gt;第二章的内容相对第一章来说常规了一些，或者更应该说第一章的内容很是惊艳，毕竟位运算接触的少。而第二章分析算法的复杂度，排序算法的实现，二分查找这些就中规中矩了许多，在意的并不多。但是在例题里有几道感觉特别有意思的题目，思路比较巧，因此决定记下来。&lt;/p&gt;
     
     </summary>
     
       <category term="《算法很美》" scheme="https://cliuyang.github.io/categories/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
     
     
-      <category term="学习笔记" scheme="https://cliuyang.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+    
+      <category term="学习笔记" scheme="https://cliuyang.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
       <category term="《算法很美》" scheme="https://cliuyang.github.io/tags/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
     
@@ -227,27 +209,20 @@
     <link href="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/"/>
     <id>https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/</id>
     <published>2019-02-07T03:58:11.000Z</published>
-    <updated>2019-02-10T13:07:32.715Z</updated>
+    <updated>2020-05-17T15:53:00.771Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;寒假前报名了蓝桥杯，和同学一起参加了蓝桥杯 《&lt;strong&gt;算法很美&lt;/strong&gt;》的课程，于是开了个新坑，学习一些基本的算法知识。&lt;/p&gt;
-&lt;h2 id=&quot;位操作&quot;&gt;&lt;a href=&quot;#位操作&quot; class=&quot;headerlink&quot;
-        
-      
+      &lt;p&gt;寒假前报名了蓝桥杯，和同学一起参加了蓝桥杯 《&lt;strong&gt;算法很美&lt;/strong&gt;》的课程，于是开了个新坑，学习一些基本的算法知识。&lt;/p&gt;
     
     </summary>
     
       <category term="《算法很美》" scheme="https://cliuyang.github.io/categories/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
     
     
-      <category term="学习笔记" scheme="https://cliuyang.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+    
+      <category term="学习笔记" scheme="https://cliuyang.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
       <category term="《算法很美》" scheme="https://cliuyang.github.io/tags/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
     
@@ -260,17 +235,16 @@
     <link href="https://cliuyang.github.io/2018/12/13/ExploreByte/"/>
     <id>https://cliuyang.github.io/2018/12/13/ExploreByte/</id>
     <published>2018-12-13T15:36:50.000Z</published>
-    <updated>2019-07-14T06:49:04.534Z</updated>
+    <updated>2020-05-17T15:54:00.035Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;一段程序&quot;&gt;&lt;a href=&quot;#一段程序&quot; class=&quot;headerlink&quot;
-        
-      
+      &lt;h2 id=&quot;一段程序&quot;&gt;&lt;a href=&quot;#一段程序&quot; class=&quot;headerlink&quot; title=&quot;一段程序&quot;&gt;&lt;/a&gt;一段程序&lt;/h2&gt;&lt;p&gt;故事发生在某天深夜，已经熄灯的宿舍，黯淡的屏幕闪烁出一条消息&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“睡了没”&lt;/p&gt;
+&lt;p&gt;“木呢。”&lt;/p&gt;
+&lt;p&gt;“来看段代码”&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
@@ -292,17 +266,13 @@
     <link href="https://cliuyang.github.io/2018/12/01/c-withVScode/"/>
     <id>https://cliuyang.github.io/2018/12/01/c-withVScode/</id>
     <published>2018-12-01T13:12:42.000Z</published>
-    <updated>2019-07-14T06:47:04.388Z</updated>
+    <updated>2020-05-17T15:53:29.647Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;第一次接触visual studio code是在大一上学期，正是初学C语言的时候。那时候老师与学长推荐的集成开发环境（IDE）主要是Dev C++与code
-        
-      
+      &lt;p&gt;第一次接触visual studio code是在大一上学期，正是初学C语言的时候。那时候老师与学长推荐的集成开发环境（IDE）主要是Dev C++与code block，这两款IDE的优点是简单，小巧，可以很快速的使代码运行起来，但他们都有很致命的缺点，就是界面不够美观，虽然在网上都能找到一些教程对其进行美化，但能做到的也只是不再难看而已，与真正做到好看相比还差的很远。&lt;/p&gt;
+&lt;p&gt;恰巧那段时间因为学习前端的知识而了解到VS code这款编辑器，同样是写代码，利用VS code写HTML，CSS，JavaScript比用code block写C体验好多了，而也惊喜的发现，VS code支持书写C/C++程序&lt;del&gt;\(≧▽≦)/&lt;/del&gt;，于是就想使用VS code编写C程序，但当时不明白VS code只是一个编辑器且不带编译器，并不能直接编译，运行C程序，而且在查看一些C文件时会出现乱码现象一脸懵逼(o゜▽゜)o☆（当时并不知道时编码的问题），于是在查找了众多资料无果后只好放弃〒▽〒。&lt;/p&gt;
+&lt;p&gt;时过境迁，一年的学习，学习的语言由简单的C拓展到C++，JAVA，C#等多种语言，编程的模式由简单的面向过程到C++式的多种模式混合，C#窗口的事件-响应函数，unity的逐帧调用等多种模式，知识储备量有了一定的提升(●ˇ∀ˇ●)，再回过头来，依旧还是想用VS code编写C/C++程序，于是在某一天，一句一句看懂了官网的文档，一步一步调试，终于在最后调试成功(´▽`ʃ♡ƪ)！经过了一段时间的使用，体验还算不错，在这里记下环境配置的方法，也记录下自己的小小激动。&lt;/p&gt;
     
     </summary>
     
@@ -322,18 +292,11 @@
     <link href="https://cliuyang.github.io/2018/11/07/Proteus%E5%AE%89%E8%A3%85%EF%BC%8C%E7%A0%B4%E8%A7%A3%EF%BC%8C%E6%B1%89%E5%8C%96%E6%95%99%E7%A8%8B/"/>
     <id>https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/</id>
     <published>2018-11-07T05:30:47.000Z</published>
-    <updated>2019-01-05T09:39:50.884Z</updated>
+    <updated>2020-05-17T15:54:08.391Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;最近在学校里做电路实验，老师要求在自己的电脑上下载Proteus这款软件并进行模拟仿真实验，于是在网上搜寻了相关的教程，整理后理清了整个安装破解的思路与方法。写下来，一是留作以后备用，不用再查很多资料，二是熟悉下Markdown的语法，当作一个练手的博客。&lt;/p&gt;
-&lt;p&gt;其
-        
-      
+      &lt;p&gt;最近在学校里做电路实验，老师要求在自己的电脑上下载Proteus这款软件并进行模拟仿真实验，于是在网上搜寻了相关的教程，整理后理清了整个安装破解的思路与方法。写下来，一是留作以后备用，不用再查很多资料，二是熟悉下Markdown的语法，当作一个练手的博客。&lt;/p&gt;
     
     </summary>
     
@@ -349,17 +312,11 @@
     <link href="https://cliuyang.github.io/2018/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
     <id>https://cliuyang.github.io/2018/11/01/我的第一篇博客/</id>
     <published>2018-11-01T15:30:14.000Z</published>
-    <updated>2019-09-11T05:40:01.139Z</updated>
+    <updated>2020-05-17T15:52:53.219Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;今天是2018年11月1日，据我开始打算搭建一个私人博客起，刚刚好一个月，找了各种各样的博客，各种各样的教程，向认识的同学请教，在GitHub上提问，在文档之间徘徊。一个月，缝缝补补，终于是把基本的博客搭了起来，以后的话，就可以在这里，巨大的互联网的一角里存放属于自己的一点
-        
-      
+      &lt;p&gt;今天是2018年11月1日，据我开始打算搭建一个私人博客起，刚刚好一个月，找了各种各样的博客，各种各样的教程，向认识的同学请教，在GitHub上提问，在文档之间徘徊。一个月，缝缝补补，终于是把基本的博客搭了起来，以后的话，就可以在这里，巨大的互联网的一角里存放属于自己的一点一滴。&lt;/p&gt;
     
     </summary>
     
