@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+  <meta name="google-site-verification" content="MoVcrKIvICpF0DzKyXDtvqMIot-U_-AToxw63nB4cOA">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cliuyang.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gittalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="一段程序故事发生在某天深夜，已经熄灯的宿舍，黯淡的屏幕闪烁出一条消息  “睡了没” “木呢。” “来看段代码”">
+<meta name="keywords" content="C&#x2F;C++,union,struct,左移与右移">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次对内存的探索">
+<meta property="og:url" content="https://cliuyang.cn/ExploreByte/index.html">
+<meta property="og:site_name" content="陈留阳">
+<meta property="og:description" content="一段程序故事发生在某天深夜，已经熄灯的宿舍，黯淡的屏幕闪烁出一条消息  “睡了没” “木呢。” “来看段代码”">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cliuyang.cn/ExploreByte/UN.png">
+<meta property="og:image" content="https://cliuyang.cn/ExploreByte/Temp.png">
+<meta property="og:updated_time" content="2020-05-21T04:33:07.014Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一次对内存的探索">
+<meta name="twitter:description" content="一段程序故事发生在某天深夜，已经熄灯的宿舍，黯淡的屏幕闪烁出一条消息  “睡了没” “木呢。” “来看段代码”">
+<meta name="twitter:image" content="https://cliuyang.cn/ExploreByte/UN.png">
+
+<link rel="canonical" href="https://cliuyang.cn/ExploreByte/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>一次对内存的探索 | 陈留阳</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">陈留阳</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">35</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">13</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NsaXV5YW5n" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cliuyang.cn/ExploreByte/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content="人外有人，天外有天。卧薪尝胆，永不言弃！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈留阳">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一次对内存的探索
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-12-13 23:36:50" itemprop="dateCreated datePublished" datetime="2018-12-13T23:36:50+08:00">2018-12-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-21 12:33:07" itemprop="dateModified" datetime="2020-05-21T12:33:07+08:00">2020-05-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/记录/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一段程序"><a href="#一段程序" class="headerlink" title="一段程序"></a>一段程序</h2><p>故事发生在某天深夜，已经熄灯的宿舍，黯淡的屏幕闪烁出一条消息</p>
+<blockquote>
+<p>“睡了没”</p>
+<p>“木呢。”</p>
+<p>“来看段代码”</p>
+</blockquote>
+<a id="more"></a>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i= <span class="number">17970</span>;</span><br><span class="line">    <span class="keyword">char</span> *q = &amp;i;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, *q);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, *(q + <span class="number">1</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>“……，这啥操作？”</p>
+<p>“输出是 50 70。”</p>
+</blockquote>
+<h3 id="简单总结下这段代码奇怪的地方"><a href="#简单总结下这段代码奇怪的地方" class="headerlink" title="简单总结下这段代码奇怪的地方"></a>简单总结下这段代码奇怪的地方</h3><ol>
+<li>使用一个<strong>*char**</strong> <strong>指针</strong>指向了一个 <strong><em>int</em></strong> 类型的整数;</li>
+<li>将<strong>*char**</strong> <strong>指针</strong>所指内容强制转化为 <strong><em>int</em></strong> 类型输出;</li>
+</ol>
+<h3 id="和-2-扯不断的联系"><a href="#和-2-扯不断的联系" class="headerlink" title="和 2 扯不断的联系"></a>和 2 扯不断的联系</h3><blockquote>
+<p>“一个突破口是 <em>17970 % 256 = 50</em>,<em>17970 / 256 = 70</em> 。”</p>
+</blockquote>
+<p><strong>256</strong>是个很眼熟的数字，对于程序员来说，最直接联想到的就是<strong>2 ^ 8 = 256</strong>。这个<strong>2</strong>很是让人在意，计算机总是离不开<strong>二进制</strong>，在这里，一个涉及指针的程序突然出现了<strong>2</strong>，这就不得不让人联想到使用二进制进行进一步探索。</p>
+<h4 id="使用-union"><a href="#使用-union" class="headerlink" title="使用 union"></a>使用 union</h4><p><strong>union</strong>是 C 语言里一个比较奇特的关键字，其使用方式和<strong>struct</strong>很是相似。区别在于<strong>struct</strong>中各个元素是相互独立的，互相之间不会有影响，而<strong>union</strong>则只分配一块内存，各个成员共用同一块内存空间。</p>
+<p>比如说，对于以下代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">union</span> UN</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">char</span> ch[<span class="number">4</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Temp</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">char</span> ch[<span class="number">4</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>union</p>
+<p><img src="/ExploreByte/UN.png" alt="union"></p>
+</li>
+<li><p>struct</p>
+<p>  <img src="/ExploreByte/Temp.png" alt="struct"></p>
+<p>那么使用 union 就可以模仿上述代码中用 <strong><em>char</em></strong> 的方式访问 <strong><em>int</em></strong>。</p>
+</li>
+</ul>
+<p>首先用下述程序验证一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">union</span> UN</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">char</span> ch[<span class="number">4</span>];</span><br><span class="line">&#125; UN;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    UN un;</span><br><span class="line">    un.a = <span class="number">17970</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, un.a);</span><br><span class="line">    <span class="keyword">for</span> (;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, un.ch[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果和预想一致：<br><code>17970</code><br><code>50 70 0 0</code></p>
+<h4 id="结合二进制"><a href="#结合二进制" class="headerlink" title="结合二进制"></a>结合二进制</h4><p>那么将上述程序稍加修改，以二进制形式输出呢？</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">int2Binary</span><span class="params">(<span class="keyword">int</span> temp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> str[<span class="number">33</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="built_in">memset</span>(str, <span class="string">'0'</span>, <span class="keyword">sizeof</span>(str) - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">31</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        str[i--] = temp % <span class="number">2</span> + <span class="string">'0'</span>;</span><br><span class="line">        temp /= <span class="number">2</span>;</span><br><span class="line">    &#125; <span class="keyword">while</span> (temp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">char2Binary</span><span class="params">(<span class="keyword">char</span> temp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> str[<span class="number">9</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="built_in">memset</span>(str, <span class="string">'0'</span>, <span class="keyword">sizeof</span>(str) - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">7</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        str[i--] = temp % <span class="number">2</span> + <span class="string">'0'</span>;</span><br><span class="line">        temp /= <span class="number">2</span>;</span><br><span class="line">    &#125; <span class="keyword">while</span> (temp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    UN un;</span><br><span class="line">    un.a = <span class="number">17970</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    int2Binary(un.a);</span><br><span class="line">    <span class="keyword">for</span> (; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        char2Binary(un.ch[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：<br><code>00000000000000000100011000110010</code><br><code>00110010</code><br><code>01000110</code><br><code>00000000</code><br><code>00000000</code><br>稍加思索 (￣.￣)</p>
+<p>整理下形式<br><code>00000000 00000000 01000110 00110010</code><br><code>00110010 01000110 00000000 00000000</code><br>≖‿≖✧</p>
+<p>可以看到，如果将一个 int 放大到内存去看的话，四个字节的排列方式是低权位在前，高权位在后，这点颠覆了我过往的认知。</p>
+<p>其次，在这里我突然明白了为什么<strong>2 ^ 8 = 256</strong>里这个<strong>8</strong>的含义，每个字节占<strong>8</strong>位，<strong>2</strong>与<strong>8</strong>的结合产生出了<strong>256</strong>这个神奇的数字。</p>
+<h3 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h3><blockquote>
+<p>“也就是说，char*的作用是将 int 的一部分拿出来，再强制转化为 int 进行操作。”</p>
+<p>“而一个 int 占四个字节，char 占一个字节，刚好能拿出四分之一”</p>
+<p>“一个字节占 8 位，这就是 256 的原因。”</p>
+<p>“最为关键的是，int 在内存中的存放方式是以一个字节为单位，低权位在后，高权位在前，这就是为什么是 50 和 70 而不是两个 0。”</p>
+<p>“完美。”</p>
+<p>“睡觉。”</p>
+</blockquote>
+<h2 id="加戏"><a href="#加戏" class="headerlink" title="加戏"></a>加戏</h2><p>如果说一个可以用 char 来逐字节的读 int 的话，那么换成<strong>其他的类型</strong>应该也是没问题的吧。</p>
+<p>或者从原理上讲，从 int 的<strong>首地址</strong>出发，使用 char 将其向后 <strong><em>sizeof(int)</em></strong> 的内存中的内容读了出来。</p>
+<p>那么，如果已知一个地址，使用类似的思路，是不是就能将其之后指定大小的内存中的内容读出来了？</p>
+<p>按着这个想法对之前的函数稍加修改，于是就得到了一个查看内存内容的工具。 (•̀ᴗ•́)و ̑̑</p>
+<p>两个参数分别是<strong>地址</strong>以及<strong>大小</strong>，返回的是以 C 风格的字符串储存的该<strong>内存中的内容</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">ToBinary</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *source, <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> ret_length = size * (CHAR_BIT + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">char</span> *_source = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">char</span>) * size);</span><br><span class="line">    <span class="built_in">memcpy</span>(_source, source, size); <span class="comment">//使用_source代替source</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> *ret = <span class="literal">NULL</span>; <span class="comment">//返回ret</span></span><br><span class="line">    <span class="keyword">if</span> (ret)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">free</span>(ret);</span><br><span class="line">    &#125;</span><br><span class="line">    ret = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">char</span>) * ret_length + <span class="number">1</span>);</span><br><span class="line">    ret[<span class="keyword">sizeof</span>(<span class="keyword">char</span>) * ret_length] = <span class="number">0</span>; <span class="comment">//最后一个是0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; size; index++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">short</span> char_source = *(_source + index);</span><br><span class="line">        <span class="keyword">char</span> *temp = ret + index * (CHAR_BIT + <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">memset</span>(temp, <span class="string">'0'</span>, <span class="keyword">sizeof</span>(<span class="keyword">char</span>) * CHAR_BIT);</span><br><span class="line">        temp[CHAR_BIT] = <span class="string">' '</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = CHAR_BIT - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--)</span><br><span class="line">        &#123;</span><br><span class="line">            temp[j] = (char_source &amp; <span class="number">1</span>) + <span class="string">'0'</span>;</span><br><span class="line">            char_source &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有意思的事情要发生了。</p>
+<h3 id="左移与右移"><a href="#左移与右移" class="headerlink" title="左移与右移"></a>左移与右移</h3><p>C 语言中的 <strong>&lt;&lt;</strong> 与 <strong>&gt;&gt;</strong> 是两个比较神奇的操作符，能将一个数从内存中左移或者右移。本来潜意识里我认为就是直接移就好了。但是之前也有发现，int 在内存中的储存方式并不是一个连续的状态，而是每八个字节为一个单位，低权位在前，高权位在后。那左移和右移究竟是如何进行的呢？用上之前的函数，写个程序看看：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(x&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, ToBinary((<span class="keyword">char</span> *)&amp;x, <span class="keyword">sizeof</span>(x)));</span><br><span class="line">        x &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><code>00000001 00000000 00000000 00000000</code><br><code>00000010 00000000 00000000 00000000</code><br><code>00000100 00000000 00000000 00000000</code><br><code>00001000 00000000 00000000 00000000</code><br><code>00010000 00000000 00000000 00000000</code><br><code>00100000 00000000 00000000 00000000</code><br><code>01000000 00000000 00000000 00000000</code><br><code>10000000 00000000 00000000 00000000</code><br><code>00000000 00000001 00000000 00000000</code><br><code>00000000 00000010 00000000 00000000</code><br><code>00000000 00000100 00000000 00000000</code><br><code>00000000 00001000 00000000 00000000</code><br><code>00000000 00010000 00000000 00000000</code><br><code>00000000 00100000 00000000 00000000</code><br><code>00000000 01000000 00000000 00000000</code><br><code>00000000 10000000 00000000 00000000</code><br><code>00000000 00000000 00000001 00000000</code><br><code>00000000 00000000 00000010 00000000</code><br><code>00000000 00000000 00000100 00000000</code><br><code>00000000 00000000 00001000 00000000</code><br><code>00000000 00000000 00010000 00000000</code><br><code>00000000 00000000 00100000 00000000</code><br><code>00000000 00000000 01000000 00000000</code><br><code>00000000 00000000 10000000 00000000</code><br><code>00000000 00000000 00000000 00000001</code><br><code>00000000 00000000 00000000 00000010</code><br><code>00000000 00000000 00000000 00000100</code><br><code>00000000 00000000 00000000 00001000</code><br><code>00000000 00000000 00000000 00010000</code><br><code>00000000 00000000 00000000 00100000</code><br><code>00000000 00000000 00000000 01000000</code><br>可以看到，在一个字节中，<strong>左移</strong> 的确是不断向左移动，但是字节与字节之间来看，则是有些奇怪的样子。</p>
+<p>看样子说成<strong>左移</strong>和<strong>右移</strong>更多的是考虑到的是易于理解，而实际上并不是简单的左移和右移。虽然并不是很理解为什么要这样设计内存的使用方式就是了。</p>
+<h3 id="结构-struct"><a href="#结构-struct" class="headerlink" title="结构(struct)"></a>结构(struct)</h3><p>之前有次时间探寻了一下结构的<strong>size</strong>的问题，发现了一个有些神奇的规律。</p>
+<p>设结构内各个元素的 size 之和为<strong>x</strong>，结构内最大的元素 size 为<strong>y</strong>，结构的 size 为<strong>z</strong>,则满足<strong>z &gt;= x &amp;&amp; z % y == 0</strong>。老师解释多的那部分是记录了结构的一些东西。</p>
+<p>但是，果然还是自己看看才放心啊。&lt;(￣︶￣)&gt;</p>
+<p>实验程序如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> a;</span><br><span class="line">&#125; A;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> a;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">&#125; B;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> a;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> c;</span><br><span class="line">&#125; C;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> a;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> c;</span><br><span class="line">&#125; D;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    A a;</span><br><span class="line">    B b;</span><br><span class="line">    C c;</span><br><span class="line">    D d;</span><br><span class="line">    d.a = c.a = b.a = a.a = CHAR_MAX;</span><br><span class="line">    c.b = b.b = INT_MAX;</span><br><span class="line">    d.c = c.c = LONG_LONG_MAX;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, ToBinary((<span class="keyword">char</span> *)&amp;a, <span class="keyword">sizeof</span>(a)));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, ToBinary((<span class="keyword">char</span> *)&amp;b, <span class="keyword">sizeof</span>(b)));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, ToBinary((<span class="keyword">char</span> *)&amp;c, <span class="keyword">sizeof</span>(c)));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, ToBinary((<span class="keyword">char</span> *)&amp;d, <span class="keyword">sizeof</span>(d)));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出如下：</p>
+<p><code>01111111</code></p>
+<p><code>01111111 00000000 00000000 00000000 11111111 11111111 11111111 01111111</code></p>
+<p><code>01111111 00000000 00000000 00000000 11111111 11111111 11111111 01111111 11111111 11111111 11111111 11111111 11111111 11111111 11111111 01111111</code></p>
+<p><code>01111111 00000000 00000000 00000000 00000000 00000000 00000000 00000000 11111111 11111111 11111111 11111111 11111111 11111111 11111111 01111111</code></p>
+<p>所以多出来的那一部分里面什么都没有（°ο°）</p>
+<p>好吧，还是很好奇为什么要设计成这个样子。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>在 struct 之后，我又分别测试了 union 和 class 都和想象的差不多，就不说了。但是最后我又发现了个好玩的东西。</p>
+<p>我记得，函数入口是个指针吧。</p>
+<p>那么最后这个程序呢？</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun3</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, ToBinary((<span class="keyword">char</span> *)fun1, (<span class="keyword">char</span> *)fun2 - (<span class="keyword">char</span> *)fun1));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, ToBinary((<span class="keyword">char</span> *)fun2, (<span class="keyword">char</span> *)fun3 - (<span class="keyword">char</span> *)fun2));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>反正是超出了我的知识范围 ╮(╯▽╰)╭</p>
+<p>滚回去复习期末考试~(～ o ￣ ▽ ￣)～ o</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>如果帮到了你的话，可以考虑请我喝咖啡</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="陈留阳 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="陈留阳 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>陈留阳
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cliuyang.cn/ExploreByte/" title="一次对内存的探索">https://cliuyang.cn/ExploreByte/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
+              <a href="/tags/union/" rel="tag"># union</a>
+              <a href="/tags/struct/" rel="tag"># struct</a>
+              <a href="/tags/左移与右移/" rel="tag"># 左移与右移</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/c-withVScode/" rel="prev" title="使用VScode编写C++文件">
+      <i class="fa fa-chevron-left"></i> 使用VScode编写C++文件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/AlgorithmIsBeautifulul-BitwiseOperation/" rel="next" title="《算法很美》——位运算的奇巧淫技">
+      《算法很美》——位运算的奇巧淫技 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一段程序"><span class="nav-number">1.</span> <span class="nav-text">一段程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单总结下这段代码奇怪的地方"><span class="nav-number">1.1.</span> <span class="nav-text">简单总结下这段代码奇怪的地方</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和-2-扯不断的联系"><span class="nav-number">1.2.</span> <span class="nav-text">和 2 扯不断的联系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-union"><span class="nav-number">1.2.1.</span> <span class="nav-text">使用 union</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结合二进制"><span class="nav-number">1.2.2.</span> <span class="nav-text">结合二进制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#答案"><span class="nav-number">1.3.</span> <span class="nav-text">答案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加戏"><span class="nav-number">2.</span> <span class="nav-text">加戏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#左移与右移"><span class="nav-number">2.1.</span> <span class="nav-text">左移与右移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构-struct"><span class="nav-number">2.2.</span> <span class="nav-text">结构(struct)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="陈留阳"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">陈留阳</p>
+  <div class="site-description" itemprop="description">人外有人，天外有天。卧薪尝胆，永不言弃！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NsaXV5YW5n" title="GitHub → https://github.com/cliuyang"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmNsaXV5YW5nMjQ5QGdtYWlsLmNvbQ==" title="E-Mail → mailto:cliuyang249@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="dGVuY2VudDovL0FkZENvbnRhY3QvP2Zyb21JZD00NSZmcm9tU3ViSWQ9MSZzdWJjbWQ9YWxsJnVpbj0yNDkzNzI0OTc=" title="QQ → tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=249372497"><i class="fab fa-qq fa-fw"></i>QQ</span>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fas fa-dragon"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈留阳</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://cliuyang.cn/ExploreByte/',]
+      });
+      });
+  </script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'b8d8d43127a5db48625e',
+      clientSecret: 'e40bfd13c19c995bf26b09c643b17967f8b30db0',
+      repo        : 'gittalk',
+      owner       : 'cliuyang',
+      admin       : ['cliuyang'],
+      id          : '8ac43d470d0ab64d94fb42165f05651d',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

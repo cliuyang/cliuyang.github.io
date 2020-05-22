@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+  <meta name="google-site-verification" content="MoVcrKIvICpF0DzKyXDtvqMIot-U_-AToxw63nB4cOA">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cliuyang.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gittalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="自从在大学入坑了ICPC这类算法比赛，就沉迷其中，在集训队的时候花上一整天做各种各样的比赛，写各种各样的题目，日常的话，也会在深夜打开codeforces，参加一场场的掉分赛/(ㄒoㄒ)/~~  刚开始写比赛的时候，用的IDE是Dev C++，这款IDE上手简单，对新手比较友好，但是调试能力较弱；之后改用CodeBlocks，相对而言功能更加丰富，可自定义的地方也比较多，但麻烦之处在于需要建工程，">
+<meta name="keywords" content="C&#x2F;C++,vscode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以最优雅的方式做算法竞赛">
+<meta property="og:url" content="https://cliuyang.cn/VScode-C-Algorithmic-Competition/index.html">
+<meta property="og:site_name" content="陈留阳">
+<meta property="og:description" content="自从在大学入坑了ICPC这类算法比赛，就沉迷其中，在集训队的时候花上一整天做各种各样的比赛，写各种各样的题目，日常的话，也会在深夜打开codeforces，参加一场场的掉分赛/(ㄒoㄒ)/~~  刚开始写比赛的时候，用的IDE是Dev C++，这款IDE上手简单，对新手比较友好，但是调试能力较弱；之后改用CodeBlocks，相对而言功能更加丰富，可自定义的地方也比较多，但麻烦之处在于需要建工程，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cliuyang.cn/VScode-C-Algorithmic-Competition/LifeGoals.png">
+<meta property="og:image" content="https://cliuyang.cn/VScode-C-Algorithmic-Competition/Effect.png">
+<meta property="og:image" content="https://cliuyang.cn/VScode-C-Algorithmic-Competition/Variable.png">
+<meta property="og:updated_time" content="2020-05-21T04:33:24.239Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="以最优雅的方式做算法竞赛">
+<meta name="twitter:description" content="自从在大学入坑了ICPC这类算法比赛，就沉迷其中，在集训队的时候花上一整天做各种各样的比赛，写各种各样的题目，日常的话，也会在深夜打开codeforces，参加一场场的掉分赛/(ㄒoㄒ)/~~  刚开始写比赛的时候，用的IDE是Dev C++，这款IDE上手简单，对新手比较友好，但是调试能力较弱；之后改用CodeBlocks，相对而言功能更加丰富，可自定义的地方也比较多，但麻烦之处在于需要建工程，">
+<meta name="twitter:image" content="https://cliuyang.cn/VScode-C-Algorithmic-Competition/LifeGoals.png">
+
+<link rel="canonical" href="https://cliuyang.cn/VScode-C-Algorithmic-Competition/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>以最优雅的方式做算法竞赛 | 陈留阳</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">陈留阳</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">35</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">13</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NsaXV5YW5n" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cliuyang.cn/VScode-C-Algorithmic-Competition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content="人外有人，天外有天。卧薪尝胆，永不言弃！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈留阳">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          以最优雅的方式做算法竞赛
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-12 18:29:30" itemprop="dateCreated datePublished" datetime="2019-07-12T18:29:30+08:00">2019-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-21 12:33:24" itemprop="dateModified" datetime="2020-05-21T12:33:24+08:00">2020-05-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/记录/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>自从在大学入坑了<span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3poLWhhbnMvJUU1JTlCJUJEJUU5JTk5JTg1JUU1JUE0JUE3JUU1JUFEJUE2JUU3JTk0JTlGJUU3JUE4JThCJUU1JUJBJThGJUU4JUFFJUJFJUU4JUFFJUExJUU3JUFCJTlFJUU4JUI1JTlC">ICPC<i class="fa fa-external-link-alt"></i></span>这类算法比赛，就沉迷其中，在集训队的时候花上一整天做各种各样的比赛，写各种各样的题目，日常的话，也会在深夜打开<span class="exturl" data-url="aHR0cDovL2NvZGVmb3JjZXMuY29tLw==">codeforces<i class="fa fa-external-link-alt"></i></span>，参加一场场的掉分赛/(ㄒoㄒ)/~~</p>
+<p><img src="/VScode-C-Algorithmic-Competition/LifeGoals.png" alt="LifeGoals"></p>
+<p>刚开始写比赛的时候，用的IDE是Dev C++，这款IDE上手简单，对新手比较友好，但是调试能力较弱；之后改用CodeBlocks，相对而言功能更加丰富，可自定义的地方也比较多，但麻烦之处在于需要建工程，以及对我来说，调试相当不友好，UI也比较丑；也见过有人使用Visual Studio，不过庞大的体量让我瞬间失去了用它做题的想法。</p>
+<p>除了IDE本身的缺陷，还有一个比较难以忍受的共性问题是，竞赛的输入输出是分开的，区分十分清晰，但选手在编写程序的时候，需要在终端里同时完成输入输出，难免会产生混乱，如果在代码中使用了重定向，又需要分心去管理重定向的事情，就有点舍本逐末了。</p>
+<p>综上，理想中算法竞赛刷题工具应有以下几个便利点：</p>
+<ol>
+<li>允许单文件编译运行，使得做一道题目不需要大费周章的建立工程，只需要一个单文件。</li>
+<li>界面美观，友好，调试方便。</li>
+<li>直接重定向到文件。</li>
+</ol>
+<p>一番摸索之后，我选择的工具是vscode，主要是基于一下几点考虑：</p>
+<ol>
+<li>界面美观。</li>
+<li>编辑器可自由拖拽，观看方便。</li>
+<li>拥有大量插件，功能高度自定义。</li>
+</ol>
+<p>于是，踏上了配置之旅。</p>
+<a id="more"></a>
+
+<p><strong>想看简易配置过程直接拉到最后。</strong></p>
+<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p><img src="/VScode-C-Algorithmic-Competition/Effect.png" alt="效果图"></p>
+<p>主要功能：</p>
+<ul>
+<li>源代码放在 <strong>src</strong> 文件夹中，编译生成的可执行程序在 <strong>bin</strong> 文件夹中，用于重定向的输入输出文件放在 <strong>data</strong> 中，vscode的配置文件放在 <strong>.vscode</strong> 中。</li>
+<li>在一个源文件中编写完程序之后按下<strong>F5</strong>一键编译运行，程序重定向输入自<strong>data.in</strong>，重定向输出至<strong>data.out</strong>中。</li>
+<li>可自由选择需要编译的源文件，各个文件之间不冲突。</li>
+</ul>
+<h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><p>本配置是从官方的配置魔改而来，先贴一下官方的 <strong>task.json</strong> 及 <strong>launch.json</strong> 两个配置文件：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// task.json</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">"version"</span>: <span class="string">"2.0.0"</span>,</span><br><span class="line">    <span class="attr">"tasks"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"label"</span>: <span class="string">"build hello world"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"shell"</span>,</span><br><span class="line">            <span class="attr">"command"</span>: <span class="string">"g++"</span>,</span><br><span class="line">            <span class="attr">"args"</span>: [</span><br><span class="line">                <span class="string">"-g"</span>,</span><br><span class="line">                <span class="string">"-o"</span>,</span><br><span class="line">                <span class="string">"helloworld"</span>,</span><br><span class="line">                <span class="string">"helloworld.cpp"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">"group"</span>: &#123;</span><br><span class="line">                <span class="attr">"kind"</span>: <span class="string">"build"</span>,</span><br><span class="line">                <span class="attr">"isDefault"</span>: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//launch.json</span><br><span class="line">&#123;</span><br><span class="line">   <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">    <span class="attr">"configurations"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"(gdb) Launch"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"cppdbg"</span>,</span><br><span class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">            <span class="attr">"program"</span>: <span class="string">"$&#123;workspaceFolder&#125;/helloworld.exe"</span>,</span><br><span class="line">            <span class="attr">"args"</span>: [],</span><br><span class="line">            <span class="attr">"stopAtEntry"</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceFolder&#125;"</span>,</span><br><span class="line">            <span class="attr">"environment"</span>: [],</span><br><span class="line">            <span class="attr">"externalConsole"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"MIMode"</span>: <span class="string">"gdb"</span>,</span><br><span class="line">            <span class="attr">"miDebuggerPath"</span>: <span class="string">"C:/mingw-w64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/bin/gdb.exe"</span>,</span><br><span class="line">            <span class="attr">"setupCommands"</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">"description"</span>: <span class="string">"Enable pretty-printing for gdb"</span>,</span><br><span class="line">                    <span class="attr">"text"</span>: <span class="string">"-enable-pretty-printing"</span>,</span><br><span class="line">                    <span class="attr">"ignoreFailures"</span>: <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不难看出，<strong>task.json</strong>中的<strong>build hello world</strong>任务是调用了<strong>g++</strong>命令，而它的参数是 <strong>-g -o helloworld helloworld.cpp</strong>，即编译<strong>helloworld.cpp</strong>；<strong>launch.json</strong>则是在编译完后调试 <strong>${workspaceFolder}</strong> 目录下的<strong>helloworld.exe</strong>。</p>
+<p>而我们希望的功能是编译任意一个单源文件，并重定向输入输出。在task中需要指定编译文件的路径，vscode提供了几个<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9lZGl0b3IvdmFyaWFibGVzLXJlZmVyZW5jZQ==">预定义的宏变量<i class="fa fa-external-link-alt"></i></span>用来表示路径。</p>
+<p><img src="/VScode-C-Algorithmic-Competition/Variable.png" alt="宏"></p>
+<p>那么，可以通过 <strong>${file}</strong> 来表示正在编辑的文件路径，使用 <strong>${workspaceFolder}</strong> 加上相对路径以及 <strong>${fileBasenameNoExtension}</strong> 来指定生成可执行文件的路径与名称。那么，假如源文件都在<strong>src</strong>文件夹中，希望生成的可执行文件都在<strong>bin</strong>中，则<strong>task.json</strong>中的<strong>args</strong>参数修改为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"args": [</span><br><span class="line">    "-g", "$&#123;file&#125;",</span><br><span class="line">    "-o", "$&#123;workspaceFolder&#125;/bin/$&#123;fileBasenameNoExtension&#125;.exe"</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>而重定向则可以由 <strong>&gt;</strong> 与 <strong>&lt;</strong> 来进行，假如希望重定向的文件都在<strong>data</strong>文件夹中，输入文件为<strong>data.in</strong>，输出文件为<strong>data.out</strong>，则<strong>launch.json</strong>中的<strong>program</strong>与<strong>args</strong>参数修改为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">"program": "$&#123;workspaceFolder&#125;/bin/$&#123;fileBasenameNoExtension&#125;.exe",</span><br><span class="line">"args": [</span><br><span class="line">    "&lt;",</span><br><span class="line">    "$&#123;workspaceFolder&#125;/data/data.in",</span><br><span class="line">    "&gt;",</span><br><span class="line">    <span class="string">"$&#123;workspaceFolder&#125;/data/data.out"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>大功告成。</p>
+<h2 id="简易配置过程"><a href="#简易配置过程" class="headerlink" title="简易配置过程"></a>简易配置过程</h2><ol>
+<li><p>按照<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20vZG9jcy9jcHAvY29uZmlnLW1pbmd3">官方教程<i class="fa fa-external-link-alt"></i></span>或者<a href="\2018\12\01\c-withVScode\index.html">我之前的文章</a>配置好一个C/C++编程环境。</p>
+</li>
+<li><p>在工作目录下新建<strong>bin</strong>，<strong>data</strong>，<strong>src</strong>三个文件夹，将源文件放入<strong>src</strong>文件夹中，可执行文件放入<strong>bin</strong>中。</p>
+</li>
+<li><p>在<strong>data</strong>文件夹中新建两个文本文件，分别为<strong>data.in</strong>与<strong>data.out</strong>。此时工作区的文件结构为：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">|--.vscode</span><br><span class="line">|   --c_cpp_properties.json</span><br><span class="line">|   --launch.json</span><br><span class="line">|   --settings.json</span><br><span class="line">|   --tasks.json</span><br><span class="line">|--bin</span><br><span class="line">|   --helloworld.exe</span><br><span class="line">|--data</span><br><span class="line">|   --data.in</span><br><span class="line">|   --data.out</span><br><span class="line">|-src</span><br><span class="line">|   --helloworld.cpp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<strong>task.json</strong>中的参数<strong>args</strong></p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"args": [</span><br><span class="line">    "-g", "$&#123;file&#125;",</span><br><span class="line">    "-o", "$&#123;workspaceFolder&#125;/bin/$&#123;fileBasenameNoExtension&#125;.exe"</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p> 此时<strong>task.json</strong>应该类似于：</p>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"version"</span>: <span class="string">"2.0.0"</span>,</span><br><span class="line">    <span class="attr">"tasks"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"label"</span>: <span class="string">"build hello world"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"shell"</span>,</span><br><span class="line">            <span class="attr">"command"</span>: <span class="string">"g++"</span>,</span><br><span class="line">            <span class="attr">"args"</span>: [</span><br><span class="line">                <span class="string">"-g"</span>,</span><br><span class="line">                <span class="string">"$&#123;file&#125;"</span>,</span><br><span class="line">                <span class="string">"-o"</span>,</span><br><span class="line">                <span class="string">"$&#123;workspaceFolder&#125;/bin/$&#123;fileBasenameNoExtension&#125;.exe"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">"group"</span>: &#123;</span><br><span class="line">                <span class="attr">"kind"</span>: <span class="string">"build"</span>,</span><br><span class="line">                <span class="attr">"isDefault"</span>: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<strong>launch.json</strong>中的参数<strong>program</strong>与<strong>args</strong>为</p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">"program": "$&#123;workspaceFolder&#125;/bin/$&#123;fileBasenameNoExtension&#125;.exe",</span><br><span class="line">"args": [</span><br><span class="line">    "&lt;",</span><br><span class="line">    "$&#123;workspaceFolder&#125;/data/data.in",</span><br><span class="line">    "&gt;",</span><br><span class="line">    <span class="string">"$&#123;workspaceFolder&#125;/data/data.out"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p> 此时<strong>launch.json</strong>应该类似于：</p>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line"><span class="attr">"configurations"</span>: [&#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"(gdb) Launch"</span>,</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"cppdbg"</span>,</span><br><span class="line">        <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">        <span class="attr">"program"</span>: <span class="string">"$&#123;workspaceFolder&#125;/bin/$&#123;fileBasenameNoExtension&#125;.exe"</span>,</span><br><span class="line">        <span class="attr">"args"</span>: [</span><br><span class="line">            <span class="string">"&lt;"</span>,</span><br><span class="line">            <span class="string">"$&#123;workspaceFolder&#125;/data/data.in"</span>,</span><br><span class="line">            <span class="string">"&gt;"</span>,</span><br><span class="line">            <span class="string">"$&#123;workspaceFolder&#125;/data/data.out"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"stopAtEntry"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceFolder&#125;"</span>,</span><br><span class="line">        <span class="attr">"environment"</span>: [],</span><br><span class="line">        <span class="attr">"externalConsole"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"MIMode"</span>: <span class="string">"gdb"</span>,</span><br><span class="line">        <span class="attr">"miDebuggerPath"</span>: <span class="string">"C:/mingw-w64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/bin/gdb.exe"</span>,</span><br><span class="line">        <span class="attr">"setupCommands"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"description"</span>: <span class="string">"Enable pretty-printing for gdb"</span>,</span><br><span class="line">                <span class="attr">"text"</span>: <span class="string">"-enable-pretty-printing"</span>,</span><br><span class="line">                <span class="attr">"ignoreFailures"</span>: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">]&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置完成,拖拽编辑器到合适的位置</p>
+</li>
+<li><p>编辑完代码后，按下<strong>F5</strong>一键编译运行，程序将重定向输入自data/data.in，重定向输出至data.out</p>
+</li>
+<li><p>保存一份配置好的文件夹作为模板，后续需要做比赛的时候复制一份。</p>
+</li>
+</ol>
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>本次配置难度不是很大，灵活使用vscode的宏变量进行配置，也比较好理解。最终的结果满足了我打比赛的需求，不过还是存在一下几点问题：</p>
+<ol>
+<li>每次使用都需要重新设置一下布局，虽然不是很麻烦但是很繁琐。</li>
+<li>无法识别编辑文件的文件类型，如果在修改了data.in后直接编译，会报错。</li>
+</ol>
+<p>好了，开开心心掉分去QAQ。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>如果帮到了你的话，可以考虑请我喝咖啡</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="陈留阳 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="陈留阳 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>陈留阳
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cliuyang.cn/VScode-C-Algorithmic-Competition/" title="以最优雅的方式做算法竞赛">https://cliuyang.cn/VScode-C-Algorithmic-Competition/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
+              <a href="/tags/vscode/" rel="tag"># vscode</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/c-withVScode-second/" rel="prev" title="使用VScode编写C++工程">
+      <i class="fa fa-chevron-left"></i> 使用VScode编写C++工程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/COVID-19Visualization/" rel="next" title="COVID-19疫情可视化">
+      COVID-19疫情可视化 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果展示"><span class="nav-number">1.</span> <span class="nav-text">效果展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置思路"><span class="nav-number">2.</span> <span class="nav-text">配置思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简易配置过程"><span class="nav-number">3.</span> <span class="nav-text">简易配置过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后续"><span class="nav-number">4.</span> <span class="nav-text">后续</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="陈留阳"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">陈留阳</p>
+  <div class="site-description" itemprop="description">人外有人，天外有天。卧薪尝胆，永不言弃！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NsaXV5YW5n" title="GitHub → https://github.com/cliuyang"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmNsaXV5YW5nMjQ5QGdtYWlsLmNvbQ==" title="E-Mail → mailto:cliuyang249@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="dGVuY2VudDovL0FkZENvbnRhY3QvP2Zyb21JZD00NSZmcm9tU3ViSWQ9MSZzdWJjbWQ9YWxsJnVpbj0yNDkzNzI0OTc=" title="QQ → tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=249372497"><i class="fab fa-qq fa-fw"></i>QQ</span>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fas fa-dragon"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈留阳</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://cliuyang.cn/VScode-C-Algorithmic-Competition/',]
+      });
+      });
+  </script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'b8d8d43127a5db48625e',
+      clientSecret: 'e40bfd13c19c995bf26b09c643b17967f8b30db0',
+      repo        : 'gittalk',
+      owner       : 'cliuyang',
+      admin       : ['cliuyang'],
+      id          : '7cb76e45d967360fb28205077663238c',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

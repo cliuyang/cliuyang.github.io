@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://cliuyang.github.io/"/>
-  <updated>2020-05-17T15:54:37.451Z</updated>
-  <id>https://cliuyang.github.io/</id>
+  <link href="https://cliuyang.cn/"/>
+  <updated>2020-05-22T14:28:39.168Z</updated>
+  <id>https://cliuyang.cn/</id>
   
   <author>
     <name>陈留阳</name>
@@ -17,16 +17,71 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>新冠肺炎疫情地图</title>
+    <link href="https://cliuyang.cn/COVID-19_map/"/>
+    <id>https://cliuyang.cn/COVID-19_map/</id>
+    <published>2020-05-19T15:16:35.000Z</published>
+    <updated>2020-05-22T14:28:39.168Z</updated>
+    
+    <summary type="html">
+    
+      &lt;!DOCTYPE html&gt;
+    
+    </summary>
+    
+      <category term="展示" scheme="https://cliuyang.cn/categories/%E5%B1%95%E7%A4%BA/"/>
+    
+    
+      <category term="COVID-19" scheme="https://cliuyang.cn/tags/COVID-19/"/>
+    
+      <category term="数据可视化" scheme="https://cliuyang.cn/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>COVID-19疫情可视化</title>
+    <link href="https://cliuyang.cn/COVID-19Visualization/"/>
+    <id>https://cliuyang.cn/COVID-19Visualization/</id>
+    <published>2020-05-19T15:16:35.000Z</published>
+    <updated>2020-05-22T15:05:02.497Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2020年有个很魔幻的开局，从一只蝙蝠开始，迎来了不弱于03年非典的新冠状病毒。这一次疫情期间，全国上下减少外出，团结一心，共同抗疫，取得了奇迹般的成就。&lt;/p&gt;
+&lt;p&gt;疫情期间，信息的及时公布显得尤为重要。正是政府不断公布无死角的发布信息，分析解读，才使得公众对疫情的了解不断深入，对疫情状况有充分了解，并将恐惧与不安降到最低。&lt;/p&gt;
+&lt;p&gt;信息的及时公布很重要，但是如何把信息直观的展现出来也很重要，大量的数据涌来时，可视化无疑是最好的选择。&lt;/p&gt;
+&lt;p&gt;本文将记录我如何借助Python来完成一张疫情期间数据可视化的地图。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="记录" scheme="https://cliuyang.cn/categories/%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="python" scheme="https://cliuyang.cn/tags/python/"/>
+    
+      <category term="pyecharts" scheme="https://cliuyang.cn/tags/pyecharts/"/>
+    
+      <category term="panadas" scheme="https://cliuyang.cn/tags/panadas/"/>
+    
+      <category term="新冠肺炎" scheme="https://cliuyang.cn/tags/%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E/"/>
+    
+      <category term="COVID-19" scheme="https://cliuyang.cn/tags/COVID-19/"/>
+    
+      <category term="可视化" scheme="https://cliuyang.cn/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title>以最优雅的方式做算法竞赛</title>
-    <link href="https://cliuyang.github.io/2019/07/12/VScode-C-Algorithmic-Competition/"/>
-    <id>https://cliuyang.github.io/2019/07/12/VScode-C-Algorithmic-Competition/</id>
+    <link href="https://cliuyang.cn/VScode-C-Algorithmic-Competition/"/>
+    <id>https://cliuyang.cn/VScode-C-Algorithmic-Competition/</id>
     <published>2019-07-12T10:29:30.000Z</published>
-    <updated>2020-05-17T15:54:37.451Z</updated>
+    <updated>2020-05-21T04:33:24.239Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;自从在大学入坑了&lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3poLWhhbnMvJUU1JTlCJUJEJUU5JTk5JTg1JUU1JUE0JUE3JUU1JUFEJUE2JUU3JTk0JTlGJUU3JUE4JThCJUU1JUJBJThGJUU4JUFFJUJFJUU4JUFFJUExJUU3JUFCJTlFJUU4JUI1JTlC&quot;&gt;ICPC&lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/span&gt;这类算法比赛，就沉迷其中，在集训队的时候花上一整天做各种各样的比赛，写各种各样的题目，日常的话，也会在深夜打开&lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cDovL2NvZGVmb3JjZXMuY29tLw==&quot;&gt;codeforces&lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/span&gt;，参加一场场的掉分赛/(ㄒoㄒ)/~~&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2019/07/12/VScode-C-Algorithmic-Competition/LifeGoals.png&quot; alt=&quot;LifeGoals&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/VScode-C-Algorithmic-Competition/LifeGoals.png&quot; alt=&quot;LifeGoals&quot;&gt;&lt;/p&gt;
 &lt;p&gt;刚开始写比赛的时候，用的IDE是Dev C++，这款IDE上手简单，对新手比较友好，但是调试能力较弱；之后改用CodeBlocks，相对而言功能更加丰富，可自定义的地方也比较多，但麻烦之处在于需要建工程，以及对我来说，调试相当不友好，UI也比较丑；也见过有人使用Visual Studio，不过庞大的体量让我瞬间失去了用它做题的想法。&lt;/p&gt;
 &lt;p&gt;除了IDE本身的缺陷，还有一个比较难以忍受的共性问题是，竞赛的输入输出是分开的，区分十分清晰，但选手在编写程序的时候，需要在终端里同时完成输入输出，难免会产生混乱，如果在代码中使用了重定向，又需要分心去管理重定向的事情，就有点舍本逐末了。&lt;/p&gt;
 &lt;p&gt;综上，理想中算法竞赛刷题工具应有以下几个便利点：&lt;/p&gt;
@@ -45,46 +100,48 @@
     
     </summary>
     
+      <category term="记录" scheme="https://cliuyang.cn/categories/%E8%AE%B0%E5%BD%95/"/>
     
-      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
     
-      <category term="vscode" scheme="https://cliuyang.github.io/tags/vscode/"/>
+      <category term="C/C++" scheme="https://cliuyang.cn/tags/C-C/"/>
+    
+      <category term="vscode" scheme="https://cliuyang.cn/tags/vscode/"/>
     
   </entry>
   
   <entry>
     <title>使用VScode编写C++工程</title>
-    <link href="https://cliuyang.github.io/2019/03/08/c-withVScode-second/"/>
-    <id>https://cliuyang.github.io/2019/03/08/c-withVScode-second/</id>
+    <link href="https://cliuyang.cn/c-withVScode-second/"/>
+    <id>https://cliuyang.cn/c-withVScode-second/</id>
     <published>2019-03-08T11:32:13.000Z</published>
-    <updated>2020-05-17T15:53:16.235Z</updated>
+    <updated>2020-05-21T08:50:51.038Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;VS code 是个功能强大，可扩展性极强的编辑器，通过添加一些插件，修改一下配置即可发挥强大的功能。&lt;/p&gt;
-&lt;p&gt;前些日子（其实好久了哈 (￣ y▽ ￣)~*），通过阅读官网的文档，成功&lt;a href=&quot;\2018\12\01\c-withVScode\index.html&quot;&gt;配置了 C++的编程环境&lt;/a&gt;，然后用了很久。但是最近遇见了个很严重的问题，那就是按照官网的文档走的话，最终只能编译，调试，运行一个单独的文件。&lt;/p&gt;
+&lt;p&gt;前些日子（其实好久了哈 (￣ y▽ ￣)~*），通过阅读官网的文档，成功 &lt;a href=&quot;/c-withVScode/#&quot;&gt;&lt;strong&gt;配置了C++的编程环境&lt;/strong&gt;&lt;/a&gt;，然后用了很久。但是最近遇见了个很严重的问题，那就是按照官网的文档走的话，最终只能编译，调试，运行一个单独的文件。&lt;/p&gt;
 &lt;p&gt;这就很难受了，虽说刷刷算法题也不需要多个文件，使用 g++的一些较为复杂的参数也可以编译链接多个文件，但是，到底能不能使用 VS code 来编写具有一定规模的 C/C++工程呢？&lt;/p&gt;
 &lt;p&gt;于是，折腾开始了，而且最终取得了很不错的成果。(≖‿≖)✧&lt;/p&gt;
     
     </summary>
     
-      <category term="教程" scheme="https://cliuyang.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+      <category term="教程" scheme="https://cliuyang.cn/categories/%E6%95%99%E7%A8%8B/"/>
     
-      <category term="vscode" scheme="https://cliuyang.github.io/categories/%E6%95%99%E7%A8%8B/vscode/"/>
+      <category term="记录" scheme="https://cliuyang.cn/categories/%E6%95%99%E7%A8%8B/%E8%AE%B0%E5%BD%95/"/>
     
     
-      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+      <category term="C/C++" scheme="https://cliuyang.cn/tags/C-C/"/>
     
-      <category term="vscode" scheme="https://cliuyang.github.io/tags/vscode/"/>
+      <category term="vscode" scheme="https://cliuyang.cn/tags/vscode/"/>
     
   </entry>
   
   <entry>
     <title>十大排序</title>
-    <link href="https://cliuyang.github.io/2019/02/22/TopTenSort/"/>
-    <id>https://cliuyang.github.io/2019/02/22/TopTenSort/</id>
+    <link href="https://cliuyang.cn/TopTenSort/"/>
+    <id>https://cliuyang.cn/TopTenSort/</id>
     <published>2019-02-22T10:36:38.000Z</published>
-    <updated>2020-05-17T15:54:21.779Z</updated>
+    <updated>2020-05-21T08:45:53.010Z</updated>
     
     <summary type="html">
     
@@ -93,45 +150,45 @@
     
     </summary>
     
-      <category term="算法" scheme="https://cliuyang.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://cliuyang.cn/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+      <category term="C/C++" scheme="https://cliuyang.cn/tags/C-C/"/>
     
-      <category term="排序算法" scheme="https://cliuyang.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
+      <category term="排序算法" scheme="https://cliuyang.cn/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
     
-      <category term="冒泡排序" scheme="https://cliuyang.github.io/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"/>
+      <category term="冒泡排序" scheme="https://cliuyang.cn/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"/>
     
-      <category term="选择排序" scheme="https://cliuyang.github.io/tags/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/"/>
+      <category term="选择排序" scheme="https://cliuyang.cn/tags/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/"/>
     
-      <category term="插入排序" scheme="https://cliuyang.github.io/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/"/>
+      <category term="插入排序" scheme="https://cliuyang.cn/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/"/>
     
-      <category term="希尔排序" scheme="https://cliuyang.github.io/tags/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/"/>
+      <category term="希尔排序" scheme="https://cliuyang.cn/tags/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/"/>
     
-      <category term="归并排序" scheme="https://cliuyang.github.io/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
+      <category term="归并排序" scheme="https://cliuyang.cn/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
     
-      <category term="快速排序" scheme="https://cliuyang.github.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
+      <category term="快速排序" scheme="https://cliuyang.cn/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
     
-      <category term="堆排序" scheme="https://cliuyang.github.io/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/"/>
+      <category term="堆排序" scheme="https://cliuyang.cn/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/"/>
     
-      <category term="计数排序" scheme="https://cliuyang.github.io/tags/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/"/>
+      <category term="计数排序" scheme="https://cliuyang.cn/tags/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/"/>
     
-      <category term="桶排序" scheme="https://cliuyang.github.io/tags/%E6%A1%B6%E6%8E%92%E5%BA%8F/"/>
+      <category term="桶排序" scheme="https://cliuyang.cn/tags/%E6%A1%B6%E6%8E%92%E5%BA%8F/"/>
     
-      <category term="基数排序" scheme="https://cliuyang.github.io/tags/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/"/>
+      <category term="基数排序" scheme="https://cliuyang.cn/tags/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/"/>
     
-      <category term="递归" scheme="https://cliuyang.github.io/tags/%E9%80%92%E5%BD%92/"/>
+      <category term="递归" scheme="https://cliuyang.cn/tags/%E9%80%92%E5%BD%92/"/>
     
-      <category term="分治" scheme="https://cliuyang.github.io/tags/%E5%88%86%E6%B2%BB/"/>
+      <category term="分治" scheme="https://cliuyang.cn/tags/%E5%88%86%E6%B2%BB/"/>
     
   </entry>
   
   <entry>
     <title>数据结构——堆栈</title>
-    <link href="https://cliuyang.github.io/2019/02/15/DataStructurere-Stack/"/>
-    <id>https://cliuyang.github.io/2019/02/15/DataStructurere-Stack/</id>
+    <link href="https://cliuyang.cn/DataStructurere-Stack/"/>
+    <id>https://cliuyang.cn/DataStructurere-Stack/</id>
     <published>2019-02-15T11:53:05.000Z</published>
-    <updated>2020-05-17T15:53:45.703Z</updated>
+    <updated>2020-05-21T04:33:02.586Z</updated>
     
     <summary type="html">
     
@@ -139,27 +196,27 @@
     
     </summary>
     
-      <category term="基本数据结构的实现" scheme="https://cliuyang.github.io/categories/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
+      <category term="基本数据结构的实现" scheme="https://cliuyang.cn/categories/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
     
     
-      <category term="《学习笔记》" scheme="https://cliuyang.github.io/tags/%E3%80%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%8B/"/>
+      <category term="C/C++" scheme="https://cliuyang.cn/tags/C-C/"/>
     
-      <category term="数据结构" scheme="https://cliuyang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="《学习笔记》" scheme="https://cliuyang.cn/tags/%E3%80%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%8B/"/>
     
-      <category term="链表" scheme="https://cliuyang.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
+      <category term="数据结构" scheme="https://cliuyang.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="堆栈" scheme="https://cliuyang.github.io/tags/%E5%A0%86%E6%A0%88/"/>
+      <category term="链表" scheme="https://cliuyang.cn/tags/%E9%93%BE%E8%A1%A8/"/>
     
-      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+      <category term="堆栈" scheme="https://cliuyang.cn/tags/%E5%A0%86%E6%A0%88/"/>
     
   </entry>
   
   <entry>
     <title>数据结构——链表</title>
-    <link href="https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/"/>
-    <id>https://cliuyang.github.io/2019/02/11/DataStructurere-LinkedList/</id>
+    <link href="https://cliuyang.cn/DataStructurere-LinkedList/"/>
+    <id>https://cliuyang.cn/DataStructurere-LinkedList/</id>
     <published>2019-02-11T04:03:17.000Z</published>
-    <updated>2020-05-17T15:53:40.299Z</updated>
+    <updated>2020-05-21T08:48:21.438Z</updated>
     
     <summary type="html">
     
@@ -167,25 +224,25 @@
     
     </summary>
     
-      <category term="基本数据结构的实现" scheme="https://cliuyang.github.io/categories/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
+      <category term="基本数据结构的实现" scheme="https://cliuyang.cn/categories/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
     
     
-      <category term="《学习笔记》" scheme="https://cliuyang.github.io/tags/%E3%80%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%8B/"/>
+      <category term="C/C++" scheme="https://cliuyang.cn/tags/C-C/"/>
     
-      <category term="数据结构" scheme="https://cliuyang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="《学习笔记》" scheme="https://cliuyang.cn/tags/%E3%80%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%8B/"/>
     
-      <category term="链表" scheme="https://cliuyang.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
+      <category term="数据结构" scheme="https://cliuyang.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+      <category term="链表" scheme="https://cliuyang.cn/tags/%E9%93%BE%E8%A1%A8/"/>
     
   </entry>
   
   <entry>
     <title>《算法很美》——查找与排序（上）</title>
-    <link href="https://cliuyang.github.io/2019/02/10/AlgorithmIsBeautifulul-SearchSortUp/"/>
-    <id>https://cliuyang.github.io/2019/02/10/AlgorithmIsBeautifulul-SearchSortUp/</id>
+    <link href="https://cliuyang.cn/AlgorithmIsBeautifulul-SearchSortUp/"/>
+    <id>https://cliuyang.cn/AlgorithmIsBeautifulul-SearchSortUp/</id>
     <published>2019-02-10T13:06:29.000Z</published>
-    <updated>2020-05-17T15:53:07.311Z</updated>
+    <updated>2020-05-21T04:32:41.682Z</updated>
     
     <summary type="html">
     
@@ -193,23 +250,23 @@
     
     </summary>
     
-      <category term="《算法很美》" scheme="https://cliuyang.github.io/categories/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
+      <category term="《算法很美》" scheme="https://cliuyang.cn/categories/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
     
     
-      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+      <category term="学习笔记" scheme="https://cliuyang.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="学习笔记" scheme="https://cliuyang.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <category term="C/C++" scheme="https://cliuyang.cn/tags/C-C/"/>
     
-      <category term="《算法很美》" scheme="https://cliuyang.github.io/tags/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
+      <category term="《算法很美》" scheme="https://cliuyang.cn/tags/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
     
   </entry>
   
   <entry>
     <title>《算法很美》——位运算的奇巧淫技</title>
-    <link href="https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/"/>
-    <id>https://cliuyang.github.io/2019/02/07/AlgorithmIsBeautifulul-BitwiseOperation/</id>
+    <link href="https://cliuyang.cn/AlgorithmIsBeautifulul-BitwiseOperation/"/>
+    <id>https://cliuyang.cn/AlgorithmIsBeautifulul-BitwiseOperation/</id>
     <published>2019-02-07T03:58:11.000Z</published>
-    <updated>2020-05-17T15:53:00.771Z</updated>
+    <updated>2020-05-21T04:32:38.002Z</updated>
     
     <summary type="html">
     
@@ -217,25 +274,25 @@
     
     </summary>
     
-      <category term="《算法很美》" scheme="https://cliuyang.github.io/categories/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
+      <category term="-《算法很美》" scheme="https://cliuyang.cn/categories/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
     
     
-      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+      <category term="学习笔记" scheme="https://cliuyang.cn/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="学习笔记" scheme="https://cliuyang.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <category term="C/C++" scheme="https://cliuyang.cn/tags/C-C/"/>
     
-      <category term="《算法很美》" scheme="https://cliuyang.github.io/tags/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
+      <category term="《算法很美》" scheme="https://cliuyang.cn/tags/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/"/>
     
-      <category term="位运算" scheme="https://cliuyang.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+      <category term="位运算" scheme="https://cliuyang.cn/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
     
   </entry>
   
   <entry>
     <title>一次对内存的探索</title>
-    <link href="https://cliuyang.github.io/2018/12/13/ExploreByte/"/>
-    <id>https://cliuyang.github.io/2018/12/13/ExploreByte/</id>
+    <link href="https://cliuyang.cn/ExploreByte/"/>
+    <id>https://cliuyang.cn/ExploreByte/</id>
     <published>2018-12-13T15:36:50.000Z</published>
-    <updated>2020-05-17T15:54:00.035Z</updated>
+    <updated>2020-05-21T04:33:07.014Z</updated>
     
     <summary type="html">
     
@@ -248,25 +305,25 @@
     
     </summary>
     
-      <category term="折腾" scheme="https://cliuyang.github.io/categories/%E6%8A%98%E8%85%BE/"/>
+      <category term="记录" scheme="https://cliuyang.cn/categories/%E8%AE%B0%E5%BD%95/"/>
     
     
-      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+      <category term="C/C++" scheme="https://cliuyang.cn/tags/C-C/"/>
     
-      <category term="union" scheme="https://cliuyang.github.io/tags/union/"/>
+      <category term="union" scheme="https://cliuyang.cn/tags/union/"/>
     
-      <category term="struct" scheme="https://cliuyang.github.io/tags/struct/"/>
+      <category term="struct" scheme="https://cliuyang.cn/tags/struct/"/>
     
-      <category term="左移与右移" scheme="https://cliuyang.github.io/tags/%E5%B7%A6%E7%A7%BB%E4%B8%8E%E5%8F%B3%E7%A7%BB/"/>
+      <category term="左移与右移" scheme="https://cliuyang.cn/tags/%E5%B7%A6%E7%A7%BB%E4%B8%8E%E5%8F%B3%E7%A7%BB/"/>
     
   </entry>
   
   <entry>
     <title>使用VScode编写C++文件</title>
-    <link href="https://cliuyang.github.io/2018/12/01/c-withVScode/"/>
-    <id>https://cliuyang.github.io/2018/12/01/c-withVScode/</id>
+    <link href="https://cliuyang.cn/c-withVScode/"/>
+    <id>https://cliuyang.cn/c-withVScode/</id>
     <published>2018-12-01T13:12:42.000Z</published>
-    <updated>2020-05-17T15:53:29.647Z</updated>
+    <updated>2020-05-21T04:28:56.563Z</updated>
     
     <summary type="html">
     
@@ -276,23 +333,21 @@
     
     </summary>
     
-      <category term="教程" scheme="https://cliuyang.github.io/categories/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="vscode" scheme="https://cliuyang.github.io/categories/%E6%95%99%E7%A8%8B/vscode/"/>
+      <category term="教程" scheme="https://cliuyang.cn/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="C/C++" scheme="https://cliuyang.github.io/tags/C-C/"/>
+      <category term="C/C++" scheme="https://cliuyang.cn/tags/C-C/"/>
     
-      <category term="vscode" scheme="https://cliuyang.github.io/tags/vscode/"/>
+      <category term="vscode" scheme="https://cliuyang.cn/tags/vscode/"/>
     
   </entry>
   
   <entry>
     <title>Proteus安装，破解，汉化教程</title>
-    <link href="https://cliuyang.github.io/2018/11/07/Proteus%E5%AE%89%E8%A3%85%EF%BC%8C%E7%A0%B4%E8%A7%A3%EF%BC%8C%E6%B1%89%E5%8C%96%E6%95%99%E7%A8%8B/"/>
-    <id>https://cliuyang.github.io/2018/11/07/Proteus安装，破解，汉化教程/</id>
+    <link href="https://cliuyang.cn/Proteus%E5%AE%89%E8%A3%85%EF%BC%8C%E7%A0%B4%E8%A7%A3%EF%BC%8C%E6%B1%89%E5%8C%96%E6%95%99%E7%A8%8B/"/>
+    <id>https://cliuyang.cn/Proteus安装，破解，汉化教程/</id>
     <published>2018-11-07T05:30:47.000Z</published>
-    <updated>2020-05-17T15:54:08.391Z</updated>
+    <updated>2020-05-21T04:33:13.307Z</updated>
     
     <summary type="html">
     
@@ -300,19 +355,19 @@
     
     </summary>
     
-      <category term="教程" scheme="https://cliuyang.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+      <category term="教程" scheme="https://cliuyang.cn/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="proteus" scheme="https://cliuyang.github.io/tags/proteus/"/>
+      <category term="proteus" scheme="https://cliuyang.cn/tags/proteus/"/>
     
   </entry>
   
   <entry>
     <title>我的第一篇博客</title>
-    <link href="https://cliuyang.github.io/2018/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
-    <id>https://cliuyang.github.io/2018/11/01/我的第一篇博客/</id>
+    <link href="https://cliuyang.cn/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://cliuyang.cn/我的第一篇博客/</id>
     <published>2018-11-01T15:30:14.000Z</published>
-    <updated>2020-05-17T15:52:53.219Z</updated>
+    <updated>2020-05-21T05:05:28.846Z</updated>
     
     <summary type="html">
     
@@ -320,10 +375,12 @@
     
     </summary>
     
-      <category term="杂记" scheme="https://cliuyang.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+      <category term="感想" scheme="https://cliuyang.cn/categories/%E6%84%9F%E6%83%B3/"/>
     
     
-      <category term="杂记" scheme="https://cliuyang.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+      <category term="hexo" scheme="https://cliuyang.cn/tags/hexo/"/>
+    
+      <category term="GithubPage" scheme="https://cliuyang.cn/tags/GithubPage/"/>
     
   </entry>
   
