@@ -162,6 +162,769 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cliuyang.cn/vscode-C-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Miku.jpg">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content="一个私人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/vscode-C-03/" class="post-title-link" itemprop="url">以最优雅的方式做算法竞赛</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-12 23:58:11" itemprop="dateCreated datePublished" datetime="2019-07-12T23:58:11+08:00">2019-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-07 00:44:01" itemprop="dateModified" datetime="2021-01-07T00:44:01+08:00">2021-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>自从在大学入坑了ICPC这类算法比赛，就沉迷其中，在集训队的时候花上一整天做各种各样的比赛，写各种各样的题目，日常的话，也会在深夜打开<a target="_blank" rel="noopener" href="http://codeforces.com/">codeforces</a>，参加一场场的掉分赛/(ㄒoㄒ)/~~</p>
+<img data-src="/vscode-C-03/LifeGoals.png" class="" width="500" height="500" title="LifeGoals">
+
+<p>刚开始写比赛的时候，用的IDE是Dev C++，这款IDE上手简单，对新手比较友好，但是调试能力较弱；之后改用CodeBlocks，相对而言功能更加丰富，可自定义的地方也比较多，但麻烦之处在于需要建工程，以及对我来说，调试相当不友好，UI也比较丑；也见过有人使用Visual Studio，不过庞大的体量让我瞬间失去了用它做题的想法。</p>
+<p>除了IDE本身的缺陷，还有一个比较难以忍受的共性问题是，竞赛的输入输出是分开的，区分十分清晰，但选手在编写程序的时候，需要在终端里同时完成输入输出，难免会产生混乱，如果在代码中使用了重定向，又需要分心去管理重定向的事情，就有点舍本逐末了。</p>
+<p>综上，理想中算法竞赛刷题工具应有以下几个便利点：</p>
+<ol>
+<li>允许单文件编译运行，使得做一道题目不需要大费周章的建立工程，只需要一个单文件。</li>
+<li>界面美观，友好，调试方便。</li>
+<li>直接重定向到文件。</li>
+<li>可以快速编写竞赛代码</li>
+</ol>
+<p>一番摸索之后，我选择的工具是vscode，主要是基于一下几点考虑：</p>
+<ol>
+<li>界面美观。</li>
+<li>编辑器可自由拖拽，观看方便。</li>
+<li>拥有大量插件，功能高度自定义。</li>
+</ol>
+<p>于是，踏上了配置之旅。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/vscode-C-03/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cliuyang.cn/vscode-C-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Miku.jpg">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content="一个私人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/vscode-C-02/" class="post-title-link" itemprop="url">使用VScode编写C++工程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-08 23:41:06" itemprop="dateCreated datePublished" datetime="2019-03-08T23:41:06+08:00">2019-03-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-06 23:57:38" itemprop="dateModified" datetime="2021-01-06T23:57:38+08:00">2021-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>VS code 是个功能强大，可扩展性极强的编辑器，通过添加一些插件，修改一下配置即可发挥强大的功能。</p>
+<p>前些日子（其实好久了哈 (￣ y▽ ￣)~*），通过阅读官网的文档，成功 <a href="/vscode-C-01/" title="配置了C++的编程环境">配置了C++的编程环境</a>，然后用了很久。但是最近遇见了个很严重的问题，那就是按照官网的文档走的话，最终只能编译，调试，运行一个单独的文件。</p>
+<p>这就很难受了，虽说刷刷算法题也不需要多个文件，使用 g++的一些较为复杂的参数也可以编译链接多个文件，但是，到底能不能使用 VS code 来编写具有一定规模的 C/C++工程呢？</p>
+<p>于是，折腾开始了，而且最终取得了很不错的成果。(≖‿≖)✧</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/vscode-C-02/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cliuyang.cn/top-ten-sort/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Miku.jpg">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content="一个私人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/top-ten-sort/" class="post-title-link" itemprop="url">十大排序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-22 22:46:43" itemprop="dateCreated datePublished" datetime="2019-02-22T22:46:43+08:00">2019-02-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-06 23:57:53" itemprop="dateModified" datetime="2021-01-06T23:57:53+08:00">2021-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>从大一学 C 语言开始就一直听说有个叫做十大排序算法的东西，要涉及一些有趣的思想和数据结构什么的，听起来很厉害的样子，觉得好难就没去看过，只是调用 qsort 和 sort 之类的函数。</p>
+<p>最近学一些东西的时候恰巧和十大排序打了交道，理解起来并不难，拖延了好久才去看真的挺遗憾的。然后学完后打算把十大排序总结记录下来。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/top-ten-sort/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cliuyang.cn/data-structure-stack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Miku.jpg">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content="一个私人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/data-structure-stack/" class="post-title-link" itemprop="url">数据结构——堆栈</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-15 22:09:55" itemprop="dateCreated datePublished" datetime="2019-02-15T22:09:55+08:00">2019-02-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-06 23:24:05" itemprop="dateModified" datetime="2021-01-06T23:24:05+08:00">2021-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>堆栈是一种<strong>先进后出</strong>的数据结构，我和别人说起来的时候，经常拿井做比较，最先放到井里的东西要最后才能拿出来。具体实现起来有着至少两种方式，<strong>链表实现</strong>和<strong>数组实现</strong>，实现思路都很简单，代码也都很简短。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/data-structure-stack/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cliuyang.cn/data-structure-linked-list/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Miku.jpg">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content="一个私人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/data-structure-linked-list/" class="post-title-link" itemprop="url">数据结构——链表</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-11 21:50:57" itemprop="dateCreated datePublished" datetime="2019-02-11T21:50:57+08:00">2019-02-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-06 23:23:53" itemprop="dateModified" datetime="2021-01-06T23:23:53+08:00">2021-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>数据结构是一个早就有所耳闻的东西，但是一直没有潜下心学习过，对数据结构的了解也仅限于 C++里的 STL，趁寒假有空闲，去听了浙江大学<strong>陈越</strong>老师的数据结构课程。当然，计算机领域的各种知识，只有亲自尝试了才能算是真的学得懂，因此，打算开个专题，将各个类型的数据结构都亲自实现一遍，并记录下来。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/data-structure-linked-list/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cliuyang.cn/algorithm-is-beautiful-search-and-sort-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Miku.jpg">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content="一个私人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/algorithm-is-beautiful-search-and-sort-01/" class="post-title-link" itemprop="url">《算法很美》—— 查找与排序（上）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-10 21:33:01" itemprop="dateCreated datePublished" datetime="2019-02-10T21:33:01+08:00">2019-02-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-06 23:23:44" itemprop="dateModified" datetime="2021-01-06T23:23:44+08:00">2021-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/" itemprop="url" rel="index"><span itemprop="name">《算法很美》</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>第二章的内容相对第一章来说常规了一些，或者更应该说第一章的内容很是惊艳，毕竟位运算接触的少。而第二章分析算法的复杂度，排序算法的实现，二分查找这些就中规中矩了许多，在意的并不多。但是在例题里有几道感觉特别有意思的题目，思路比较巧，因此决定记下来。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/algorithm-is-beautiful-search-and-sort-01/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cliuyang.cn/algorithm-is-beautiful-bitwise-operation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Miku.jpg">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content="一个私人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/algorithm-is-beautiful-bitwise-operation/" class="post-title-link" itemprop="url">《算法很美》—— 位运算的奇巧淫技</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-07 20:43:45" itemprop="dateCreated datePublished" datetime="2019-02-07T20:43:45+08:00">2019-02-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-06 23:23:32" itemprop="dateModified" datetime="2021-01-06T23:23:32+08:00">2021-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E3%80%8A%E7%AE%97%E6%B3%95%E5%BE%88%E7%BE%8E%E3%80%8B/" itemprop="url" rel="index"><span itemprop="name">《算法很美》</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>寒假前报名了蓝桥杯，和同学一起参加了蓝桥杯 《<strong>算法很美</strong>》的课程，于是开了个新坑，学习一些基本的算法知识。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/algorithm-is-beautiful-bitwise-operation/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cliuyang.cn/explore-byte/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Miku.jpg">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content="一个私人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/explore-byte/" class="post-title-link" itemprop="url">一次对内存的探索</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-12-13 22:05:59" itemprop="dateCreated datePublished" datetime="2018-12-13T22:05:59+08:00">2018-12-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-06 23:24:24" itemprop="dateModified" datetime="2021-01-06T23:24:24+08:00">2021-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一段程序"><a href="#一段程序" class="headerlink" title="一段程序"></a>一段程序</h2><p>故事发生在某天深夜，已经熄灯的宿舍，黯淡的屏幕闪烁出一条消息</p>
+<blockquote>
+<p>“睡了没”</p>
+<p>“木呢。”</p>
+<p>“来看段代码”</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i= <span class="number">17970</span>;</span><br><span class="line">    <span class="keyword">char</span> *q = &amp;i;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, *q);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, *(q + <span class="number">1</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>“……，这啥操作？”</p>
+<p>“输出是 50 70。”</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/explore-byte/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cliuyang.cn/vscode-C-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Miku.jpg">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content="一个私人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/vscode-C-01/" class="post-title-link" itemprop="url">使用VScode编写C++文件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-12-01 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-01T00:00:00+08:00">2018-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-06 23:41:18" itemprop="dateModified" datetime="2021-01-06T23:41:18+08:00">2021-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vscode/" itemprop="url" rel="index"><span itemprop="name">vscode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>第一次接触visual studio code是在大一上学期，正是初学C语言的时候。那时候老师与学长推荐的集成开发环境（IDE）主要是Dev C++与code block，这两款IDE的优点是简单，小巧，可以很快速的使代码运行起来，但他们都有很致命的缺点，就是界面不够美观，虽然在网上都能找到一些教程对其进行美化，但能做到的也只是不再难看而已，与真正做到好看相比还差的很远。</p>
+<p>恰巧那段时间因为学习前端的知识而了解到VS code这款编辑器，同样是写代码，利用VS code写HTML，CSS，JavaScript比用code block写C体验好多了，而也惊喜的发现，VS code支持书写C/C++程序<del>\(≧▽≦)/</del>，于是就想使用VS code编写C程序，但当时不明白VS code只是一个编辑器且不带编译器，并不能直接编译，运行C程序，而且在查看一些C文件时会出现乱码现象一脸懵逼(o゜▽゜)o☆（当时并不知道时编码的问题），于是在查找了众多资料无果后只好放弃〒▽〒。</p>
+<p>时过境迁，一年的学习，学习的语言由简单的C拓展到C++，JAVA，C#等多种语言，编程的模式由简单的面向过程到C++式的多种模式混合，C#窗口的事件-响应函数，unity的逐帧调用等多种模式，知识储备量有了一定的提升(●ˇ∀ˇ●)，再回过头来，依旧还是想用VS code编写C/C++程序，于是在某一天，一句一句看懂了官网的文档，一步一步调试，终于在最后调试成功(´▽`ʃ♡ƪ)！经过了一段时间的使用，体验还算不错，在这里记下环境配置的方法，也记录下自己的小小激动。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/vscode-C-01/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://cliuyang.cn/my-first-article/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -193,7 +956,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-03 22:33:25" itemprop="dateModified" datetime="2021-01-03T22:33:25+08:00">2021-01-03</time>
+                <time title="修改时间：2021-01-06 23:24:31" itemprop="dateModified" datetime="2021-01-06T23:24:31+08:00">2021-01-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -307,20 +1070,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
