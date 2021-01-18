@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://cliuyang.cn/use-ubuntu-as-%20a-system-for-daily-use/Variety.png">
 <meta property="og:image" content="http://cliuyang.cn/use-ubuntu-as-%20a-system-for-daily-use/GrubCustomizer.png">
 <meta property="article:published_time" content="2021-01-11T16:20:08.000Z">
-<meta property="article:modified_time" content="2021-01-16T03:45:09.735Z">
+<meta property="article:modified_time" content="2021-01-17T16:30:13.259Z">
 <meta property="article:author" content="陈留阳">
 <meta property="article:tag" content="shell">
 <meta property="article:tag" content="ubuntu 20.04">
@@ -202,7 +202,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 11:45:09" itemprop="dateModified" datetime="2021-01-16T11:45:09+08:00">2021-01-16</time>
+                <time title="修改时间：2021-01-18 00:30:13" itemprop="dateModified" datetime="2021-01-18T00:30:13+08:00">2021-01-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -301,7 +301,8 @@
 <p>思路是通过arp以及mac地址来检测手机是不是在同一局域网下，然后adb连接，最后scrcpy展示。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    phoneIP=$(arp -a | grep <span class="string">&#x27;ff:ff:ff:ff:ff:ff&#x27;</span> | cut -c 4-16)</span><br><span class="line">    existsIP=$(adb devices | grep <span class="variable">$phoneIP</span> | cut -c 1-13)</span><br><span class="line">    <span class="keyword">if</span> [[ -z <span class="variable">$existsIP</span> || <span class="variable">$phoneIP</span> -ne <span class="variable">$existsIP</span> ]]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        adb connect <span class="variable">$phoneIP</span></span><br><span class="line">        scrcpy -S --window-title <span class="string">&#x27;Huawei Honor V20&#x27;</span></span><br><span class="line">        adb disconnect <span class="variable">$phoneIP</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    sleep 10s</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 <p>这个脚本也在启动时被调用。</p>
-<h3 id="截图并OCR"><a href="#截图并OCR" class="headerlink" title="截图并OCR"></a>截图并OCR</h3><p>这是个坑，先挖在这里，通过腾讯的接口实现的，能OCR普通文本或者latex，但是因为没备份的缘故丢失了，后续补上。</p>
+<h3 id="截图并OCR"><a href="#截图并OCR" class="headerlink" title="截图并OCR"></a>截图并OCR</h3><p><del>这是个坑，先挖在这里，通过腾讯的接口实现的，能OCR普通文本或者latex，但是因为没备份的缘故丢失了，后续补上。</del></p>
+<p>看看我用各个平台的接口开发之后的对比吧：<a href="/shell-based-OCR-program/" title="基于shell的数学公式识别程序">基于shell的数学公式识别程序</a></p>
 <h3 id="AX210"><a href="#AX210" class="headerlink" title="AX210"></a>AX210</h3><p>AX210是一个intel网卡的型号，支持更好的WIFI和蓝牙，我一直都在想要不要换下自己的无线网卡，在考研结束后的半个月里，我最终决定购入替换。</p>
 <p>emm，在没有仔细查阅当前是否有驱动支持的情况下。</p>
 <p>在花费一个多小时前往市中心拧掉被我拧滑的网卡固定螺丝然后又精力一个多小时回到学校后，开始使用AX210。Windows 10作为主要适配方，完美适用没一点问题，然后至于ubuntu 20.04这里，intel官方的驱动最新是AX201，就很不巧的，差了一个版本。</p>
@@ -433,7 +434,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -446,7 +447,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
