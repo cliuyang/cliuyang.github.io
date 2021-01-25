@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://cliuyang.cn/use-ubuntu-as-%20a-system-for-daily-use/Variety.png">
 <meta property="og:image" content="http://cliuyang.cn/use-ubuntu-as-%20a-system-for-daily-use/GrubCustomizer.png">
 <meta property="article:published_time" content="2021-01-11T16:20:08.000Z">
-<meta property="article:modified_time" content="2021-01-17T16:30:13.259Z">
+<meta property="article:modified_time" content="2021-01-25T13:42:45.941Z">
 <meta property="article:author" content="陈留阳">
 <meta property="article:tag" content="shell">
 <meta property="article:tag" content="ubuntu 20.04">
@@ -202,7 +202,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-18 00:30:13" itemprop="dateModified" datetime="2021-01-18T00:30:13+08:00">2021-01-18</time>
+                <time title="修改时间：2021-01-25 21:42:45" itemprop="dateModified" datetime="2021-01-25T21:42:45+08:00">2021-01-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -307,7 +307,10 @@
 <p>emm，在没有仔细查阅当前是否有驱动支持的情况下。</p>
 <p>在花费一个多小时前往市中心拧掉被我拧滑的网卡固定螺丝然后又精力一个多小时回到学校后，开始使用AX210。Windows 10作为主要适配方，完美适用没一点问题，然后至于ubuntu 20.04这里，intel官方的驱动最新是AX201，就很不巧的，差了一个版本。</p>
 <p>我在查阅了诸多资料后，终于在一篇报导里找到了线索。Linux在5.11的内核版本中，首次支持使用AX210，然后我就去装5.11的内核。特别有意思的事情发生了，5.11的第一个rc版本就在考研结束后发布的，直到我查询时还是第三个rc版本，好家伙。</p>
-<p>换完内核后，也是可以顺利使用WIFI了，但是蓝牙暂时还是不行，这个感觉得稍微等一段时间了，我换得着实早了那么一丢丢。</p>
+<p>换完内核后，也是可以顺利使用WIFI了，<del>但是蓝牙暂时还是不行，这个感觉得稍微等一段时间了，我换得着实早了那么一丢丢。</del> 在更新到rc4后，蓝牙也支持了，就是刚装好遇见了玄学bug，之后就正常使用。在稳定版发行前之前就不再更新了。</p>
+<p>emm，其实还是有点问题的，切换到rc4之后鼠标和键盘都在登录界面无法使用，也没法进入命令行，就问题很大。到是可以通过rc3的内核进入系统，然后这个时候蓝牙，wifi，鼠标键盘正常使用。</p>
+<p>最后的解决方式是在白嫖完rc4的蓝牙驱动后，删除rc4切换到rc3，当然也可以保留rc4。多亏了 <strong><em>Grub Customizer</em></strong> 和 <strong><em>Ubuntu Mainline</em></strong> 这两个GUI工具，让我的测试与实验顺利进行，不至于一不留神又得重装系统。</p>
+<p>升级内核的过程还把iptables给弄坏了，导致我一度没法使用v2rayA，还好在作者的及时回复中解决了问题。</p>
 <h2 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h2><p>博客的更新在备考中就暂停了（虽然之前也没更过多久就是了），考研的结果感觉不怎么理想，估计要着手准备校招和毕设了，就算为自己添彩，博客也会更新的勤一点。加油吧。</p>
 
     </div>
@@ -434,7 +437,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -447,7 +450,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

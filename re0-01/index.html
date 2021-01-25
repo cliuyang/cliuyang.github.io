@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-miku.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-miku.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-miku.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <meta name="google-site-verification" content="google-site-verification=MoVcrKIvICpF0DzKyXDtvqMIot-U_-AToxw63nB4cOA">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cliuyang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="很惭愧这一周的进度太慢了（明明还是第一周啊啊啊），主要的进展是学了个基础，跟着谭老师的课程做了一些实验，差不多是掌握了基础设计方法，如果类比到C语言的学习的话，就大概是刚学完语法的样子。 我想分成几块块来说说。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Re：从0开始的计算机科学（1）">
+<meta property="og:url" content="http://cliuyang.cn/re0-01/">
+<meta property="og:site_name" content="陈留阳">
+<meta property="og:description" content="很惭愧这一周的进度太慢了（明明还是第一周啊啊啊），主要的进展是学了个基础，跟着谭老师的课程做了一些实验，差不多是掌握了基础设计方法，如果类比到C语言的学习的话，就大概是刚学完语法的样子。 我想分成几块块来说说。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://cliuyang.cn/re0-01/State_transition_diagram.png">
+<meta property="og:image" content="http://cliuyang.cn/re0-01/Sports_stopwatch.png">
+<meta property="og:image" content="http://cliuyang.cn/re0-01/Sports_stopwatching.gif">
+<meta property="og:image" content="http://cliuyang.cn/re0-01/Hamming_(7,4).png">
+<meta property="og:image" content="http://cliuyang.cn/re0-01/Hamming_(8,4).png">
+<meta property="og:image" content="http://cliuyang.cn/re0-01/Hamming_encode.png">
+<meta property="og:image" content="http://cliuyang.cn/re0-01/Hamming_decode.png">
+<meta property="og:image" content="http://cliuyang.cn/re0-01/CRC_encode.png">
+<meta property="og:image" content="http://cliuyang.cn/re0-01/CRC_decode.png">
+<meta property="og:image" content="http://cliuyang.cn/re0-01/CRC_message.gif">
+<meta property="article:published_time" content="2021-01-24T12:51:12.000Z">
+<meta property="article:modified_time" content="2021-01-25T15:00:05.575Z">
+<meta property="article:author" content="陈留阳">
+<meta property="article:tag" content="logisim">
+<meta property="article:tag" content="海明码">
+<meta property="article:tag" content="奇偶校验码">
+<meta property="article:tag" content="CRC冗余校验码">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cliuyang.cn/re0-01/State_transition_diagram.png">
+
+<link rel="canonical" href="http://cliuyang.cn/re0-01/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Re：从0开始的计算机科学（1） | 陈留阳</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">陈留阳</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/cliuyang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cliuyang.cn/re0-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Miku.jpg">
+      <meta itemprop="name" content="陈留阳">
+      <meta itemprop="description" content="努力学习，争得起自己想要的所有">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈留阳">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Re：从0开始的计算机科学（1）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-24 20:51:12" itemprop="dateCreated datePublished" datetime="2021-01-24T20:51:12+08:00">2021-01-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-25 23:00:05" itemprop="dateModified" datetime="2021-01-25T23:00:05+08:00">2021-01-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Re0/" itemprop="url" rel="index"><span itemprop="name">Re0</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Re0/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>很惭愧这一周的进度太慢了（明明还是第一周啊啊啊），主要的进展是学了个基础，跟着谭老师的课程做了一些实验，差不多是掌握了基础设计方法，如果类比到C语言的学习的话，就大概是刚学完语法的样子。</p>
+<p>我想分成几块块来说说。</p>
+<a id="more"></a>
+
+<h2 id="logisim"><a href="#logisim" class="headerlink" title="logisim"></a>logisim</h2><p>logisim是一个硬件仿真平台，特别像我初次接触C语言时的Dev-C++，偶尔会有奇奇怪怪的bug，然后UI也是一般般，最大的优势是简单友好，安装简单，适用于初学者。</p>
+<p>我是在Ubuntu 20.04上进行开发的，这边就稍微整理了一下。通过apt安装的logisim不支持中文，用熟悉了还好，刚用确实是不习惯，我就下载了谭老师课程团队提供的汉化logisim使用，是个jar包。</p>
+<p>为了方便使用，我就写了行shell，然后命名为logisim放在了全局里。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar /home/frankchen/Applicitions/logisim-hust-linux.jar &amp;</span><br></pre></td></tr></table></figure>
+<p>不得不提一句谭老师整个团队是真的厉害，在软件中能看到整个的汉化工作还就是人家做的。</p>
+<h2 id="运动码表"><a href="#运动码表" class="headerlink" title="运动码表"></a>运动码表</h2><p>因为在大二的暑假曾听过谭老师的课，那时候就推倒了运动码表这块，之后的课听不懂了。所以就有了一定的经验，再从头开始就轻车熟路了许多。</p>
+<p>运动码表的功能由一个状态图和各个状态对应的信号组成。</p>
+<img data-src="/re0-01/State_transition_diagram.png" class="" title="State_transition_diagram">
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>寄存器来源(9999/计时间器)</th>
+<th>寄存器使能</th>
+<th>展示来源(寄存器/计数器)</th>
+<th>计数器使能</th>
+<th>计数器重置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>SDSel</td>
+<td>SDEN</td>
+<td>DPSEL</td>
+<td>TMEN</td>
+<td>TMReset</td>
+</tr>
+<tr>
+<td>00</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>01</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>02</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>03</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>04</td>
+<td></td>
+<td></td>
+<td>0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>05</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr>
+<td>06</td>
+<td>0</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>然后填写一下谭老师提供的excel工具，将得到的输入输出关系表达式放到logisim里，就基本上差不多了。</p>
+<img data-src="/re0-01/Sports_stopwatch.png" class="" title="Sports_stopwatch">
+
+<img data-src="/re0-01/Sports_stopwatching.gif" class="" title="Sports_stopwatching">
+
+<p>顺便说一句，上边这个gif是用 <strong><em>Peek</em></strong> 录制的，然后状态图的话拿<strong>亿图图示</strong>画的（我终于决定入正了TAT）。</p>
+<h2 id="海明校验码"><a href="#海明校验码" class="headerlink" title="海明校验码"></a>海明校验码</h2><p>海明校验码本质上是多重的奇偶校验码，每一位校验码校验几个数，然后每个数被唯一的校验码组合所校验，最后就可以根据出错的校验码组合唯一确定出错的那一位（只出错一位的情况下）顺便纠个错，很巧的是，这种对应关系可以通过二进制来表示。</p>
+<p>放上一张从wiki上扒来的图</p>
+<img data-src="/re0-01/Hamming_(7,4).png" class="" width="500" height="500" title="Hamming_(7,4)">
+
+<p>然后再在最后加一位就能确定是不是一位错，然后就决定是纠错还是报告出错。</p>
+<p>判断是不是一位错竟然还是从<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/24648880/answer/474674352">知乎</a>上看到的。</p>
+<blockquote>
+<p>检测的时候会计算出海明码的校验码E+奇偶校验码P，有以下四种情况：</p>
+<ol>
+<li>E=0，P=0 没有错</li>
+<li>E≠0，P=1 有一位错，并可以纠正</li>
+<li>E≠0，P=0 有两位错，但不能纠正</li>
+<li>E=0， P=1 奇偶校验位出错</li>
+</ol>
+</blockquote>
+<img data-src="/re0-01/Hamming_(8,4).png" class="" width="500" height="500" title="Hamming_(8,4)">
+
+<p>然后放上我的编码电路与解码电路：</p>
+<img data-src="/re0-01/Hamming_encode.png" class="" title="Hamming_encode">
+
+<img data-src="/re0-01/Hamming_decode.png" class="" title="Hamming_decode">
+
+<p>画解码电路的时候我还出了点问题，不知道对第$i$位取反应该怎么做，还差点画$22$个二路选择器和一个巨型解码器，最终在同学的提示下想到了用位移与异或来解决，思路一下子就开阔了。</p>
+<h2 id="CRC冗余校验码"><a href="#CRC冗余校验码" class="headerlink" title="CRC冗余校验码"></a>CRC冗余校验码</h2><p>其实比起海明码，我对CRC更加欢迎，因为在做题过程中，解CRC不需要记很多东西，只用除就好了，除完余数放到最后，再除完看看是不是$0$，就很快乐。</p>
+<p>然后我就面临一个更加困难的事情，模二除法怎么画？</p>
+<p>其实随便一搜就能找到一堆相似的串行画法，通过多个时钟周期，模拟模二除法最终得到结果。</p>
+<p>但是要求的是另一种并行的画法，纯组合逻辑解决。</p>
+<p>思路就是模二除对异或运算具有分配律，即模二除后异或与异或后模二除答案是相同的，那么，只要预先算好固定长度的CRC编码对一个特定的多项式各个位分别为1的情形下模二除的结果，再根据需要选取几个进行异或，就可以得到结果。</p>
+<p>感受到了常数的暴力。</p>
+<p>当然，考研都结束了，也不想费力手算了，写了个C++的函数，模拟模二除。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * a.size()=b.size()</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; <span class="title">XOR</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; a, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; c;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; a.size(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        c.push_back(a[i] ^ b[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * a/b=c...d</span></span><br><span class="line"><span class="comment"> * b is like 1...1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; <span class="title">BinaryModuloTwoDivision</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; a, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; c, d = &#123;a.begin(), a.begin() + b.size()&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt;= a.size() - b.size(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (d.front())</span><br><span class="line">        &#123;</span><br><span class="line">            c.push_back(<span class="literal">true</span>);</span><br><span class="line">            d = XOR(d, b);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            c.push_back(<span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        d.erase(d.begin());</span><br><span class="line">        <span class="keyword">if</span> (i &lt; a.size() - b.size())</span><br><span class="line">            d.push_back(a[i + b.size()]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>emm，考虑到随机访问并不是硬性需求，其实有很大的优化空间，不过也不是写比赛，就随意了一点。</p>
+<p>CRC的纠错比我想象的更为简单，对于CRC，任意一位出错的情况下，进行模二除得到的余数是固定的，反过来说，只要这个余数不是$0$，就可以根据对应关系确定出错的位数并加以纠正，如果没有这个对应关系就认为无法纠错。为了实现这个纠错，多项式其实也不是随便选选。</p>
+<p>好家伙，研究出CRC的人可真的是厉害。</p>
+<p>能查得到的资料都说可以将CRC循环移位到最后一位错然后再纠正，就是个时序电路了，这点我问了问谭老师，老师是这么回答的：</p>
+<blockquote>
+<p>不同的数对应不同的出错位，用一个真值表就可以设计出对应的数字逻辑电路了。</p>
+<p>大部分教科书上都介绍循环除法来找到出错位，显然那是不合理的</p>
+</blockquote>
+<p>茅塞顿开。</p>
+<p>然后就是CRC的编解码电路：</p>
+<img data-src="/re0-01/CRC_encode.png" class="" title="CRC_encode">
+
+<img data-src="/re0-01/CRC_decode.png" class="" title="CRC_decode">
+
+<p>提一嘴，受到故有印象影响，在使用移位然后异或进行纠错的技巧中，我习惯性的用$1$进行移位，就会造成实际上需要移的位数减一，画出来的电路就不优雅。</p>
+<p>但是事实上可以使用循环移位的方式，把这个$1$放到最左边。</p>
+<p>刚想到的时候我甚至想跳起来。</p>
+<h2 id="模拟传输"><a href="#模拟传输" class="headerlink" title="模拟传输"></a>模拟传输</h2><p>实际上最开始还画了个国标码转换的电路，加上一个完整的GB2312字库点阵集，就能在logisim中展示中文。</p>
+<p>再加上一套老师给定的框架，就能模拟信息传输了，放一个CRC的。</p>
+<img data-src="/re0-01/CRC_message.gif" class="" title="CRC_message">
+
+<p>当然，内容也是能改的，我还专门写了个程序，不过也不想麻烦了，做个宣传也是好的。</p>
+<h2 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h2><p>老实说这个进展速度我是不太满意的，总是刷视频浪费了我很多的精力，本来三四天的工作量硬生生拖了七天，周日的记录也因为一系列的事情推迟了一天才完成。</p>
+<p>嘛，抓紧吧。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>陈留阳
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cliuyang.cn/re0-01/" title="Re：从0开始的计算机科学（1）">http://cliuyang.cn/re0-01/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/logisim/" rel="tag"># logisim</a>
+              <a href="/tags/%E6%B5%B7%E6%98%8E%E7%A0%81/" rel="tag"># 海明码</a>
+              <a href="/tags/%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E7%A0%81/" rel="tag"># 奇偶校验码</a>
+              <a href="/tags/CRC%E5%86%97%E4%BD%99%E6%A0%A1%E9%AA%8C%E7%A0%81/" rel="tag"># CRC冗余校验码</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/shell-based-OCR-program/" rel="prev" title="基于shell的数学公式识别程序">
+      <i class="fa fa-chevron-left"></i> 基于shell的数学公式识别程序
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#logisim"><span class="nav-number">1.</span> <span class="nav-text">logisim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E7%A0%81%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">运动码表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%B7%E6%98%8E%E6%A0%A1%E9%AA%8C%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">海明校验码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRC%E5%86%97%E4%BD%99%E6%A0%A1%E9%AA%8C%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">CRC冗余校验码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E4%BC%A0%E8%BE%93"><span class="nav-number">5.</span> <span class="nav-text">模拟传输</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%BE%E5%A3%B0"><span class="nav-number">6.</span> <span class="nav-text">尾声</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="陈留阳"
+      src="/images/Miku.jpg">
+  <p class="site-author-name" itemprop="name">陈留阳</p>
+  <div class="site-description" itemprop="description">努力学习，争得起自己想要的所有</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cliuyang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cliuyang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chenliuyang249@gmail.com" title="E-Mail → mailto:chenliuyang249@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/Frank_Chen" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;Frank_Chen" rel="noopener" target="_blank"><i class="fa fa-code fa-fw"></i>Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=249372497&site=qq&menu=yes" title="QQ → http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;249372497&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fas fa-dragon"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈留阳</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 28803,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '84f7b1e0dace2af54d28',
+      clientSecret: '3a1451528ca8899c3b913ea3adacc188f08a76ad',
+      repo        : 'cliuyang.github.io',
+      owner       : 'cliuyang',
+      admin       : ['cliuyang'],
+      id          : '7fe4c94cc685324191c92932a3898f08',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
