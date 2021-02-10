@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cliuyang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"cliuyang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="VS code 是个功能强大，可扩展性极强的编辑器，通过添加一些插件，修改一下配置即可发挥强大的功能。 前些日子（其实好久了哈 (￣ y▽ ￣)~*），通过阅读官网的文档，成功 配置了C++的编程环境，然后用了很久。但是最近遇见了个很严重的问题，那就是按照官网的文档走的话，最终只能编译，调试，运行一个单独的文件。 这就很难受了，虽说刷刷算法题也不需要多个文件，使用 g++的一些较为复杂的参数也可以">
@@ -115,6 +115,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -144,11 +145,38 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -240,24 +268,24 @@
 <p>这就很难受了，虽说刷刷算法题也不需要多个文件，使用 g++的一些较为复杂的参数也可以编译链接多个文件，但是，到底能不能使用 VS code 来编写具有一定规模的 C/C++工程呢？</p>
 <p>于是，折腾开始了，而且最终取得了很不错的成果。(≖‿≖)✧</p>
 <a id="more"></a>
-
-<h2 id="折腾之前"><a href="#折腾之前" class="headerlink" title="折腾之前"></a>折腾之前</h2><p>因为之前的配置，所以计算机上至少有的环境是：安装好了 MingW，设置过了全局，安装了官网文档中所需要的插件以及写好了配置。</p>
+<h2 id="折腾之前">折腾之前</h2>
+<p>因为之前的配置，所以计算机上至少有的环境是：安装好了 MingW，设置过了全局，安装了官网文档中所需要的插件以及写好了配置。</p>
 <p>要是这一步没有做过的话可以参考我之前的文章 <a href="/vscode-C-01/" title="使用VS从哦的编写C++文件">使用VS从哦的编写C++文件</a>，或者阅读<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/languages/cpp"><strong>官方文档</strong></a>。</p>
 <p>准备好了，开始！ o(*≧▽≦)ツ</p>
-<h2 id="安装-C-C-Project-Generator"><a href="#安装-C-C-Project-Generator" class="headerlink" title="安装 C/C++ Project Generator"></a>安装 C/C++ Project Generator</h2><p>在最早配置 C++编程环境的时候，就有过这个插件的印象，只是没实际使用过，不过，看名字貌似是我们想要的插件，emmmm，那就安装！</p>
+<h2 id="安装-cc-project-generator">安装 C/C++ Project Generator</h2>
+<p>在最早配置 C++编程环境的时候，就有过这个插件的印象，只是没实际使用过，不过，看名字貌似是我们想要的插件，emmmm，那就安装！</p>
 <img data-src="/vscode-C-02/C_C++ProjectGenerator.png" class="" title="C&#x2F;C++ProjectGenerator">
-
 <p>按照文档的提示：</p>
 <blockquote>
 <p>How to use</p>
-<ol>
+<ol type="1">
 <li>Go to command pallete (usually : ctrl + shift + p)</li>
 <li>Search for “Create C project” or “Create c++ project” depending on your preference</li>
 <li>Select the folder where the project should be created</li>
 <li>That’s it, project will open</li>
 </ol>
 </blockquote>
-<ol>
+<ol type="1">
 <li>使用<strong>ctrl</strong> + <strong>shift</strong> + <strong>p</strong> 调出命令界面。</li>
 <li>根据需要输入 <strong><em>Create C project</em></strong> 或者 <strong><em>Create c++ project</em></strong> 查找相关命令选择建立 C 工程或者 C++工程（本次折腾用的是 C++工程）</li>
 <li>选择希望在哪里建立工程</li>
@@ -265,35 +293,30 @@
 </ol>
 <p>嗯，那根据它的说法来一次。</p>
 <img data-src="/vscode-C-02/CreateProjectStart.png" class="" title="CreateProjectStart">
-
 <img data-src="/vscode-C-02/ChooseFile.png" class="" title="ChooseFile">
-
 <img data-src="/vscode-C-02/CreateProjectEnd.png" class="" title="CreateProjectEnd">
-
 <p>可以看到已经有了一个工程的雏形，插件也很贴心的给了示例程序。</p>
 <p>那好，然后按下<strong>F5</strong>开始调试。</p>
 <p>∑(っ °Д°;)っ开始运行了！竟然如此简单！</p>
 <p>完结撒花( ^３^ )╱~~❀❀❀</p>
 <img data-src="/vscode-C-02/DebugFailed.png" class="" title="DebugFailed">
-
 <p>才怪(/= _ =)/~┴┴</p>
-<h2 id="launch-json-文件"><a href="#launch-json-文件" class="headerlink" title="launch.json 文件"></a>launch.json 文件</h2><p>那好，咱们去<strong>launch.json</strong>看看。</p>
+<h2 id="launch.json-文件">launch.json 文件</h2>
+<p>那好，咱们去<strong>launch.json</strong>看看。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Debug&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;/bin/main.exe&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceRoot&#125;&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;linux&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">&quot;osx&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;lldb&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">&quot;windows&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>emmmm 还是能简单看懂一些的了，大致是在官方的模板下少许修改了一下，甚至贴心的为不同的环境选择了不同的调试器，那么，问题出在哪里呢？</p>
 <p>贴一下之前按照官方给的配置文件模板。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;(gdb) Launch&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;/a.exe&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\mingw\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;setupCommands&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;build hello world&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>稍加思索</p>
-<p>显然，该配置文件没有配置调试器的路径，于是加上配置<code>&quot;miDebuggerPath&quot;</code>，一通魔改融合后，修改完的<strong>launch.json</strong>长这个样子：</p>
+<p>显然，该配置文件没有配置调试器的路径，于是加上配置<code>"miDebuggerPath"</code>，一通魔改融合后，修改完的<strong>launch.json</strong>长这个样子：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;(gdb) Launch&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;/bin/main.exe&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\MinGW\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;setupCommands&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;build&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>=￣ ω ￣= 因为我还只是在 Windows 上配置环境，没考虑跨平台，于是就只保留了 Windows 上的配置。</p>
 <p><code>miDebuggerPath</code>和<code>preLaunchTask</code>的值因人而异吧，我是改了一堆，但实际上只需要加上<code>miDebuggerPath</code>就行了。</p>
 <p>那，再试试？</p>
 <img data-src="/vscode-C-02/HelloWorld.png" class="" title="HelloWorld">
-
 <p>喜极而泣(´°̥̥̥̥̥̥̥̥ω°̥̥̥̥̥̥̥̥ ｀)</p>
 <p>开开心心设断点，开开心心 debug(｀･ω･´)</p>
 <img data-src="/vscode-C-02/BreakpointFailed.png" class="" title="BreakpointFailed">
-
 <p>喵~？</p>
 <p>我的断点呢？</p>
 <p>它怎么灰了 ಠ౪ಠ？</p>
@@ -301,7 +324,8 @@
 <p>怎么变量没自己打开 (╯‵□′)╯︵┻━┻？</p>
 <p>我去，还是无效值(╬▔ 皿 ▔)！</p>
 <p>(/“≡ _ ≡)/~┴┴</p>
-<h2 id="g-g"><a href="#g-g" class="headerlink" title="g++ -g"></a>g++ -g</h2><p>鬼知道我查了多久资料( ＿ ＿)ノ｜</p>
+<h2 id="g--g">g++ -g</h2>
+<p>鬼知道我查了多久资料( ＿ ＿)ノ｜</p>
 <p>来大致谈谈这个插件的一些细节。</p>
 <p>作者的思路蛮正确的，基本上还是官方给的配置，然后魔改了一下，比如说<code>task</code>里需要放很多的任务，其中有一个叫做“build”，在官网的模板中，这个任务是要调用命令行里的<code>g++</code>命令来编译程序，但是指定了编译时的源文件与生成文件，这就导致写代码的时候文件名不能出错。</p>
 <p>但实际上在一个工程中，需要编译的文件可能是多个，所依赖的头文件也会是多个，这些在生成可执行程序的时候都是需要考虑到的，诚然，可以通过 g++丰富的参数写下长长的命令来实现编译链接多个源文件，可是毕竟麻烦，而且还容易出错。</p>
@@ -315,7 +339,7 @@
 <p>那么问题出现在哪里呢？</p>
 <p>再列出我参考的一些资料：</p>
 <p><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=danielpinto8zz6.c-cpp-project-generator#review-details">C/C++ Project Generator 的反馈中，国外某位程序员的回答</a></p>
-<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/48268226/vs-code-is-ignoring-the-breakpoint-in-c-debugging">StackOverFlow 上，关于 VS code 无法调试的回答</a></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/48268226/vs-code-is-ignoring-the-breakpoint-in-c-debugging?">StackOverFlow 上，关于 VS code 无法调试的回答</a></p>
 <p>以及官网给出的<code>task</code>模板：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;build hello world&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;g++&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;args&quot;</span>: [<span class="string">&quot;-g&quot;</span>, <span class="string">&quot;helloworld.cpp&quot;</span>],</span><br><span class="line">      <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>虽然一下子列出来资料会得出显而易见的结论，但鬼知道为了找到这些资料有多辛苦（╯－＿－）╯╧╧</p>
@@ -324,16 +348,17 @@
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(BIN)</span>/<span class="variable">$(EXECUTABLE)</span>: <span class="variable">$(SRC)</span>/*</span><br><span class="line">    <span class="variable">$(CC)</span> <span class="variable">$(C_FLAGS)</span> -I<span class="variable">$(INCLUDE)</span> -L<span class="variable">$(LIB)</span> -g <span class="variable">$^</span> -o <span class="variable">$@</span> <span class="variable">$(LIBRARIES)</span></span><br></pre></td></tr></table></figure>
 <p>调试，启动(*ﾟ ▽ ﾟ*)</p>
 <img data-src="/vscode-C-02/DebugSuccess.png" class="" title="DebugSuccess">
-
 <p>开开心心 Debug。（＾ ∀ ＾）</p>
-<h2 id="完整的配置"><a href="#完整的配置" class="headerlink" title="完整的配置"></a>完整的配置</h2><p>贴出魔改之后我的配置文件吧：</p>
+<h2 id="完整的配置">完整的配置</h2>
+<p>贴出魔改之后我的配置文件吧：</p>
 <p><em><em>launch.json</em></em></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;(gdb) Launch&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;/bin/main.exe&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;args&quot;</span>: [<span class="string">&quot;&lt;&quot;</span>, <span class="string">&quot;bin\\data.in&quot;</span>, <span class="string">&quot;&gt;&quot;</span>, <span class="string">&quot;bin\\data.out&quot;</span>],</span><br><span class="line">      <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\MinGW\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;setupCommands&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;build main&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em><em>task.json</em></em></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;build main&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;powershell&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;args&quot;</span>: [<span class="string">&quot;-c&quot;</span>, <span class="string">&quot;mingw32-make&quot;</span>],</span><br><span class="line">      <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em><em>Makefile</em></em></p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">CC      := g++</span><br><span class="line">C_FLAGS := -std=c++17 -Wall -Wextra</span><br><span class="line"></span><br><span class="line">BIN     := bin</span><br><span class="line">SRC     := src</span><br><span class="line">INCLUDE := <span class="keyword">include</span></span><br><span class="line">LIB     := lib</span><br><span class="line"></span><br><span class="line">LIBRARIES   :=</span><br><span class="line"></span><br><span class="line"><span class="keyword">ifeq</span> (<span class="variable">$(OS)</span>,Windows_NT)</span><br><span class="line">EXECUTABLE  := main.exe</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">EXECUTABLE  := main</span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="section">all: <span class="variable">$(BIN)</span>/<span class="variable">$(EXECUTABLE)</span></span></span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">    <span class="variable">$(RM)</span> <span class="variable">$(BIN)</span>/<span class="variable">$(EXECUTABLE)</span></span><br><span class="line"></span><br><span class="line"><span class="section">run: all</span></span><br><span class="line">    ./<span class="variable">$(BIN)</span>/<span class="variable">$(EXECUTABLE)</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(BIN)</span>/<span class="variable">$(EXECUTABLE)</span>: <span class="variable">$(SRC)</span>/*</span><br><span class="line">    <span class="variable">$(CC)</span> <span class="variable">$(C_FLAGS)</span> -I<span class="variable">$(INCLUDE)</span> -L<span class="variable">$(LIB)</span> -g <span class="variable">$^</span> -o <span class="variable">$@</span> <span class="variable">$(LIBRARIES)</span></span><br></pre></td></tr></table></figure>
-<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>折腾了一天后，有了个较为完善的解决方案，很可惜的是，没有找到可以完美创建，调试 C++工程的插件，但是可以根据已有的思路一步步完善自己的配置。</p>
+<h2 id="写在最后">写在最后</h2>
+<p>折腾了一天后，有了个较为完善的解决方案，很可惜的是，没有找到可以完美创建，调试 C++工程的插件，但是可以根据已有的思路一步步完善自己的配置。</p>
 <p>我的想法是，将已经配置好的 vscode 工程文件存为模板文件，需要的时候拷贝一份使用，于是，原插件也用不上了。</p>
 <p>其实原来的插件稍加修改一下也可以完美胜任的，但是原作者貌似已经好久不更新了，无论是在 VS code 的插件库，还是原作者的 GitHub 库，都已经有人进行了一系列反映，甚至给出了解决方案，但是貌似作者并没有看到哈。博主又比较笨，不会修改原作者的代码，那就先这样用吧。</p>
 <p>有一点比较在意的是，在很多 IDE 中，如果创建的是终端工程的话，会在程序运行结束后停留在结束界面。这点除了在代码最后调用系统命令<code>pause</code>外，没有什么好的办法。</p>
@@ -446,7 +471,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%98%E8%85%BE%E4%B9%8B%E5%89%8D"><span class="nav-number">1.</span> <span class="nav-text">折腾之前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-C-C-Project-Generator"><span class="nav-number">2.</span> <span class="nav-text">安装 C&#x2F;C++ Project Generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#launch-json-%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">launch.json 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#g-g"><span class="nav-number">4.</span> <span class="nav-text">g++ -g</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">完整的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="nav-number">6.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%98%E8%85%BE%E4%B9%8B%E5%89%8D"><span class="nav-number">1.</span> <span class="nav-text">折腾之前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-cc-project-generator"><span class="nav-number">2.</span> <span class="nav-text">安装 C&#x2F;C++ Project Generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#launch.json-%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">launch.json 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#g--g"><span class="nav-number">4.</span> <span class="nav-text">g++ -g</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">完整的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="nav-number">6.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -462,7 +487,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -475,7 +500,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -629,6 +654,10 @@
     })();
   }
   </script>
+
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

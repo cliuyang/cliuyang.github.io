@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cliuyang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"cliuyang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="2020年有个很魔幻的开局，从一只蝙蝠开始，迎来了不弱于03年非典的新冠状病毒。这一次疫情期间，全国上下减少外出，团结一心，共同抗疫，取得了奇迹般的成就。 疫情期间，信息的及时公布显得尤为重要。正是政府不断公布无死角的发布信息，分析解读，才使得公众对疫情的了解不断深入，对疫情状况有充分了解，并将恐惧与不安降到最低。 信息的及时公布很重要，但是如何把信息直观的展现出来也很重要，大量的数据涌来时，可视">
@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://cliuyang.cn/COVID-19-visualization/data_source.png">
 <meta property="og:image" content="http://cliuyang.cn/COVID-19-visualization/COVID-19.png">
 <meta property="article:published_time" content="2020-05-19T02:42:09.000Z">
-<meta property="article:modified_time" content="2021-01-15T15:55:37.777Z">
+<meta property="article:modified_time" content="2021-02-08T02:47:25.076Z">
 <meta property="article:author" content="陈留阳">
 <meta property="article:tag" content="可视化">
 <meta property="article:tag" content="python3">
@@ -114,6 +114,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -143,11 +144,38 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -204,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-15 23:55:37" itemprop="dateModified" datetime="2021-01-15T23:55:37+08:00">2021-01-15</time>
+                <time title="修改时间：2021-02-08 10:47:25" itemprop="dateModified" datetime="2021-02-08T10:47:25+08:00">2021-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,7 +267,6 @@
 <p>信息的及时公布很重要，但是如何把信息直观的展现出来也很重要，大量的数据涌来时，可视化无疑是最好的选择。</p>
 <p>本文将记录我如何借助Python来完成一张疫情期间数据可视化的地图。</p>
 <a id="more"></a>
-
 <style type="text/css">
     html {
         filter: grayscale(100%); 
@@ -250,10 +277,12 @@
         -webkit-filter: grayscale(1);
     }
 </style>
-
-<h2 id="契机"><a href="#契机" class="headerlink" title="契机"></a>契机</h2><p>停课不停学期间，作为计算机专业的大学生，自然是通过互联网与老师联系并进行新知识的学习。而在我们的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F">GIS</a>课程上，老师结合实际提出了制作疫情地图的作业要求。</p>
+<h2 id="契机">契机</h2>
+<p>停课不停学期间，作为计算机专业的大学生，自然是通过互联网与老师联系并进行新知识的学习。而在我们的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F">GIS</a>课程上，老师结合实际提出了制作疫情地图的作业要求。</p>
 <p>为了完成作业，我开始了此次的制作。</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>制作疫情地图的话，很容易想到的就是一张静态地图，不同的区域因感染人数的多少而配以不同的颜色，制作起来就非常简单。但实际上，这样的工作一次还好，不适合大量重复实践，而且做出的图交互性比较差。</p>
+<h2 id="过程">过程</h2>
+<h3 id="准备">准备</h3>
+<p>制作疫情地图的话，很容易想到的就是一张静态地图，不同的区域因感染人数的多少而配以不同的颜色，制作起来就非常简单。但实际上，这样的工作一次还好，不适合大量重复实践，而且做出的图交互性比较差。</p>
 <p>那么与之相对的，需要有一个可以帮我省去这个大量重复的工具，就自然而然的想到了程序设计，尤其的，<a target="_blank" rel="noopener" href="https://www.python.org/">python</a>程序设计。</p>
 <p>python语言作为一门热门语言，有着大量优秀的第三方库，且语法简单，开发迅速，因此自然成为了我此次不二的选择。</p>
 <p>那么，接下来是选择一个合适的第三方库以提供数据的载体地图，在经过众多比较后，我选择了<a target="_blank" rel="noopener" href="https://pyecharts.org/">pyecharts</a>。pyecharts是基于<a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/index.html">echart</a>的，封装成python的函数，并支持渲染成网页，比较利于制作完成后的展示。由于是国产的作品，所以在地图的使用上便可以放轻松。</p>
@@ -261,23 +290,22 @@
 <p><del>于是我选择了<a target="_blank" rel="noopener" href="https://www.flyai.com/d/COVID-19">FlyAI</a>的数据源。其实相较而言，FlyAI的数据并没有非常大的优势，使用起来也不如github上的数据库方便。之所以选择FlyAI纯粹是因为我想起github时疫情地图已经制作完成了emm。</del></p>
 <p>我选取了<strong>CSSEGISandData</strong>的数据作为数据来源<del>(鬼知道交作业前一晚上发现<strong>FlyAI</strong>突然不提供数据后我心里是何等的卧槽)</del>，这样后续的更新可以通过命令行随时pull获取，比较方便。</p>
 <p>准备阶段还差一样工具，获取到的数据需要经过处理才能使用，需要一款数据处理的工具，我的选择是<a target="_blank" rel="noopener" href="https://numpy.org/">numpy</a>与<a target="_blank" rel="noopener" href="https://pandas.pydata.org/">pandas</a>，pandas是python著名的数据处理库，经常与numpy联合使用，用途广泛，它也将在本次的疫情地图制作中发挥出重要的作用。</p>
-<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p>通过venv创建好虚拟环境，再使用pip安装pyecharts和pandas。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -m venv GIS_venv</span><br><span class="line">source GIS_venv/bin/activate</span><br><span class="line">pip3 install pyecharts pydata</span><br></pre></td></tr></table></figure>
+<h3 id="开始">开始</h3>
+<p>通过venv创建好虚拟环境，再使用pip安装pyecharts和pandas。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -m venv GIS_venv</span><br><span class="line"><span class="built_in">source</span> GIS_venv/bin/activate</span><br><span class="line">pip3 install pyecharts pydata</span><br></pre></td></tr></table></figure>
 <p>pyecharts的API封装十分友好，把所有的图表封装成了类，并且支持链式调用，调用起来几乎只是填写各个配置项而已。</p>
 <p>比如说对于一个地图图表，只要在生成一个实例时填写各个配置项（参数）即可：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">map_chart = (</span><br><span class="line">    Map()</span><br><span class="line">    .add(</span><br><span class="line">        series_name=<span class="string">&quot;&quot;</span>,</span><br><span class="line">        data_pair=map_data,</span><br><span class="line">        zoom=<span class="number">0.85</span>,</span><br><span class="line">        center=[<span class="number">119.5</span>, <span class="number">34.5</span>],</span><br><span class="line">        is_map_symbol_show=<span class="literal">False</span>,</span><br><span class="line">        itemstyle_opts=&#123;</span><br><span class="line">            <span class="string">&quot;normal&quot;</span>: &#123;<span class="string">&quot;areaColor&quot;</span>: <span class="string">&quot;#323c48&quot;</span>, <span class="string">&quot;borderColor&quot;</span>: <span class="string">&quot;#404a59&quot;</span>&#125;,</span><br><span class="line">            <span class="string">&quot;emphasis&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;label&quot;</span>: &#123;<span class="string">&quot;show&quot;</span>: Timeline&#125;,</span><br><span class="line">                <span class="string">&quot;areaColor&quot;</span>: <span class="string">&quot;rgba(255,255,255, 0.5)&quot;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>最后再通过<code>map_chart.render(&#39;index.html&#39;)</code>进行渲染，输出一个html文件，再通过浏览器就可以进行查看。</p>
+<p>最后再通过<code>map_chart.render('index.html')</code>进行渲染，输出一个html文件，再通过浏览器就可以进行查看。</p>
 <p>而在本次的实际制作过程中，我没有从零开始一点点构建整个的图表，一是初次接触pyecharts，使用并不熟练，另外是希望尽快完成，于是我参考了官方的<a target="_blank" rel="noopener" href="https://github.com/pyecharts/pyecharts-gallery">画廊</a>，选取了一个示例<a target="_blank" rel="noopener" href="http://gallery.pyecharts.org/#/Map/china_gdp_from_1993_to_2018">china_gdp_from_1993_to_2018</a>进行修改。</p>
 <img data-src="/COVID-19-visualization/china_gdp_from_1993_to_2018.png" class="" title="china_gdp_from_1993_to_2018">
-
 <p>示例中是将数据写死在了代码中，这自然是为了展示的方便，但是实际上，数据必定是单独分离开来的。</p>
 <p>首次获取数据的话需要把git库给clone下来</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/CSSEGISandData/COVID-19.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/CSSEGISandData/COVID-19.git</span><br></pre></td></tr></table></figure>
 <p>后续想要更新的话就pull一下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd COVID-19/</span><br><span class="line">git pull https://github.com/CSSEGISandData/COVID-19.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> COVID-19/</span><br><span class="line">git pull https://github.com/CSSEGISandData/COVID-19.git</span><br></pre></td></tr></table></figure>
 <p>从CSSEGISandData中获取到的数据格式是每日各市级的数量</p>
 <img data-src="/COVID-19-visualization/data_source.png" class="" title="data_source">
-
 <p>需要做的基本处理是筛选出中国的数据，并按照省进行分组求和，求出每天各省的三项数据，只保留日期，省份，确诊，治愈，死亡这些表项，删除其它无用数据。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__get_provinces_base_data</span>():</span></span><br><span class="line">    <span class="comment"># 列名为[&#x27;报道时间&#x27;, &#x27;省份&#x27;, &#x27;治愈&#x27;, &#x27;新增&#x27;, &#x27;死亡&#x27;]</span></span><br><span class="line">    <span class="keyword">global</span> BASE_DATA</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">not</span> <span class="built_in">isinstance</span>(BASE_DATA, pd.DataFrame)):</span><br><span class="line">        Country = <span class="string">&#x27;Country/Region&#x27;</span></span><br><span class="line">        Province = <span class="string">&#x27;Province/State&#x27;</span></span><br><span class="line">        China = <span class="string">&#x27;Mainland China&#x27;</span></span><br><span class="line">        Hong_Kong = <span class="string">&#x27;Hong Kong&#x27;</span></span><br><span class="line">        Taiwan = <span class="string">&#x27;Taiwan&#x27;</span></span><br><span class="line">        Macau = <span class="string">&#x27;Macau&#x27;</span></span><br><span class="line">        Date = <span class="string">&#x27;Last Update&#x27;</span></span><br><span class="line">        Recovered = <span class="string">&#x27;Recovered&#x27;</span></span><br><span class="line">        Confirmed = <span class="string">&#x27;Confirmed&#x27;</span></span><br><span class="line">        Deaths = <span class="string">&#x27;Deaths&#x27;</span></span><br><span class="line"></span><br><span class="line">        Province_Map = &#123;<span class="string">&#x27;Hubei&#x27;</span>: <span class="string">&#x27;湖北&#x27;</span>,</span><br><span class="line">                        <span class="string">&#x27;Zhejiang&#x27;</span>: <span class="string">&#x27;浙江&#x27;</span>,</span><br><span class="line">                        <span class="string">&#x27;Guangdong&#x27;</span>: <span class="string">&#x27;广东&#x27;</span>,</span><br><span class="line">                        <span class="string">&#x27;Henan&#x27;</span>: <span class="string">&#x27;河南&#x27;</span>,</span><br><span class="line">                        ...&#125;</span><br><span class="line"></span><br><span class="line">        Data_dir = <span class="string">&#x27;/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/&#x27;</span></span><br><span class="line"></span><br><span class="line">        date = datetime.date(<span class="number">2020</span>, <span class="number">1</span>, <span class="number">22</span>)</span><br><span class="line"></span><br><span class="line">        df = pd.DataFrame(</span><br><span class="line">            &#123;DATE: &#123;&#125;, PROVINCE: &#123;&#125;, CURED: &#123;&#125;, CONFIRMED: &#123;&#125;, DEAD: &#123;&#125;&#125;)</span><br><span class="line">        df = pd.DataFrame()</span><br><span class="line">        <span class="keyword">while</span> date &lt; datetime.date.today()+datetime.timedelta(days=<span class="number">1</span>):</span><br><span class="line">            Data_path = os.getcwd() + Data_dir + date.strftime(<span class="string">&#x27;%m-%d-%Y&#x27;</span>) + <span class="string">&#x27;.csv&#x27;</span></span><br><span class="line">            print(<span class="string">&#x27;cope with data comes from &#x27;</span>+Data_path)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(Data_path):</span><br><span class="line">                print(</span><br><span class="line">                    <span class="string">&#x27;请通过\n  \&#x27;cd COVID-19/\&#x27;\n  \&#x27;git pull https://github.com/CSSEGISandData/COVID-19.git\&#x27;\n更新数据!&#x27;</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> (date == datetime.date(<span class="number">2020</span>, <span class="number">3</span>, <span class="number">22</span>)):</span><br><span class="line">                Country = <span class="string">&#x27;Country_Region&#x27;</span></span><br><span class="line">                Province = <span class="string">&#x27;Province_State&#x27;</span></span><br><span class="line">                Date = <span class="string">&#x27;Last_Update&#x27;</span></span><br><span class="line">            <span class="keyword">if</span> (date == datetime.date(<span class="number">2020</span>, <span class="number">3</span>, <span class="number">11</span>)):</span><br><span class="line">                China = <span class="string">&#x27;China&#x27;</span></span><br><span class="line">            d = pd.read_csv(Data_path)</span><br><span class="line">            d = d[d[Country].isin(</span><br><span class="line">                [China, Hong_Kong, Taiwan, Macau])]</span><br><span class="line">            d = d.loc[:, [Date, Province, Recovered, Confirmed, Deaths]]</span><br><span class="line">            d = d.fillna(value=<span class="number">0.0</span>)</span><br><span class="line">            <span class="keyword">for</span> key <span class="keyword">in</span> Province_Map.keys():</span><br><span class="line">                d.loc[d[Province] == key, Province] = Province_Map[key]</span><br><span class="line">            d = d.rename(columns=&#123;Date: DATE, Province: PROVINCE,</span><br><span class="line">                                  Recovered: CURED, Confirmed: CONFIRMED, Deaths: DEAD&#125;)</span><br><span class="line">            d[DATE] = date.strftime(<span class="string">&#x27;%Y-%m-%d&#x27;</span>)</span><br><span class="line">            d = d.set_index(PROVINCE)</span><br><span class="line">            df = pd.concat([df, d])</span><br><span class="line">            date = date + datetime.timedelta(days=<span class="number">1</span>)</span><br><span class="line">        df[[CURED, CONFIRMED, DEAD]] = df[[</span><br><span class="line">            CURED, CONFIRMED, DEAD]].astype(<span class="built_in">float</span>)</span><br><span class="line">        BASE_DATA = df</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        df = BASE_DATA</span><br><span class="line">    <span class="keyword">return</span> df</span><br></pre></td></tr></table></figure>
 <p>需要吐槽的是，因为数据来自国外整理，所以有时会对中国的一些省份做地区性质的描述。而且数据中中国的名称，以及表格的表项发生过变化，最终就导致需要在意的细节比较多。为了可以在pyecharts中使用，我还需要把英文的城市名称翻译成对应的中文。</p>
@@ -286,11 +314,12 @@
 <p>使用数据完成地图的构建：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">provinces_daily_sick_data = getData.get_provinces_sick_daily_data()</span><br><span class="line"></span><br><span class="line">date_data = provinces_daily_sick_data[date_index]</span><br><span class="line"></span><br><span class="line">map_data = [[key, date_data[key]] <span class="keyword">for</span> key <span class="keyword">in</span> date_data.keys()]</span><br><span class="line"></span><br><span class="line">map_chart = (</span><br><span class="line">    Map()</span><br><span class="line">    .add(</span><br><span class="line">        series_name=<span class="string">&quot;&quot;</span>,</span><br><span class="line">        data_pair=map_data,</span><br><span class="line">        zoom=<span class="number">0.85</span>,</span><br><span class="line">        center=[<span class="number">119.5</span>, <span class="number">34.5</span>],</span><br><span class="line">        is_map_symbol_show=<span class="literal">False</span>,</span><br><span class="line">        itemstyle_opts=&#123;</span><br><span class="line">            <span class="string">&quot;normal&quot;</span>: &#123;<span class="string">&quot;areaColor&quot;</span>: <span class="string">&quot;#323c48&quot;</span>, <span class="string">&quot;borderColor&quot;</span>: <span class="string">&quot;#404a59&quot;</span>&#125;,</span><br><span class="line">            <span class="string">&quot;emphasis&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;label&quot;</span>: &#123;<span class="string">&quot;show&quot;</span>: Timeline&#125;,</span><br><span class="line">                <span class="string">&quot;areaColor&quot;</span>: <span class="string">&quot;rgba(255,255,255, 0.5)&quot;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>所有代码我都上传到了Github中：<a target="_blank" rel="noopener" href="https://github.com/cliuyang/COVID-map">COVID-map</a></p>
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>类似的思路完成其它图表的数据填充，得到的最终效果：</p>
+<h3 id="效果">效果</h3>
+<p>类似的思路完成其它图表的数据填充，得到的最终效果：</p>
 <img data-src="/COVID-19-visualization/COVID-19.png" class="" title="COVID-19">
-
 <p>因为渲染结果是一个HTML文件，于是我将它发布在了我的博客中：<a href="/COVID-map/" title="新冠肺炎疫情地图">新冠肺炎疫情地图</a></p>
-<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>在最开始的时候，我有想过把疫情地图做成实时的，但是实施起来后发现会有些难度。如果基于pyecharts进行实时修改，那么就需要将修改程序放置在服务器上，而且博客本身又是基于hexo的，需要在服务器端与本地同步，这点倒是可以通过git实现；除此之外也许可以通过github的action进行自动更新，但是都过于麻烦，考虑到自身时间并不富裕，我最终决定只完成一定时间之前的部分，但为实时更新打下基础。</p>
+<h2 id="思考">思考</h2>
+<p>在最开始的时候，我有想过把疫情地图做成实时的，但是实施起来后发现会有些难度。如果基于pyecharts进行实时修改，那么就需要将修改程序放置在服务器上，而且博客本身又是基于hexo的，需要在服务器端与本地同步，这点倒是可以通过git实现；除此之外也许可以通过github的action进行自动更新，但是都过于麻烦，考虑到自身时间并不富裕，我最终决定只完成一定时间之前的部分，但为实时更新打下基础。</p>
 <p>事实上，借由发布到博客上来展示最终成果的契机，我得以重新完成博客环境的搭建。在此之前，因为一些缘由，自闭了相当长时间，而且博客环境也在那个时候收到了损坏。因此，算是重新开始写博客吧，如果时间充分的话，会慢慢写些这段时间的成就。</p>
 <p>写在最后的，是和新冠病毒疫情有关。这点我特别赞同这节课老师的一个看法，我所制作的可视化作品，炫酷本身并不值得炫耀(况且也说不上效果特别好)，每个展示出来的数字，都有着生命般沉甸甸的重量，这不是一个可以拿来开玩笑的事情。正因如此，本篇文章进行了灰白处理，用以缅怀在这场战疫中逝去的人们。</p>
 <p>愿逝者安息，生者坚强。</p>
@@ -421,7 +450,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -434,7 +463,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -588,6 +617,10 @@
     })();
   }
   </script>
+
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

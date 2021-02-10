@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cliuyang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"cliuyang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="很惭愧这一周的进度太慢了（明明还是第一周啊啊啊），主要的进展是学了个基础，跟着谭老师的课程做了一些实验，差不多是掌握了基础设计方法，如果类比到C语言的学习的话，就大概是刚学完语法的样子。 我想分成几块块来说说。">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://cliuyang.cn/re0-01/CRC_decode.png">
 <meta property="og:image" content="http://cliuyang.cn/re0-01/CRC_message.gif">
 <meta property="article:published_time" content="2021-01-24T12:51:12.000Z">
-<meta property="article:modified_time" content="2021-01-25T15:00:05.575Z">
+<meta property="article:modified_time" content="2021-02-10T02:43:03.196Z">
 <meta property="article:author" content="陈留阳">
 <meta property="article:tag" content="logisim">
 <meta property="article:tag" content="海明码">
@@ -119,6 +119,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -148,11 +149,38 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -209,7 +237,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-25 23:00:05" itemprop="dateModified" datetime="2021-01-25T23:00:05+08:00">2021-01-25</time>
+                <time title="修改时间：2021-02-10 10:43:03" itemprop="dateModified" datetime="2021-02-10T10:43:03+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,19 +274,19 @@
         <p>很惭愧这一周的进度太慢了（明明还是第一周啊啊啊），主要的进展是学了个基础，跟着谭老师的课程做了一些实验，差不多是掌握了基础设计方法，如果类比到C语言的学习的话，就大概是刚学完语法的样子。</p>
 <p>我想分成几块块来说说。</p>
 <a id="more"></a>
-
-<h2 id="logisim"><a href="#logisim" class="headerlink" title="logisim"></a>logisim</h2><p>logisim是一个硬件仿真平台，特别像我初次接触C语言时的Dev-C++，偶尔会有奇奇怪怪的bug，然后UI也是一般般，最大的优势是简单友好，安装简单，适用于初学者。</p>
+<h2 id="logisim">logisim</h2>
+<p>logisim是一个硬件仿真平台，特别像我初次接触C语言时的Dev-C++，偶尔会有奇奇怪怪的bug，然后UI也是一般般，最大的优势是简单友好，安装简单，适用于初学者。</p>
 <p>我是在Ubuntu 20.04上进行开发的，这边就稍微整理了一下。通过apt安装的logisim不支持中文，用熟悉了还好，刚用确实是不习惯，我就下载了谭老师课程团队提供的汉化logisim使用，是个jar包。</p>
 <p>为了方便使用，我就写了行shell，然后命名为logisim放在了全局里。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar /home/frankchen/Applicitions/logisim-hust-linux.jar &amp;</span><br></pre></td></tr></table></figure>
 <p>不得不提一句谭老师整个团队是真的厉害，在软件中能看到整个的汉化工作还就是人家做的。</p>
-<h2 id="运动码表"><a href="#运动码表" class="headerlink" title="运动码表"></a>运动码表</h2><p>因为在大二的暑假曾听过谭老师的课，那时候就推倒了运动码表这块，之后的课听不懂了。所以就有了一定的经验，再从头开始就轻车熟路了许多。</p>
+<h2 id="运动码表">运动码表</h2>
+<p>因为在大二的暑假曾听过谭老师的课，那时候就推倒了运动码表这块，之后的课听不懂了。所以就有了一定的经验，再从头开始就轻车熟路了许多。</p>
 <p>运动码表的功能由一个状态图和各个状态对应的信号组成。</p>
 <img data-src="/re0-01/State_transition_diagram.png" class="" title="State_transition_diagram">
-
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th></th>
 <th>寄存器来源(9999/计时间器)</th>
 <th>寄存器使能</th>
@@ -267,7 +295,8 @@
 <th>计数器重置</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td></td>
 <td>SDSel</td>
 <td>SDEN</td>
@@ -275,7 +304,7 @@
 <td>TMEN</td>
 <td>TMReset</td>
 </tr>
-<tr>
+<tr class="even">
 <td>00</td>
 <td></td>
 <td></td>
@@ -283,7 +312,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>01</td>
 <td></td>
 <td></td>
@@ -291,7 +320,7 @@
 <td>1</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>02</td>
 <td></td>
 <td></td>
@@ -299,7 +328,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>03</td>
 <td>1</td>
 <td>1</td>
@@ -307,7 +336,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>04</td>
 <td></td>
 <td></td>
@@ -315,7 +344,7 @@
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>05</td>
 <td></td>
 <td></td>
@@ -323,7 +352,7 @@
 <td></td>
 <td>1</td>
 </tr>
-<tr>
+<tr class="even">
 <td>06</td>
 <td>0</td>
 <td>1</td>
@@ -331,22 +360,21 @@
 <td></td>
 <td>1</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>然后填写一下谭老师提供的excel工具，将得到的输入输出关系表达式放到logisim里，就基本上差不多了。</p>
 <img data-src="/re0-01/Sports_stopwatch.png" class="" title="Sports_stopwatch">
-
 <img data-src="/re0-01/Sports_stopwatching.gif" class="" title="Sports_stopwatching">
-
 <p>顺便说一句，上边这个gif是用 <strong><em>Peek</em></strong> 录制的，然后状态图的话拿<strong>亿图图示</strong>画的（我终于决定入正了TAT）。</p>
-<h2 id="海明校验码"><a href="#海明校验码" class="headerlink" title="海明校验码"></a>海明校验码</h2><p>海明校验码本质上是多重的奇偶校验码，每一位校验码校验几个数，然后每个数被唯一的校验码组合所校验，最后就可以根据出错的校验码组合唯一确定出错的那一位（只出错一位的情况下）顺便纠个错，很巧的是，这种对应关系可以通过二进制来表示。</p>
+<h2 id="海明校验码">海明校验码</h2>
+<p>海明校验码本质上是多重的奇偶校验码，每一位校验码校验几个数，然后每个数被唯一的校验码组合所校验，最后就可以根据出错的校验码组合唯一确定出错的那一位（只出错一位的情况下）顺便纠个错，很巧的是，这种对应关系可以通过二进制来表示。</p>
 <p>放上一张从wiki上扒来的图</p>
 <img data-src="/re0-01/Hamming_(7,4).png" class="" width="500" height="500" title="Hamming_(7,4)">
-
 <p>然后再在最后加一位就能确定是不是一位错，然后就决定是纠错还是报告出错。</p>
 <p>判断是不是一位错竟然还是从<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/24648880/answer/474674352">知乎</a>上看到的。</p>
 <blockquote>
 <p>检测的时候会计算出海明码的校验码E+奇偶校验码P，有以下四种情况：</p>
-<ol>
+<ol type="1">
 <li>E=0，P=0 没有错</li>
 <li>E≠0，P=1 有一位错，并可以纠正</li>
 <li>E≠0，P=0 有两位错，但不能纠正</li>
@@ -354,14 +382,15 @@
 </ol>
 </blockquote>
 <img data-src="/re0-01/Hamming_(8,4).png" class="" width="500" height="500" title="Hamming_(8,4)">
-
 <p>然后放上我的编码电路与解码电路：</p>
 <img data-src="/re0-01/Hamming_encode.png" class="" title="Hamming_encode">
-
 <img data-src="/re0-01/Hamming_decode.png" class="" title="Hamming_decode">
-
-<p>画解码电路的时候我还出了点问题，不知道对第$i$位取反应该怎么做，还差点画$22$个二路选择器和一个巨型解码器，最终在同学的提示下想到了用位移与异或来解决，思路一下子就开阔了。</p>
-<h2 id="CRC冗余校验码"><a href="#CRC冗余校验码" class="headerlink" title="CRC冗余校验码"></a>CRC冗余校验码</h2><p>其实比起海明码，我对CRC更加欢迎，因为在做题过程中，解CRC不需要记很多东西，只用除就好了，除完余数放到最后，再除完看看是不是$0$，就很快乐。</p>
+<p>画解码电路的时候我还出了点问题，不知道对第<span class="math inline">\(i\)</span>位取反应该怎么做，还差点画<span class="math inline">\(22\)</span>个二路选择器和一个巨型解码器，最终在同学的提示下想到了用位移与异或来解决，思路一下子就开阔了。</p>
+<div class="note warning">
+            <h3 id="年2月7日补充">2021年2月7日补充</h3><p>emm，发现这样的海明校验码还是存在问题的，后续发现并修改了：</p><p><a href="/re0-02/" title="Re：从0开始的计算机科学（2）">Re：从0开始的计算机科学（2）</a></p>
+          </div>
+<h2 id="crc冗余校验码">CRC冗余校验码</h2>
+<p>其实比起海明码，我对CRC更加欢迎，因为在做题过程中，解CRC不需要记很多东西，只用除就好了，除完余数放到最后，再除完看看是不是<span class="math inline">\(0\)</span>，就很快乐。</p>
 <p>然后我就面临一个更加困难的事情，模二除法怎么画？</p>
 <p>其实随便一搜就能找到一堆相似的串行画法，通过多个时钟周期，模拟模二除法最终得到结果。</p>
 <p>但是要求的是另一种并行的画法，纯组合逻辑解决。</p>
@@ -370,7 +399,7 @@
 <p>当然，考研都结束了，也不想费力手算了，写了个C++的函数，模拟模二除。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * a.size()=b.size()</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; <span class="title">XOR</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; a, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; c;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; a.size(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        c.push_back(a[i] ^ b[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * a/b=c...d</span></span><br><span class="line"><span class="comment"> * b is like 1...1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; <span class="title">BinaryModuloTwoDivision</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; a, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; c, d = &#123;a.begin(), a.begin() + b.size()&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt;= a.size() - b.size(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (d.front())</span><br><span class="line">        &#123;</span><br><span class="line">            c.push_back(<span class="literal">true</span>);</span><br><span class="line">            d = XOR(d, b);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            c.push_back(<span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        d.erase(d.begin());</span><br><span class="line">        <span class="keyword">if</span> (i &lt; a.size() - b.size())</span><br><span class="line">            d.push_back(a[i + b.size()]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>emm，考虑到随机访问并不是硬性需求，其实有很大的优化空间，不过也不是写比赛，就随意了一点。</p>
-<p>CRC的纠错比我想象的更为简单，对于CRC，任意一位出错的情况下，进行模二除得到的余数是固定的，反过来说，只要这个余数不是$0$，就可以根据对应关系确定出错的位数并加以纠正，如果没有这个对应关系就认为无法纠错。为了实现这个纠错，多项式其实也不是随便选选。</p>
+<p>CRC的纠错比我想象的更为简单，对于CRC，任意一位出错的情况下，进行模二除得到的余数是固定的，反过来说，只要这个余数不是<span class="math inline">\(0\)</span>，就可以根据对应关系确定出错的位数并加以纠正，如果没有这个对应关系就认为无法纠错。为了实现这个纠错，多项式其实也不是随便选选。</p>
 <p>好家伙，研究出CRC的人可真的是厉害。</p>
 <p>能查得到的资料都说可以将CRC循环移位到最后一位错然后再纠正，就是个时序电路了，这点我问了问谭老师，老师是这么回答的：</p>
 <blockquote>
@@ -380,18 +409,20 @@
 <p>茅塞顿开。</p>
 <p>然后就是CRC的编解码电路：</p>
 <img data-src="/re0-01/CRC_encode.png" class="" title="CRC_encode">
-
 <img data-src="/re0-01/CRC_decode.png" class="" title="CRC_decode">
-
-<p>提一嘴，受到故有印象影响，在使用移位然后异或进行纠错的技巧中，我习惯性的用$1$进行移位，就会造成实际上需要移的位数减一，画出来的电路就不优雅。</p>
-<p>但是事实上可以使用循环移位的方式，把这个$1$放到最左边。</p>
+<p>提一嘴，受到故有印象影响，在使用移位然后异或进行纠错的技巧中，我习惯性的用<span class="math inline">\(1\)</span>进行移位，就会造成实际上需要移的位数减一，画出来的电路就不优雅。</p>
+<p>但是事实上可以使用循环移位的方式，把这个<span class="math inline">\(1\)</span>放到最左边。</p>
 <p>刚想到的时候我甚至想跳起来。</p>
-<h2 id="模拟传输"><a href="#模拟传输" class="headerlink" title="模拟传输"></a>模拟传输</h2><p>实际上最开始还画了个国标码转换的电路，加上一个完整的GB2312字库点阵集，就能在logisim中展示中文。</p>
+<div class="note warning">
+            <h3 id="年2月7日补充">2021年2月7日补充</h3><p>emm，发现这样的CRC冗余校验码还是存在问题的，后续发现并修改了：</p><p><a href="/re0-02/" title="Re：从0开始的计算机科学（2）">Re：从0开始的计算机科学（2）</a></p>
+          </div>
+<h2 id="模拟传输">模拟传输</h2>
+<p>实际上最开始还画了个国标码转换的电路，加上一个完整的GB2312字库点阵集，就能在logisim中展示中文。</p>
 <p>再加上一套老师给定的框架，就能模拟信息传输了，放一个CRC的。</p>
 <img data-src="/re0-01/CRC_message.gif" class="" title="CRC_message">
-
 <p>当然，内容也是能改的，我还专门写了个程序，不过也不想麻烦了，做个宣传也是好的。</p>
-<h2 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h2><p>老实说这个进展速度我是不太满意的，总是刷视频浪费了我很多的精力，本来三四天的工作量硬生生拖了七天，周日的记录也因为一系列的事情推迟了一天才完成。</p>
+<h2 id="尾声">尾声</h2>
+<p>老实说这个进展速度我是不太满意的，总是刷视频浪费了我很多的精力，本来三四天的工作量硬生生拖了七天，周日的记录也因为一系列的事情推迟了一天才完成。</p>
 <p>嘛，抓紧吧。</p>
 
     </div>
@@ -502,7 +533,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#logisim"><span class="nav-number">1.</span> <span class="nav-text">logisim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E7%A0%81%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">运动码表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%B7%E6%98%8E%E6%A0%A1%E9%AA%8C%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">海明校验码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRC%E5%86%97%E4%BD%99%E6%A0%A1%E9%AA%8C%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">CRC冗余校验码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E4%BC%A0%E8%BE%93"><span class="nav-number">5.</span> <span class="nav-text">模拟传输</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%BE%E5%A3%B0"><span class="nav-number">6.</span> <span class="nav-text">尾声</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#logisim"><span class="nav-number">1.</span> <span class="nav-text">logisim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E7%A0%81%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">运动码表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%B7%E6%98%8E%E6%A0%A1%E9%AA%8C%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">海明校验码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B42%E6%9C%887%E6%97%A5%E8%A1%A5%E5%85%85"><span class="nav-number">3.1.</span> <span class="nav-text">2021年2月7日补充</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#crc%E5%86%97%E4%BD%99%E6%A0%A1%E9%AA%8C%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">CRC冗余校验码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B42%E6%9C%887%E6%97%A5%E8%A1%A5%E5%85%85"><span class="nav-number">4.1.</span> <span class="nav-text">2021年2月7日补充</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E4%BC%A0%E8%BE%93"><span class="nav-number">5.</span> <span class="nav-text">模拟传输</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%BE%E5%A3%B0"><span class="nav-number">6.</span> <span class="nav-text">尾声</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -518,7 +549,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -531,7 +562,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -685,6 +716,10 @@
     })();
   }
   </script>
+
+  
+<script src="/js/local-search.js"></script>
+
 
 
 

@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cliuyang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"cliuyang.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="这是我最近一个很有意思的尝试。 考研期间为了限制自己，我拜托别人帮我设置了许多app的青少年模式，BiliBili就是其中一个，在考研结束后，我突然想着能不能在不询问密码的前提下解开这个青少年模式？">
@@ -107,6 +107,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -136,11 +137,38 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -224,10 +252,12 @@
         <p>这是我最近一个很有意思的尝试。</p>
 <p>考研期间为了限制自己，我拜托别人帮我设置了许多app的青少年模式，BiliBili就是其中一个，在考研结束后，我突然想着能不能在不询问密码的前提下解开这个青少年模式？</p>
 <a id="more"></a>
-
-<h2 id="普遍存在的问题"><a href="#普遍存在的问题" class="headerlink" title="普遍存在的问题"></a>普遍存在的问题</h2><p>我在网上搜到的一篇调查报告指出，现存的大多数青少年模式都形同虚设，要么是可以重新安装初始化app，要么是不设置解秘次数，可以暴力破解。这也就是我的主要思路。</p>
-<h2 id="重装"><a href="#重装" class="headerlink" title="重装"></a>重装</h2><p>我尝试重新安装bilibili，或者再别人的手机上登录账号，然后得出结论，bilibili的青少年模式是跟着账号走的，除非更换账号，不然还是不行。</p>
-<h2 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h2><p>所以自然而然采取第二种策略，暴力破解。</p>
+<h2 id="普遍存在的问题">普遍存在的问题</h2>
+<p>我在网上搜到的一篇调查报告指出，现存的大多数青少年模式都形同虚设，要么是可以重新安装初始化app，要么是不设置解秘次数，可以暴力破解。这也就是我的主要思路。</p>
+<h2 id="重装">重装</h2>
+<p>我尝试重新安装bilibili，或者再别人的手机上登录账号，然后得出结论，bilibili的青少年模式是跟着账号走的，除非更换账号，不然还是不行。</p>
+<h2 id="暴力破解">暴力破解</h2>
+<p>所以自然而然采取第二种策略，暴力破解。</p>
 <p>手动输入的话会累死个人，于是我在尝试有没有什么自动化的方法。</p>
 <p>通过adb可以模拟点击，然后获得了0-9的输入坐标后，就可以写出这么一段shell脚本</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">press</span></span>()&#123;</span><br><span class="line">    <span class="comment"># 传递一个参数为要按下的值</span></span><br><span class="line">    <span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span> </span><br><span class="line">    0) adb shell input tap 500 2200 <span class="comment">#0</span></span><br><span class="line">    ;;</span><br><span class="line">    1) adb shell input tap 200 1500 <span class="comment">#1</span></span><br><span class="line">    ;;</span><br><span class="line">    2) adb shell input tap 500 1500 <span class="comment">#2</span></span><br><span class="line">    ;;</span><br><span class="line">    3) adb shell input tap 800 1500 <span class="comment">#3</span></span><br><span class="line">    ;;</span><br><span class="line">    4) adb shell input tap 200 1700 <span class="comment">#4</span></span><br><span class="line">    ;;</span><br><span class="line">    5) adb shell input tap 500 1700 <span class="comment">#5</span></span><br><span class="line">    ;;</span><br><span class="line">    6) adb shell input tap 800 1700 <span class="comment">#6</span></span><br><span class="line">    ;;</span><br><span class="line">    7) adb shell input tap 200 2000 <span class="comment">#7</span></span><br><span class="line">    ;;</span><br><span class="line">    8) adb shell input tap 500 2000 <span class="comment">#8</span></span><br><span class="line">    ;;</span><br><span class="line">    9) adb shell input tap 800 2000 <span class="comment">#9</span></span><br><span class="line">    ;;</span><br><span class="line">    <span class="keyword">esac</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pass=0000 <span class="comment">#第一位</span></span><br><span class="line"></span><br><span class="line">until [ ! <span class="variable">$pass</span> -lt 10000 ] <span class="comment">#a遍历0-9</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    press `expr <span class="variable">$pass</span> / 1000 % 10` <span class="comment">#输入千位</span></span><br><span class="line">    press `expr <span class="variable">$pass</span> / 100 % 10`  <span class="comment">#输入百位</span></span><br><span class="line">    press `expr <span class="variable">$pass</span> / 10 % 10`   <span class="comment">#输入十位</span></span><br><span class="line">    press `expr <span class="variable">$pass</span> / 1 % 10`    <span class="comment">#输入个位</span></span><br><span class="line">    adb shell input tap 520 830    <span class="comment">#立即验证</span></span><br><span class="line">    pass=`expr <span class="variable">$pass</span> + 1`</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
@@ -356,7 +386,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -369,7 +399,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -523,6 +553,10 @@
     })();
   }
   </script>
+
+  
+<script src="/js/local-search.js"></script>
+
 
 
 
