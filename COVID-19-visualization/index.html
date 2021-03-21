@@ -287,20 +287,20 @@
         -webkit-filter: grayscale(1);
     }
 </style>
-<h2 id="契机"><a class="markdownIt-Anchor" href="#契机"></a> 契机</h2>
+<h2 id="契机">契机</h2>
 <p>停课不停学期间，作为计算机专业的大学生，自然是通过互联网与老师联系并进行新知识的学习。而在我们的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F">GIS</a>课程上，老师结合实际提出了制作疫情地图的作业要求。</p>
 <p>为了完成作业，我开始了此次的制作。</p>
-<h2 id="过程"><a class="markdownIt-Anchor" href="#过程"></a> 过程</h2>
-<h3 id="准备"><a class="markdownIt-Anchor" href="#准备"></a> 准备</h3>
+<h2 id="过程">过程</h2>
+<h3 id="准备">准备</h3>
 <p>制作疫情地图的话，很容易想到的就是一张静态地图，不同的区域因感染人数的多少而配以不同的颜色，制作起来就非常简单。但实际上，这样的工作一次还好，不适合大量重复实践，而且做出的图交互性比较差。</p>
 <p>那么与之相对的，需要有一个可以帮我省去这个大量重复的工具，就自然而然的想到了程序设计，尤其的，<a target="_blank" rel="noopener" href="https://www.python.org/">python</a>程序设计。</p>
 <p>python语言作为一门热门语言，有着大量优秀的第三方库，且语法简单，开发迅速，因此自然成为了我此次不二的选择。</p>
 <p>那么，接下来是选择一个合适的第三方库以提供数据的载体地图，在经过众多比较后，我选择了<a target="_blank" rel="noopener" href="https://pyecharts.org/">pyecharts</a>。pyecharts是基于<a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/index.html">echart</a>的，封装成python的函数，并支持渲染成网页，比较利于制作完成后的展示。由于是国产的作品，所以在地图的使用上便可以放轻松。</p>
 <p>有了载体后，数据从何而来呢？有个不错的选择，github上有一个更新及时的数据库<a target="_blank" rel="noopener" href="https://github.com/CSSEGISandData/COVID-19">CSSEGISandData</a>，维护者是疫情期间知名可视化网站<a target="_blank" rel="noopener" href="https://systems.jhu.edu/research/public-health/ncov/">COVID-19 Dashboard by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University (JHU)</a>的作者，通过爬虫来及时获取数据，格式良好，只需要clone下来即可，后续通过pull进行更新，可以免去爬虫的编写，是非常理想的数据源。</p>
-<p><s>于是我选择了<a target="_blank" rel="noopener" href="https://www.flyai.com/d/COVID-19">FlyAI</a>的数据源。其实相较而言，FlyAI的数据并没有非常大的优势，使用起来也不如github上的数据库方便。之所以选择FlyAI纯粹是因为我想起github时疫情地图已经制作完成了emm。</s></p>
-<p>我选取了<strong>CSSEGISandData</strong>的数据作为数据来源~~(鬼知道交作业前一晚上发现<strong>FlyAI</strong>突然不提供数据后我心里是何等的卧槽)~~，这样后续的更新可以通过命令行随时pull获取，比较方便。</p>
+<p><del>于是我选择了<a target="_blank" rel="noopener" href="https://www.flyai.com/d/COVID-19">FlyAI</a>的数据源。其实相较而言，FlyAI的数据并没有非常大的优势，使用起来也不如github上的数据库方便。之所以选择FlyAI纯粹是因为我想起github时疫情地图已经制作完成了emm。</del></p>
+<p>我选取了<strong>CSSEGISandData</strong>的数据作为数据来源<del>(鬼知道交作业前一晚上发现<strong>FlyAI</strong>突然不提供数据后我心里是何等的卧槽)</del>，这样后续的更新可以通过命令行随时pull获取，比较方便。</p>
 <p>准备阶段还差一样工具，获取到的数据需要经过处理才能使用，需要一款数据处理的工具，我的选择是<a target="_blank" rel="noopener" href="https://numpy.org/">numpy</a>与<a target="_blank" rel="noopener" href="https://pandas.pydata.org/">pandas</a>，pandas是python著名的数据处理库，经常与numpy联合使用，用途广泛，它也将在本次的疫情地图制作中发挥出重要的作用。</p>
-<h3 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h3>
+<h3 id="开始">开始</h3>
 <p>通过venv创建好虚拟环境，再使用pip安装pyecharts和pandas。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -m venv GIS_venv</span><br><span class="line"><span class="built_in">source</span> GIS_venv/bin/activate</span><br><span class="line">pip3 install pyecharts pydata</span><br></pre></td></tr></table></figure>
 <p>pyecharts的API封装十分友好，把所有的图表封装成了类，并且支持链式调用，调用起来几乎只是填写各个配置项而已。</p>
@@ -324,11 +324,11 @@
 <p>使用数据完成地图的构建：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">provinces_daily_sick_data = getData.get_provinces_sick_daily_data()</span><br><span class="line"></span><br><span class="line">date_data = provinces_daily_sick_data[date_index]</span><br><span class="line"></span><br><span class="line">map_data = [[key, date_data[key]] <span class="keyword">for</span> key <span class="keyword">in</span> date_data.keys()]</span><br><span class="line"></span><br><span class="line">map_chart = (</span><br><span class="line">    Map()</span><br><span class="line">    .add(</span><br><span class="line">        series_name=<span class="string">&quot;&quot;</span>,</span><br><span class="line">        data_pair=map_data,</span><br><span class="line">        zoom=<span class="number">0.85</span>,</span><br><span class="line">        center=[<span class="number">119.5</span>, <span class="number">34.5</span>],</span><br><span class="line">        is_map_symbol_show=<span class="literal">False</span>,</span><br><span class="line">        itemstyle_opts=&#123;</span><br><span class="line">            <span class="string">&quot;normal&quot;</span>: &#123;<span class="string">&quot;areaColor&quot;</span>: <span class="string">&quot;#323c48&quot;</span>, <span class="string">&quot;borderColor&quot;</span>: <span class="string">&quot;#404a59&quot;</span>&#125;,</span><br><span class="line">            <span class="string">&quot;emphasis&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;label&quot;</span>: &#123;<span class="string">&quot;show&quot;</span>: Timeline&#125;,</span><br><span class="line">                <span class="string">&quot;areaColor&quot;</span>: <span class="string">&quot;rgba(255,255,255, 0.5)&quot;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>所有代码我都上传到了Github中：<a target="_blank" rel="noopener" href="https://github.com/cliuyang/COVID-map">COVID-map</a></p>
-<h3 id="效果"><a class="markdownIt-Anchor" href="#效果"></a> 效果</h3>
+<h3 id="效果">效果</h3>
 <p>类似的思路完成其它图表的数据填充，得到的最终效果：</p>
 <img data-src="/COVID-19-visualization/COVID-19.png" class="" title="COVID-19">
 <p>因为渲染结果是一个HTML文件，于是我将它发布在了我的博客中：<a href="/COVID-map/" title="新冠肺炎疫情地图">新冠肺炎疫情地图</a></p>
-<h2 id="思考"><a class="markdownIt-Anchor" href="#思考"></a> 思考</h2>
+<h2 id="思考">思考</h2>
 <p>在最开始的时候，我有想过把疫情地图做成实时的，但是实施起来后发现会有些难度。如果基于pyecharts进行实时修改，那么就需要将修改程序放置在服务器上，而且博客本身又是基于hexo的，需要在服务器端与本地同步，这点倒是可以通过git实现；除此之外也许可以通过github的action进行自动更新，但是都过于麻烦，考虑到自身时间并不富裕，我最终决定只完成一定时间之前的部分，但为实时更新打下基础。</p>
 <p>事实上，借由发布到博客上来展示最终成果的契机，我得以重新完成博客环境的搭建。在此之前，因为一些缘由，自闭了相当长时间，而且博客环境也在那个时候收到了损坏。因此，算是重新开始写博客吧，如果时间充分的话，会慢慢写些这段时间的成就。</p>
 <p>写在最后的，是和新冠病毒疫情有关。这点我特别赞同这节课老师的一个看法，我所制作的可视化作品，炫酷本身并不值得炫耀(况且也说不上效果特别好)，每个展示出来的数字，都有着生命般沉甸甸的重量，这不是一个可以拿来开玩笑的事情。正因如此，本篇文章进行了灰白处理，用以缅怀在这场战疫中逝去的人们。</p>
@@ -444,7 +444,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%91%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text"> 契机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text"> 过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">2.1.</span> <span class="nav-text"> 准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B"><span class="nav-number">2.2.</span> <span class="nav-text"> 开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-number">2.3.</span> <span class="nav-text"> 效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text"> 思考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%91%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">契机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">2.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B"><span class="nav-number">2.2.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-number">2.3.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">思考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

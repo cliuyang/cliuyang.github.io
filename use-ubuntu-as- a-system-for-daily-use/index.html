@@ -276,28 +276,28 @@
 <p>于是我决定从根源解决这个问题，使用一个玩游戏体验极差的系统，增加打游戏的难度。不考虑高成本的苹果系统后，我决定切换为linux系统，并逐步把它打造成一个我可以日常使用的系统。</p>
 <a id="more"></a>
 <p>这篇文章主要作为一个记录向的吧，记录下思路，各样的步骤网上都浩如烟海，我也就不必多此一举了。</p>
-<h2 id="选择与安装"><a class="markdownIt-Anchor" href="#选择与安装"></a> 选择与安装</h2>
+<h2 id="选择与安装">选择与安装</h2>
 <p>最开始的时候选择的发行版本是Ubuntu 19.10，选择Ubuntu主要是因为之前接触过，而且普及率也比较高，个方面支持都比较好。但是还没怎么设置好，Ubuntu 19.10的支持期就快到了，然后Ubuntu史上最长支持周期的Ubuntu 20.04 LTS发布了，就自然而然的切换到了这个版本。</p>
 <p>安装过程还是值的说说的，之前一段时间我接触到了<a target="_blank" rel="noopener" href="https://www.ventoy.net/"><strong>Ventoy</strong></a>，可以直接启动系统文件，安装各种各样的系统，不用反复格式化U盘，甚至能放一个weipe进去，还支持更新，就很方便。我下载了Ubuntu 20.04的镜像放了进去，之后出于过渡以及其它方面的原因，我保留了原有的Windows 10，选择了双系统的方案。</p>
-<h2 id="美化及基础设置"><a class="markdownIt-Anchor" href="#美化及基础设置"></a> 美化及基础设置</h2>
+<h2 id="美化及基础设置">美化及基础设置</h2>
 <p>一个看上去好看一点的界面，会让使用时心情好很多。</p>
-<h3 id="深色主题"><a class="markdownIt-Anchor" href="#深色主题"></a> 深色主题</h3>
+<h3 id="深色主题">深色主题</h3>
 <p>为了实现深色主题的效果，我选择了dark的color，并配合优化工具的使用，实现了系统全局的yaru主题</p>
 <img data-src="/use-ubuntu-as-%20a-system-for-daily-use/Yaru.png" class="" title="Yaru">
 <p>大多数软件都会随着系统深色主题的选择而改变配色，一些较新的软件也支持手动调节到深色模式，体验就很不错。</p>
-<h3 id="额外扩展"><a class="markdownIt-Anchor" href="#额外扩展"></a> 额外扩展</h3>
+<h3 id="额外扩展">额外扩展</h3>
 <p>当然，一些必不可少的扩展插件也得提一下。</p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/307/dash-to-dock/"><strong><em>Dash to Dock</em></strong></a>：对Dock的行为进行设置，比如改变位置，长度，大小，隐藏时机等，我是设置到了左边，在可能遮挡视线的情形下隐藏，挤压在一定值的时候显示。</p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/545/hide-top-bar/"><strong><em>Hide Top Bar</em></strong></a>：在不必要的时候隐藏顶端的状态栏，配合Dash to Dock就可以在专注的时候提供全屏的沉浸体验，感觉不错。</p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/131/touchpad-indicator/"><strong><em>Touchpad Indicator</em></strong></a>：在使用鼠标的时候禁止笔记本触摸屏的使用，这个在编写文本文件时不知道得有多好用。</p>
 <p><a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/19/user-themes/"><strong><em>User Themes</em></strong></a>：用来设置系统主题，会有很多花里胡哨的，但是我还是喜欢Yaru的这个配色。</p>
 <p>还有一个，放后面说。</p>
-<h3 id="桌面背景"><a class="markdownIt-Anchor" href="#桌面背景"></a> 桌面背景</h3>
+<h3 id="桌面背景">桌面背景</h3>
 <p>我个人比较中意PPT式的背景，隔一段时间换一张就很不错。Ubuntu支持从文件夹中选择图片切换播放，这样使用的话，需要准备一个足够分量的文件夹，而且做好备份（PTSD）。</p>
 <p>我是了解到一个叫<a target="_blank" rel="noopener" href="https://peterlevi.com/variety/"><strong>Varety</strong></a>的软件，支持PPT是一方面，他还能从指定的网站下载图片进来，保存或自动删除。设置得当的话就总会有无穷多的背景图片看。</p>
 <img data-src="/use-ubuntu-as-%20a-system-for-daily-use/Variety.png" class="" title="Variety">
 <p>就不用我特地去wallhaven.cc找桌面壁纸了。</p>
-<h2 id="日常应用"><a class="markdownIt-Anchor" href="#日常应用"></a> 日常应用</h2>
+<h2 id="日常应用">日常应用</h2>
 <p>首先点名批评腾讯，腾讯对民间技术打压力度一直很大，而且在linux上极为敷衍，没什么能用的软件。垄断且不作为。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/nashaofu/dingtalk"><strong>钉钉</strong></a>：虽然钉钉没有官方的软件包（听说貌似在做了），但是有民间的electron封装版本，基础用用还是没问题的（我为什么会闲着没事想着用钉钉！）</p>
 <p><a target="_blank" rel="noopener" href="https://flameshot.org/"><strong><em>Flameshot</em></strong></a>：一个很不错的截屏软件，功能强大，支持标记，展示等。</p>
@@ -310,40 +310,40 @@
 <p><a target="_blank" rel="noopener" href="https://www.wps.cn/"><strong><em>WPS</em></strong></a>：常用国产办公套件，处理office文件挺不错的，还一直在更新。</p>
 <p><a target="_blank" rel="noopener" href="https://www.google.com/intl/zh-CN/chrome/"><strong><em>Google Chrome</em></strong></a>：我个人还是比较喜欢使用Google浏览器的，也卸载了自带的Firefox。</p>
 <p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/"><strong><em>vscode</em></strong></a>：我最常用的文本编辑器，插件众多，可自定义性极强。</p>
-<h2 id="考研环境"><a class="markdownIt-Anchor" href="#考研环境"></a> 考研环境</h2>
+<h2 id="考研环境">考研环境</h2>
 <p>这里点名表扬腾讯，正是因为没有腾讯的一众社交软件，我才可以在ubuntu杜绝水群，避免无意义的社交活动。</p>
-<h3 id="关闭grub界面"><a class="markdownIt-Anchor" href="#关闭grub界面"></a> 关闭Grub界面</h3>
+<h3 id="关闭grub界面">关闭Grub界面</h3>
 <p>既然Windows 10被保留了下来，那么我直接在引导时选择Windows 10系统不就可以躲开Ubuntu嘛？这就意义不大了。所以第一个动作是关掉Ubuntu自带的Grub引导界面。绕过繁琐的配置文件修改，我找到了个友好的GUI程序，<strong>Grub Customizer</strong>，可以对grub引导界面进行自定义，比如换一个好看的主题，进行复杂设置等。</p>
 <p>对于我则自然是选择了隐藏其它选项，默认启动Ubuntu。</p>
 <img data-src="/use-ubuntu-as-%20a-system-for-daily-use/GrubCustomizer.png" class="" title="GrubCustomizer">
-<h3 id="减少网页娱乐"><a class="markdownIt-Anchor" href="#减少网页娱乐"></a> 减少网页娱乐</h3>
+<h3 id="减少网页娱乐">减少网页娱乐</h3>
 <p>刷刷B站，知乎这样的网站一直是我的杀时间活动，经常会身陷其中不可自拔。知乎我是直接注销了账号，日益不能正常刷了。但是不能所有的网站都这样，我需要找个办法阻止我自己上这些网站娱乐。</p>
 <p>这个办法就是<a target="_blank" rel="noopener" href="https://www.proginosko.com/leechblock/"><strong><em>LeechBlock NG</em></strong></a>，一个浏览器扩展，可以设定想要拦截访问的网站，以及开放时间。我把开放的时间定在了早上，这样除非早睡早起，不然就别想了（但是后期我还是经常性熬夜）</p>
-<h3 id="看网课"><a class="markdownIt-Anchor" href="#看网课"></a> 看网课</h3>
+<h3 id="看网课">看网课</h3>
 <p>emm，绝大多数的网络资源都会通过百度网盘进行分享，我对视频类的资源主要的需求是倍速播放，PDF类资源主要是随时能打开，这两个要求在不开会员的前提下都无法使用百度网盘实现。</p>
 <p>我采用的是<a target="_blank" rel="noopener" href="https://abraunegg.github.io/"><strong><em>OneDrive Client for Linux</em></strong></a>、<a target="_blank" rel="noopener" href="https://www.videolan.org/index.zh.html"><strong><em>VLC</em></strong></a>以及ubuntu自带的文档查看器，整个下来会比百度网盘的会员便宜很多。</p>
 <p>首先采用某个如果扩散了会被百度制裁的软件下载需要的资源，再存到拼车购买的office 365家庭版提供的1T的onedrive中，在ubuntu中采用略显硬核的OneDrive Client for Linux进行管理，使用VLC倍速播放，使用文档查看器的反色模式看PDF。</p>
 <p>需要注意的是OneDrive Client for Linux不是官方客户端，它的管理策略是将文件全部下载到本地，并且没有GUI界面的，会比较痛苦。</p>
-<h3 id="查词典"><a class="markdownIt-Anchor" href="#查词典"></a> 查词典</h3>
+<h3 id="查词典">查词典</h3>
 <p>在英语单词的学习中总会用到各种各样的词典，一般而言在手机上装个类似的应用就行。我在网上找到了一个比较有意思的软件，<a target="_blank" rel="noopener" href="http://goldendict.org/"><strong><em>GoldenDict</em></strong></a>，这是个查词典的软件，拆开来看就是查和词典。</p>
 <p>如果想要使用GoldenDict，需要先导入各式各样的词典，接着归类，设置查找方式，不是那种“开箱即用”的软件，我还找到了一篇长长文章（现在不见了）讲解如何使用。也是第一次知道网上还有丰富的词典资源制作与分享。</p>
 <p><a target="_blank" rel="noopener" href="https://freemdict.com/"><strong><em>freemdict</em></strong></a>：一个词典分享论坛</p>
-<h3 id="思维导图"><a class="markdownIt-Anchor" href="#思维导图"></a> 思维导图</h3>
+<h3 id="思维导图">思维导图</h3>
 <p>我对思维导图的要求比较苛刻，除了文本描述的知识点框架，还希望加入各式各样的细节展示图例，就其实没有特别好的解决方案。</p>
 <p>思维导图可以使用<a target="_blank" rel="noopener" href="https://www.xmind.net/"><strong><em>XMind</em></strong></a>或者<a target="_blank" rel="noopener" href="http://freemind.sourceforge.net/"><strong><em>FreeMind</em></strong></a>，然后导入其它软件制作的图例。</p>
 <p>但其实我自己更想使用<a target="_blank" rel="noopener" href="https://www.edrawsoft.cn/edrawmax/"><strong><em>EDraw</em></strong></a>和<a target="_blank" rel="noopener" href="https://www.edrawsoft.cn/mindmaster/"><strong><em>MindMaster</em></strong></a>的组合，功能强大实用，就是价格问题让我再三确步。</p>
-<h3 id="anki"><a class="markdownIt-Anchor" href="#anki"></a> Anki</h3>
+<h3 id="anki">Anki</h3>
 <p>emm，在遇到这个软件之前我从没想到自己会有这样的需求。</p>
 <p><a target="_blank" rel="noopener" href="https://apps.ankiweb.net/"><strong><em>Anki</em></strong></a>是一个助记软件，工作方式是编写小卡片，然后根据记忆的情况动态调整下次抽取背诵的间隔。它甚至还支持latex！</p>
 <p>我主要就是通过Anki记忆数学公式以及政治选填，记忆效果还不错。</p>
 <p>（TAT想起自己政治大题没背熟以及数学基础不扎实就留下了悔恨的泪水）</p>
-<h2 id="深度使用"><a class="markdownIt-Anchor" href="#深度使用"></a> 深度使用</h2>
+<h2 id="深度使用">深度使用</h2>
 <p>考研过后就可以放开限制了，我也有了更深一步使用ubuntu的打算。</p>
-<h3 id="备份"><a class="markdownIt-Anchor" href="#备份"></a> 备份</h3>
+<h3 id="备份">备份</h3>
 <p>首先是安装了<a target="_blank" rel="noopener" href="http://duplicity.nongnu.org/"><strong><em>duplicity</em></strong></a>，其实很早就装了的，当时因为一些错误的操作，我在装双系统时选错了磁盘，丢失了几乎所有的文件，然后开始有了备份的意识。</p>
 <p>目前的策略是使用duplicity每周备份一次，并将备份保存在ondrive上，日常工作文件也尽量选择在ondrive的目录下进行。之前丢失的文件，有些对我来说还挺难受的，这样的策略，让我在日常工作时不用再担心文件丢失的问题。</p>
 <p>不过因为大量文件丢失，我后续还是得做很多的事情。</p>
-<h3 id="多屏联动"><a class="markdownIt-Anchor" href="#多屏联动"></a> 多屏联动</h3>
+<h3 id="多屏联动">多屏联动</h3>
 <p>这个算是让我充分意识到局域网的充分利用了吧，描述起来的话有点像Apple，华为或者小米那样的生态，自家的手机，电脑，平板可以共享剪贴板，分享文件，接受信息以及将移动设备的屏幕投射在PC端。</p>
 <p>首先是<a target="_blank" rel="noopener" href="https://kdeconnect.kde.org/"><strong><em>KDE Connect</em></strong></a>，支持在Windows，Linux，Android平台上安装，首次使用时需要在不同设备之间建立起连接，然后就可以实现消息的共享，剪贴板共享，文件共享等功能，第一次适配之后会相互记得只要连接在同一局域网中便可以连接，用起来蛮爽的。</p>
 <p>然后是<a target="_blank" rel="noopener" href="https://github.com/Genymobile/scrcpy"><strong><em>Scrcpy</em></strong></a>，可以展示以及控制android设备，提供了丰富的参数实现复杂的功能。本体没有GUI界面，到是有第三方进行开发，但也并不总令人满意。</p>
@@ -351,22 +351,22 @@
 <p>思路是通过arp以及mac地址来检测手机是不是在同一局域网下，然后adb连接，最后scrcpy展示。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    phoneIP=$(arp -a | grep <span class="string">&#x27;ff:ff:ff:ff:ff:ff&#x27;</span> | cut -c 4-16)</span><br><span class="line">    existsIP=$(adb devices | grep <span class="variable">$phoneIP</span> | cut -c 1-13)</span><br><span class="line">    <span class="keyword">if</span> [[ -z <span class="variable">$existsIP</span> || <span class="variable">$phoneIP</span> -ne <span class="variable">$existsIP</span> ]]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        adb connect <span class="variable">$phoneIP</span></span><br><span class="line">        scrcpy -S --window-title <span class="string">&#x27;Huawei Honor V20&#x27;</span></span><br><span class="line">        adb disconnect <span class="variable">$phoneIP</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    sleep 10s</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 <p>这个脚本也在启动时被调用。</p>
-<h3 id="截图并ocr"><a class="markdownIt-Anchor" href="#截图并ocr"></a> 截图并OCR</h3>
-<p><s>这是个坑，先挖在这里，通过腾讯的接口实现的，能OCR普通文本或者latex，但是因为没备份的缘故丢失了，后续补上。</s></p>
+<h3 id="截图并ocr">截图并OCR</h3>
+<p><del>这是个坑，先挖在这里，通过腾讯的接口实现的，能OCR普通文本或者latex，但是因为没备份的缘故丢失了，后续补上。</del></p>
 <p>看看我用各个平台的接口开发之后的对比吧：<a href="/shell-based-OCR-program/" title="基于shell的数学公式识别程序">基于shell的数学公式识别程序</a></p>
-<h3 id="ax210"><a class="markdownIt-Anchor" href="#ax210"></a> AX210</h3>
+<h3 id="ax210">AX210</h3>
 <p>AX210是一个intel网卡的型号，支持更好的WIFI和蓝牙，我一直都在想要不要换下自己的无线网卡，在考研结束后的半个月里，我最终决定购入替换。</p>
 <p>emm，在没有仔细查阅当前是否有驱动支持的情况下。</p>
 <p>在花费一个多小时前往市中心拧掉被我拧滑的网卡固定螺丝然后又精力一个多小时回到学校后，开始使用AX210。Windows 10作为主要适配方，完美适用没一点问题，然后至于ubuntu 20.04这里，intel官方的驱动最新是AX201，就很不巧的，差了一个版本。</p>
 <p>我在查阅了诸多资料后，终于在一篇报导里找到了线索。Linux在5.11的内核版本中，首次支持使用AX210，然后我就去装5.11的内核。特别有意思的事情发生了，5.11的第一个rc版本就在考研结束后发布的，直到我查询时还是第三个rc版本，好家伙。</p>
-<p>换完内核后，也是可以顺利使用WIFI了，<s>但是蓝牙暂时还是不行，这个感觉得稍微等一段时间了，我换得着实早了那么一丢丢。</s> 在更新到rc4后，蓝牙也支持了，就是刚装好遇见了玄学bug，之后就正常使用。在稳定版发行前之前就不再更新了。</p>
+<p>换完内核后，也是可以顺利使用WIFI了，<del>但是蓝牙暂时还是不行，这个感觉得稍微等一段时间了，我换得着实早了那么一丢丢。</del> 在更新到rc4后，蓝牙也支持了，就是刚装好遇见了玄学bug，之后就正常使用。在稳定版发行前之前就不再更新了。</p>
 <p>emm，其实还是有点问题的，切换到rc4之后鼠标和键盘都在登录界面无法使用，也没法进入命令行，就问题很大。到是可以通过rc3的内核进入系统，然后这个时候蓝牙，wifi，鼠标键盘正常使用。</p>
 <p>最后的解决方式是在白嫖完rc4的蓝牙驱动后，删除rc4切换到rc3，当然也可以保留rc4。多亏了 <strong><em>Grub Customizer</em></strong> 和 <strong><em>Ubuntu Mainline</em></strong> 这两个GUI工具，让我的测试与实验顺利进行，不至于一不留神又得重装系统。</p>
 <p>升级内核的过程还把iptables给弄坏了，导致我一度没法使用v2rayA，还好在作者的及时回复中解决了问题。</p>
 <div class="note info">
-            <h4 id="2021年2月21日更新"><a class="markdownIt-Anchor" href="#2021年2月21日更新"></a> 2021年2月21日更新</h4><p>最近又去官网看了看，AX210的官方驱动发布了，需要5.10+的内核，然后发现笔记本里安装了这个驱动，可能是升级内核时带的，也可能是本来就有，就是升级完内核刚好能用了。</p><p>5.11的正式版已经出来了，但是会遇见登录界面鼠标和键盘都没法用的情形，于是我还是在使用rc3。</p>
+            <h4 id="年2月21日更新">2021年2月21日更新</h4><p>最近又去官网看了看，AX210的官方驱动发布了，需要5.10+的内核，然后发现笔记本里安装了这个驱动，可能是升级内核时带的，也可能是本来就有，就是升级完内核刚好能用了。</p><p>5.11的正式版已经出来了，但是会遇见登录界面鼠标和键盘都没法用的情形，于是我还是在使用rc3。</p>
           </div>
-<h2 id="尾声"><a class="markdownIt-Anchor" href="#尾声"></a> 尾声</h2>
+<h2 id="尾声">尾声</h2>
 <p>博客的更新在备考中就暂停了（虽然之前也没更过多久就是了），考研的结果感觉不怎么理想，估计要着手准备校招和毕设了，就算为自己添彩，博客也会更新的勤一点。加油吧。</p>
 
     </div>
@@ -477,7 +477,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text"> 选择与安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BE%8E%E5%8C%96%E5%8F%8A%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text"> 美化及基础设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E8%89%B2%E4%B8%BB%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text"> 深色主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%9D%E5%A4%96%E6%89%A9%E5%B1%95"><span class="nav-number">2.2.</span> <span class="nav-text"> 额外扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%8C%E9%9D%A2%E8%83%8C%E6%99%AF"><span class="nav-number">2.3.</span> <span class="nav-text"> 桌面背景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%B8%B8%E5%BA%94%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text"> 日常应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%80%83%E7%A0%94%E7%8E%AF%E5%A2%83"><span class="nav-number">4.</span> <span class="nav-text"> 考研环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%ADgrub%E7%95%8C%E9%9D%A2"><span class="nav-number">4.1.</span> <span class="nav-text"> 关闭Grub界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%8F%E5%B0%91%E7%BD%91%E9%A1%B5%E5%A8%B1%E4%B9%90"><span class="nav-number">4.2.</span> <span class="nav-text"> 减少网页娱乐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%8B%E7%BD%91%E8%AF%BE"><span class="nav-number">4.3.</span> <span class="nav-text"> 看网课</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%8D%E5%85%B8"><span class="nav-number">4.4.</span> <span class="nav-text"> 查词典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="nav-number">4.5.</span> <span class="nav-text"> 思维导图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#anki"><span class="nav-number">4.6.</span> <span class="nav-text"> Anki</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E4%BD%BF%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text"> 深度使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD"><span class="nav-number">5.1.</span> <span class="nav-text"> 备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%B1%8F%E8%81%94%E5%8A%A8"><span class="nav-number">5.2.</span> <span class="nav-text"> 多屏联动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%AA%E5%9B%BE%E5%B9%B6ocr"><span class="nav-number">5.3.</span> <span class="nav-text"> 截图并OCR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ax210"><span class="nav-number">5.4.</span> <span class="nav-text"> AX210</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2021%E5%B9%B42%E6%9C%8821%E6%97%A5%E6%9B%B4%E6%96%B0"><span class="nav-number">5.4.1.</span> <span class="nav-text"> 2021年2月21日更新</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%BE%E5%A3%B0"><span class="nav-number">6.</span> <span class="nav-text"> 尾声</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">选择与安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BE%8E%E5%8C%96%E5%8F%8A%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">美化及基础设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E8%89%B2%E4%B8%BB%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">深色主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%9D%E5%A4%96%E6%89%A9%E5%B1%95"><span class="nav-number">2.2.</span> <span class="nav-text">额外扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%8C%E9%9D%A2%E8%83%8C%E6%99%AF"><span class="nav-number">2.3.</span> <span class="nav-text">桌面背景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%B8%B8%E5%BA%94%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">日常应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%80%83%E7%A0%94%E7%8E%AF%E5%A2%83"><span class="nav-number">4.</span> <span class="nav-text">考研环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%ADgrub%E7%95%8C%E9%9D%A2"><span class="nav-number">4.1.</span> <span class="nav-text">关闭Grub界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%8F%E5%B0%91%E7%BD%91%E9%A1%B5%E5%A8%B1%E4%B9%90"><span class="nav-number">4.2.</span> <span class="nav-text">减少网页娱乐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%8B%E7%BD%91%E8%AF%BE"><span class="nav-number">4.3.</span> <span class="nav-text">看网课</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%8D%E5%85%B8"><span class="nav-number">4.4.</span> <span class="nav-text">查词典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="nav-number">4.5.</span> <span class="nav-text">思维导图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#anki"><span class="nav-number">4.6.</span> <span class="nav-text">Anki</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E4%BD%BF%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">深度使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD"><span class="nav-number">5.1.</span> <span class="nav-text">备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%B1%8F%E8%81%94%E5%8A%A8"><span class="nav-number">5.2.</span> <span class="nav-text">多屏联动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%AA%E5%9B%BE%E5%B9%B6ocr"><span class="nav-number">5.3.</span> <span class="nav-text">截图并OCR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ax210"><span class="nav-number">5.4.</span> <span class="nav-text">AX210</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B42%E6%9C%8821%E6%97%A5%E6%9B%B4%E6%96%B0"><span class="nav-number">5.4.1.</span> <span class="nav-text">2021年2月21日更新</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%BE%E5%A3%B0"><span class="nav-number">6.</span> <span class="nav-text">尾声</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -315,7 +315,7 @@
 <img data-src="/run-Windows-programs-on-Linux/visual_studio.png" class="" title="visual_studio">
 <p>在Ubuntu上使用VS开发.net平台应用。</p>
 <a id="more"></a>
-<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<h2 id="前言">前言</h2>
 <p>在Linux上运行Windows程序的需求历来已久，实现思路各有千秋。最根本的方式是直接开发对应的Linux程序，这样无疑增加了开发者的负担；最直接的想法是开一个虚拟机，但是对硬件的要求会很多，还会不得不运行诸多不必要的程序；还有在Linux上实现Windows依赖的wine，毕竟不是原生，会有一些地方不尽如人意。</p>
 <p>当然，这次介绍的方法也不是完美无暇的，本质上还是借用了VM的力量，对硬件条件有一定的要求，但是就表现而言，非常接近Linux原生应用，体验很不错。</p>
 <p>也就是说，并不是真的原生应用，而是使用体验上十分接近原生应用。</p>
@@ -327,13 +327,13 @@
 </blockquote>
 <p>翻译过来就是在linux上像原生应用一样使用Windows应用。emm，基于KVM。</p>
 <p>从下开始的步骤可以看作本人对WinApps中<a target="_blank" rel="noopener" href="https://github.com/Fmstrat/winapps/blob/main/README.md#installation">Readme.md#installation</a>与<a target="_blank" rel="noopener" href="https://github.com/Fmstrat/winapps/blob/main/docs/KVM.md">KVM.md</a>的个人翻译、整理与补充。</p>
-<h2 id="使用kvm创建虚拟机"><a class="markdownIt-Anchor" href="#使用kvm创建虚拟机"></a> 使用KVM创建虚拟机</h2>
+<h2 id="使用kvm创建虚拟机">使用KVM创建虚拟机</h2>
 <p>这一步将使用KVM创建一个win10的虚拟机。如果已经创建，只需要注意修改计算机名称为<strong>RDPWindows</strong>以及在虚拟机内安装<a target="_blank" rel="noopener" href="https://github.com/Fmstrat/winapps/blob/main/install/RDPApps.reg">RDPApps.reg</a>即可跳过。</p>
-<h3 id="安装kvm"><a class="markdownIt-Anchor" href="#安装kvm"></a> 安装KVM</h3>
+<h3 id="安装kvm">安装KVM</h3>
 <p>使用以下命令安装<strong>KVM</strong>以及<strong>虚拟机系统管理器</strong></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y virt-manager</span><br></pre></td></tr></table></figure>
 <p>一般而言这个时候 需要重启一下才能正常使用虚拟机系统管理器。</p>
-<h3 id="下载windows镜像与kvm虚拟io驱动"><a class="markdownIt-Anchor" href="#下载windows镜像与kvm虚拟io驱动"></a> 下载Windows镜像与KVM虚拟IO驱动</h3>
+<h3 id="下载windows镜像与kvm虚拟io驱动">下载Windows镜像与KVM虚拟IO驱动</h3>
 <p>为了正常使用，需要使用Windows 10专业版或企业版，家庭版不能正常使用，同时，为了更好的表现以及更低的系统资源占用，需要安装KVM虚拟IO驱动，可以通过以下链接下载：</p>
 <p>Windows 10 ISO：<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows10ISO">https://www.microsoft.com/zh-cn/software-download/windows10ISO</a></p>
 <blockquote>
@@ -343,7 +343,7 @@
 <p>最新的LTSC版本是基于1809的<strong>Windows 10 Enterprise LTSC 2019</strong>，ed2k链接整理自<a target="_blank" rel="noopener" href="https://msdn.itellyou.cn/">I Tell You</a></p>
 <p><code>ed2k://|file|cn_windows_10_enterprise_ltsc_2019_x64_dvd_9c09ff24.iso|4478906368|E7C526499308841A4A6D116C857DB669|/</code></p>
 <p>KVM虚拟IO驱动：<a target="_blank" rel="noopener" href="https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso">https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso</a></p>
-<h3 id="创建虚拟机"><a class="markdownIt-Anchor" href="#创建虚拟机"></a> 创建虚拟机</h3>
+<h3 id="创建虚拟机">创建虚拟机</h3>
 <p>首先打开<code>虚拟机系统管理器</code></p>
 <img data-src="/run-Windows-programs-on-Linux/virt_manager.png" class="" title="virt_manager">
 <p>接着，点开<code>编辑</code>-&gt;<code>首选项</code>，勾选<code>Enable XML editing</code>，之后点击<code>关闭</code></p>
@@ -361,7 +361,7 @@
 <p>接下来给虚拟机命名为<code>RDPWindows</code>，只有这样的命名才能让WinApps检测到虚拟机，然后选择<code>在安装前自定义配置</code></p>
 <img data-src="/run-Windows-programs-on-Linux/create05.png" class="" title="create05">
 <p>在点击<code>完成</code>之后，确保在CPU的配置下<code>复制主机CPU</code>配置被选中，然后点击<code>应用</code></p>
-<p>**注意：**在Windows虚拟机安装结束后，有可能这个选项会被勾掉，因此应在安装结束后再次检查。</p>
+<p><strong>注意：</strong>在Windows虚拟机安装结束后，有可能这个选项会被勾掉，因此应在安装结束后再次检查。</p>
 <img data-src="/run-Windows-programs-on-Linux/config_CPU_0.png" class="" title="config_CPU_0">
 <p>接下来，在<code>XML</code>标签里，编辑<code>&lt;clock&gt;</code>部分为：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">clock</span> <span class="attr">offset</span>=<span class="string">&#x27;localtime&#x27;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">timer</span> <span class="attr">name</span>=<span class="string">&#x27;hpet&#x27;</span> <span class="attr">present</span>=<span class="string">&#x27;yes&#x27;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">timer</span> <span class="attr">name</span>=<span class="string">&#x27;hypervclock&#x27;</span> <span class="attr">present</span>=<span class="string">&#x27;yes&#x27;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">clock</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -380,7 +380,7 @@
 <p>现在可以点击<code>开始安装</code>了。</p>
 <img data-src="/run-Windows-programs-on-Linux/start_install.png" class="" title="start_install">
 <p>接下来开始安装虚拟机</p>
-<h3 id="安装虚拟机"><a class="markdownIt-Anchor" href="#安装虚拟机"></a> 安装虚拟机</h3>
+<h3 id="安装虚拟机">安装虚拟机</h3>
 <p>像正常安装那样安装Windows 10。</p>
 <img data-src="/run-Windows-programs-on-Linux/install_win10.png" class="" title="install_win10">
 <p>当出现<code>你想将Windows安装在哪里？</code>这个界面时，点击<code>加载驱动程序</code></p>
@@ -413,20 +413,20 @@
 <p>或者安装一些软件诸如Visual Studio或者office之类的，在之后会用到。</p>
 <p>如果需要的话，可以安装<a target="_blank" rel="noopener" href="https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe">Spice Guest Tools</a>，这样就能实现桌面大小的自适应和主机与虚拟机的复制粘贴。</p>
 <p>一切结束后，重启虚拟机，但是不要登录，关闭虚拟系统管理器与虚拟机界面就好。</p>
-<h2 id="安装winapps"><a class="markdownIt-Anchor" href="#安装winapps"></a> 安装WinApps</h2>
-<h3 id="第一步设置虚拟机"><a class="markdownIt-Anchor" href="#第一步设置虚拟机"></a> 第一步：设置虚拟机</h3>
+<h2 id="安装winapps">安装WinApps</h2>
+<h3 id="第一步设置虚拟机">第一步：设置虚拟机</h3>
 <p>就是上文所说的那些，相当长的过程。</p>
-<h3 id="第二步下载winapps并做预准备"><a class="markdownIt-Anchor" href="#第二步下载winapps并做预准备"></a> 第二步：下载<code>WinApps</code>并做预准备</h3>
+<h3 id="第二步下载winapps并做预准备">第二步：下载<code>WinApps</code>并做预准备</h3>
 <p>具体而言，执行如下命令</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y freerdp2-x11</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Fmstrat/winapps.git</span><br><span class="line"><span class="built_in">cd</span> winapps</span><br></pre></td></tr></table></figure>
-<h3 id="第三步创建winapps配置文件"><a class="markdownIt-Anchor" href="#第三步创建winapps配置文件"></a> 第三步：创建WinApps配置文件</h3>
+<h3 id="第三步创建winapps配置文件">第三步：创建WinApps配置文件</h3>
 <p>新建一个配置文件，路径为：<code>~/.config/winapps/winapps.conf</code>，写进如下的信息</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RDP_USER&#x3D;&quot;MyWindowsUser&quot;</span><br><span class="line">RDP_PASS&#x3D;&quot;MyWindowsPassword&quot;</span><br><span class="line">#RDP_DOMAIN&#x3D;&quot;MYDOMAIN&quot;</span><br><span class="line">#RDP_IP&#x3D;&quot;192.168.123.111&quot;</span><br><span class="line">#RDP_SCALE&#x3D;100</span><br><span class="line">#RDP_FLAGS&#x3D;&quot;&quot;</span><br><span class="line">#MULTIMON&#x3D;&quot;true&quot;</span><br><span class="line">#DEBUG&#x3D;&quot;true&quot;</span><br></pre></td></tr></table></figure>
 <p>这个用户名和密码填写为Windows 10虚拟机设置的用户名与密码，值得注意的是，不能使用PIN码。</p>
 <p>至于其它几个可选项（不很能理解，就贴原文了）：</p>
 <blockquote>
 <ul>
-<li>When using a pre-existing non-KVM RDP server, you can use the <code>RDP_IP</code> to specify it’s location</li>
+<li>When using a pre-existing non-KVM RDP server, you can use the <code>RDP_IP</code> to specify it's location</li>
 <li>If you are running a VM in KVM with NAT enabled, leave <code>RDP_IP</code> commented out and WinApps will auto-detect the right local IP</li>
 <li>For domain users, you can uncomment and change <code>RDP_DOMAIN</code></li>
 <li>On high-resolution (UHD) displays, you can set <code>RDP_SCALE</code> to the scale you would like [100|140|160|180]</li>
@@ -435,7 +435,7 @@
 <li>If you enable <code>DEBUG</code>, a log will be created on each application start in <code>~/.local/share/winapps/winapps.log</code></li>
 </ul>
 </blockquote>
-<h3 id="第四步运行winapps的安装脚本"><a class="markdownIt-Anchor" href="#第四步运行winapps的安装脚本"></a> 第四步：运行WinApps的安装脚本</h3>
+<h3 id="第四步运行winapps的安装脚本">第四步：运行WinApps的安装脚本</h3>
 <p>首先检查一下是否能连接，相应的，使用如下命令：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/winapps check</span><br></pre></td></tr></table></figure>
 <p>一切正常的话，会通过远程界面登录虚拟机，并在最后弹出Windows 10的文件资源管理器窗口，这代表连接成功。然后就可以关闭文件资源管理器，按下<code>Ctrl-C</code>取消输出。</p>
@@ -458,14 +458,13 @@
 <p>甚至完成了下面两张图的效果。</p>
 <img data-src="/run-Windows-programs-on-Linux/Windows.png" class="" title="Windows">
 <img data-src="/run-Windows-programs-on-Linux/Ubuntu.png" class="" title="Ubuntu">
-<h2 id="添加预定义应用"><a class="markdownIt-Anchor" href="#添加预定义应用"></a> 添加预定义应用</h2>
+<h2 id="添加预定义应用">添加预定义应用</h2>
 <p>Visual Studio，powershell以及CMD之所以可以直接使用，是因为对它们进行了配置，这些配置文件可以在<code>apps</code>里找到，对于每个文件夹，都有一个<code>ison.svg</code>与<code>info</code>，<code>ison.svg</code>是这个软件在Ubuntu上显示的图标，<code>info</code>里则记录了该软件的名称，路径等信息。</p>
 <p>之后，使用<code>installer.sh</code>时，会遍历这些配置文件，找到哪些软件已经安装，并展示出来，接着，由用户选择对哪些已安装建立连接，最后再以原生应用的体验进行使用。</p>
-<h2 id="在linux上玩原神"><a class="markdownIt-Anchor" href="#在linux上玩原神"></a> 在linux上玩原神</h2>
+<h2 id="在linux上玩原神">在linux上玩原神</h2>
 <p>那么，一系列的环境都已经搭建好了，来尝试下在linux上玩玩原神。</p>
 <p>首先，在虚拟机里安装原神，这一步没什么好说的，进入<a target="_blank" rel="noopener" href="https://ys.mihoyo.com/#/">原神官网</a>，选择<code>PC下载</code>，下载安装原神游戏本体。</p>
-<p>然后写配置文件，在<code>apps</code>文件夹下新建一个文件夹，命名为<code>Genshin-Impact</code>，先找个原神的logo，注意必须是svg格式，放进去重命名为<br />
-<code>icon.svg</code>，下面这张是我自己用的。</p>
+<p>然后写配置文件，在<code>apps</code>文件夹下新建一个文件夹，命名为<code>Genshin-Impact</code>，先找个原神的logo，注意必须是svg格式，放进去重命名为 <code>icon.svg</code>，下面这张是我自己用的。</p>
 <img data-src="/run-Windows-programs-on-Linux/icon.svg" class="" width="100" height="100" title="icon">
 <p>然后新建一个文件，命名为<code>info</code>，编辑这个文件，写进去下面这些内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># GNOME shortcut name</span><br><span class="line">NAME&#x3D;&quot;Genshin&quot;</span><br><span class="line"></span><br><span class="line"># Used for descriptions and window class</span><br><span class="line">FULL_NAME&#x3D;&quot;Genshin Impact&quot;</span><br><span class="line"></span><br><span class="line"># The executable inside windows</span><br><span class="line">WIN_EXECUTABLE&#x3D;&quot;C:\Program Files\Genshin Impact\launcher.exe&quot;</span><br><span class="line"></span><br><span class="line"># GNOME categories</span><br><span class="line">CATEGORIES&#x3D;&quot;WinApps;Game&quot;</span><br><span class="line"></span><br><span class="line"># GNOME mimetypes</span><br><span class="line">MIME_TYPES&#x3D;&quot;&quot;</span><br></pre></td></tr></table></figure>
@@ -482,7 +481,7 @@
 <img data-src="/run-Windows-programs-on-Linux/Genshin_impact_1.png" class="" title="Genshin_impact_1">
 <p>我这里本来应该放上游戏内的画面，但是限于我的硬件条件十分一般，延迟会稍微有点高，正常进入游戏是没问题，但是流畅玩耍就有点不行。</p>
 <p>回头换个好点的配置试试。</p>
-<h2 id="尾声"><a class="markdownIt-Anchor" href="#尾声"></a> 尾声</h2>
+<h2 id="尾声">尾声</h2>
 <p>我在进行实验时，对它的期望不算很高，毕竟在我的认知里，通过虚拟机（特指VMware）使用另一个系统时，一定有相当大的延迟，交互还不是很好。</p>
 <p>但是KVM + WinApps的组合让我感觉很不错，我在一块旧的机械硬盘上进行的实验，CPU也是几年前的i5，但是对与CPU以及内存的占用都没有飙升到特别高，KVM的虚拟机是后台常驻的，但是在不使用程序时，几乎感知不到它的存在，而且貌似是因为加载程序时不需要完整运行整个系统，延迟也很低，配合上复制粘贴，和原生应用的体验已经十分的相像了。</p>
 <p>我曾经对卸载Windows，将Linux作为唯一的日常系统这一想法有些踌躇，但是KVM + WinApps的组合让我感觉可以向前迈进一大步了，说不定下次准备更换计算机，使用更高性能的机器时，已经可以完全做到抛弃双系统这一妥协方案了。</p>
@@ -593,7 +592,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8kvm%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.</span> <span class="nav-text"> 使用KVM创建虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85kvm"><span class="nav-number">2.1.</span> <span class="nav-text"> 安装KVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDwindows%E9%95%9C%E5%83%8F%E4%B8%8Ekvm%E8%99%9A%E6%8B%9Fio%E9%A9%B1%E5%8A%A8"><span class="nav-number">2.2.</span> <span class="nav-text"> 下载Windows镜像与KVM虚拟IO驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.3.</span> <span class="nav-text"> 创建虚拟机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.4.</span> <span class="nav-text"> 安装虚拟机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85winapps"><span class="nav-number">3.</span> <span class="nav-text"> 安装WinApps</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">3.1.</span> <span class="nav-text"> 第一步：设置虚拟机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E4%B8%8B%E8%BD%BDwinapps%E5%B9%B6%E5%81%9A%E9%A2%84%E5%87%86%E5%A4%87"><span class="nav-number">3.2.</span> <span class="nav-text"> 第二步：下载WinApps并做预准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E5%88%9B%E5%BB%BAwinapps%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.3.</span> <span class="nav-text"> 第三步：创建WinApps配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%E8%BF%90%E8%A1%8Cwinapps%E7%9A%84%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC"><span class="nav-number">3.4.</span> <span class="nav-text"> 第四步：运行WinApps的安装脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%A2%84%E5%AE%9A%E4%B9%89%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text"> 添加预定义应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8linux%E4%B8%8A%E7%8E%A9%E5%8E%9F%E7%A5%9E"><span class="nav-number">5.</span> <span class="nav-text"> 在linux上玩原神</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%BE%E5%A3%B0"><span class="nav-number">6.</span> <span class="nav-text"> 尾声</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8kvm%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.</span> <span class="nav-text">使用KVM创建虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85kvm"><span class="nav-number">2.1.</span> <span class="nav-text">安装KVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDwindows%E9%95%9C%E5%83%8F%E4%B8%8Ekvm%E8%99%9A%E6%8B%9Fio%E9%A9%B1%E5%8A%A8"><span class="nav-number">2.2.</span> <span class="nav-text">下载Windows镜像与KVM虚拟IO驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.3.</span> <span class="nav-text">创建虚拟机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.4.</span> <span class="nav-text">安装虚拟机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85winapps"><span class="nav-number">3.</span> <span class="nav-text">安装WinApps</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">3.1.</span> <span class="nav-text">第一步：设置虚拟机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E4%B8%8B%E8%BD%BDwinapps%E5%B9%B6%E5%81%9A%E9%A2%84%E5%87%86%E5%A4%87"><span class="nav-number">3.2.</span> <span class="nav-text">第二步：下载WinApps并做预准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E5%88%9B%E5%BB%BAwinapps%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.3.</span> <span class="nav-text">第三步：创建WinApps配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%E8%BF%90%E8%A1%8Cwinapps%E7%9A%84%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC"><span class="nav-number">3.4.</span> <span class="nav-text">第四步：运行WinApps的安装脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%A2%84%E5%AE%9A%E4%B9%89%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">添加预定义应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8linux%E4%B8%8A%E7%8E%A9%E5%8E%9F%E7%A5%9E"><span class="nav-number">5.</span> <span class="nav-text">在linux上玩原神</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%BE%E5%A3%B0"><span class="nav-number">6.</span> <span class="nav-text">尾声</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
